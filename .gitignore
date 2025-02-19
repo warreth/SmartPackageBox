@@ -483,3 +483,4 @@ $RECYCLE.BIN/
 # Vim temporary swap files
 *.swp
 docs/hardware/.$MotorDiagram.drawio.bkp
+docs/hardware/.$ArduinoDiagram.drawio.bkp

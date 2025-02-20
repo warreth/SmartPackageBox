@@ -33,6 +33,16 @@ namespace MotorController
 
     public class HatchController
     {
+        public HatchController()
+        {
+            // Couldn't write to pin 8 because it was not open.
+            controller.OpenPin(HatchProperties.openPin, PinMode.Output);
+            controller.OpenPin(HatchProperties.closePin, PinMode.Output);
+
+            // Initialize pins to Low state
+            controller.Write(HatchProperties.openPin, PinValue.Low);
+            controller.Write(HatchProperties.closePin, PinValue.Low);
+        }
         public HatchProperties hatchProperties = new();
         public GpioController controller = new();
 

@@ -1,7 +1,6 @@
 ﻿using static NonSpecific.ErrorHandler;
 using static NonSpecific.Logger;
 using System.Device.Gpio;
-using System.Threading;
 
 namespace MotorController
 {
@@ -14,7 +13,7 @@ namespace MotorController
         /// True: Opens the hatch.
         /// False: Closes the hatch.
         /// </remarks>
-        protected bool openAction;
+        public bool openAction;
 
         /// <summary>
         /// Indicates the current position of the hatch
@@ -35,6 +34,7 @@ namespace MotorController
     {
         public HatchController()
         {
+
             // Couldn't write to pin 8 because it was not open.
             controller.OpenPin(HatchProperties.openPin, PinMode.Output);
             controller.OpenPin(HatchProperties.closePin, PinMode.Output);
@@ -48,7 +48,7 @@ namespace MotorController
 
         public bool MoveHatch(bool openAction)
         {
-            if (openAction)
+            if (hatchProperties.openAction)
             {
 
                 bool didOpen = HandleError(() => OpenHatch());  // Wrap in lambda
@@ -58,7 +58,7 @@ namespace MotorController
                 }
 
             }
-            else if (!openAction)
+            else if (!hatchProperties.openAction)
             {
                 bool didClose = HandleError(() => CloseHatch());  // Wrap in lambda
                 if (didClose)
@@ -68,25 +68,28 @@ namespace MotorController
             }
             return true;
         }
-        public void OpenHatch()
+        private void OpenHatch()
         {
             controller.Write(HatchProperties.closePin, PinValue.Low);
             Thread.Sleep(1000);
             controller.Write(HatchProperties.openPin, PinValue.High);
             Console.WriteLine("Hatch Opened");
+            Log("MotorController", "Hatch Opened");
         }
-        public void CloseHatch()
+        private void CloseHatch()
         {
             controller.Write(HatchProperties.openPin, PinValue.Low);
             Thread.Sleep(1000);
             controller.Write(HatchProperties.closePin, PinValue.High);
             Console.WriteLine("Hatch Closed");
+            Log("MotorController", "Hatch Closed");
         }
-        public void StopHatch()
+        private void StopHatch()
         {
             controller.Write(HatchProperties.openPin, PinValue.Low);
             controller.Write(HatchProperties.closePin, PinValue.Low);
             Console.WriteLine("Hatch Stopped");
+            Log("MotorController", "Hatch Stopped");
         }
     }
 }

@@ -22,7 +22,7 @@ namespace NonSpecific
             Exception e = CatchError(function);
             if (e != null)
             {
-                Logger.Log(function.Method.Name, e);
+                Logger.Log(function.Method.Name, e.ToString());
                 return false;
             }
             return true;
@@ -38,20 +38,21 @@ namespace NonSpecific
         {
             // Get the current directory where the application is executed
             string currentDirectory = Directory.GetCurrentDirectory();
+            //System.Console.WriteLine(currentDirectory); //! DEBUG
 
             // Construct the path to the log file
-            return Path.Combine(currentDirectory, "logs", "log.md");
+            return Path.Combine(currentDirectory, "log.md");
         }
         /// <summary>
         /// Log errors to the error file
         /// </summary>
-        /// <param name="classToUse"></param>
-        /// <param name="Exception"></param>
-        public static void Log(object classToUse, Exception e)
+        /// <param name="Subject"></param>
+        /// <param name="TextToWrite"></param>
+        public static void Log(string subject, string text)
         {
             DateTime now = DateTime.Now; //get the current date
-            string output = $"{now} - {classToUse}\n\t{e}"; //construct the output
-
+            string output = $"{now} - {subject}:\n\t{text}\n"; //construct the output
+            //System.Console.WriteLine(output); //! DEBUG
             AppendToFile(GetPath(), output); //AppendToFile(fileName, output);
         }
 

@@ -1,0 +1,31 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:App.ViewModels"
+             xmlns:asyncImageLoader="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="App.Views.MainView"
+             x:DataType="vm:MainViewModel">
+  <Design.DataContext>
+    <!-- This only sets the DataContext for the previewer in an IDE,
+         to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+    <vm:MainViewModel />
+  </Design.DataContext>
+  <!--Header-->
+  <StackPanel>
+    <TextBlock Text="Smart Package Box" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" />
+    <!-- Grid -->
+    <Grid>
+      <!-- The openHatch button-->
+      <Button Command="{Binding OpenHatchCommand}" HorizontalAlignment="Center">
+        Open Hatch
+      </Button>
+
+      <!-- Image -->
+      <Panel>
+          <asyncImageLoader:AdvancedImage Width="150" Height="150" Source="{Binding ImageUrl}" Stretch="Uniform" />
+      </Panel>
+    </Grid>
+  </StackPanel>
+</UserControl>

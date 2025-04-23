@@ -15,7 +15,7 @@ app.MapGet("/newest-url", () =>
 {
     try
     {
-        //apiHelper.UpdateUrl(); // Update the URL to ensure it is fresh
+        apiHelper.UpdateUrl(); // Update the URL to ensure it is fresh
 
         return Results.Ok(new { newestUrl = apiHelper.mNewestUrl }); // Return the newest URL as JSON
     }

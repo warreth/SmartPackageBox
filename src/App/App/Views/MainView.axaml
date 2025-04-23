@@ -27,7 +27,7 @@
         </Button>
         <!-- Image with timestamp parameter to force refresh -->
         <Panel>
-          <asyncImageLoader:AdvancedImage Width="150" Height="150" 
+          <asyncImageLoader:AdvancedImage Width="500" Height="500"
               Source="{Binding FullImageUrl}" 
               Stretch="Uniform" />
         </Panel>

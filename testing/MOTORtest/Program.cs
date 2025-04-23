@@ -30,7 +30,7 @@ bool keepgoing = true;
 while (keepgoing)
 {
     System.Console.WriteLine("Do you want to move the hatch? (y/n)");
-    string command = Console.ReadLine();
+    string? command = Console.ReadLine();
     if (command == "y")
     {
         if (hatch.hatchProperties.isOpen)

@@ -3,6 +3,7 @@ using Api;
 using System;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.WebHost.UseUrls("https://0.0.0.0:5000"); // Listen on static port 5000
 var app = builder.Build();
 
 app.MapGet("/", () => "The API is online");
@@ -27,3 +28,6 @@ app.MapGet("/newest-url", () =>
 });
 
 app.Run();
+
+//TODO: Make the api accept commands to open the hatch, restart, ...
+//! Implement auth + use cf tunnels

@@ -9,7 +9,7 @@ public partial class MainViewModel : ViewModelBase
 {
 
     [ObservableProperty]
-    private string _imageUrl = "https://picsum.photos/200/300";
+    private string _imageUrl = "https://localhost:5000";
 
     [ObservableProperty]
     private string _imageTimestamp = "";

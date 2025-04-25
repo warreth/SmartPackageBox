@@ -44,7 +44,7 @@ namespace MotorController
             controller.Write(HatchProperties.closePin, PinValue.Low);
         }
         public HatchProperties hatchProperties = new();
-        public GpioController controller = new();
+        private GpioController controller = new();
 
         public bool MoveHatch(bool openAction)
         {
@@ -68,28 +68,31 @@ namespace MotorController
             }
             return true;
         }
-        private void OpenHatch()
+        private bool OpenHatch()
         {
             controller.Write(HatchProperties.closePin, PinValue.Low);
             Thread.Sleep(1000);
             controller.Write(HatchProperties.openPin, PinValue.High);
             Console.WriteLine("Hatch Opened");
             Log("MotorController", "Hatch Opened");
+            return true;
         }
-        private void CloseHatch()
+        private bool CloseHatch()
         {
             controller.Write(HatchProperties.openPin, PinValue.Low);
             Thread.Sleep(1000);
             controller.Write(HatchProperties.closePin, PinValue.High);
             Console.WriteLine("Hatch Closed");
             Log("MotorController", "Hatch Closed");
+            return true;
         }
-        private void StopHatch()
+        public bool StopHatch()
         {
             controller.Write(HatchProperties.openPin, PinValue.Low);
             controller.Write(HatchProperties.closePin, PinValue.Low);
             Console.WriteLine("Hatch Stopped");
             Log("MotorController", "Hatch Stopped");
+            return true;
         }
     }
 }

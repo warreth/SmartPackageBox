@@ -21,7 +21,7 @@ namespace CameraFeed
         }
 
         // Take a picture and return the image as a byte array (PNG format)
-        public static byte[] TakePicture(VideoCapture capture = null)
+        public static byte[] TakePicture(VideoCapture? capture = null)
         {
             bool createdCapture = false;
             if (capture == null) // If no capture is given, make one

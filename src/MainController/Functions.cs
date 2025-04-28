@@ -1,7 +1,6 @@
 namespace Functions;
 using MotorController;
 using CameraFeed;
-using System.Drawing;
 
 public class Function
 {
@@ -10,7 +9,7 @@ public class Function
     public void packageIsDetected()
     {
         Console.WriteLine("Package is detected");
-        Bitmap tImage = CameraFeed.TakePicture();
+        byte[] tImage = CameraFeed.TakePicture();
 
 
         if (File.Exists($"latest.png"))

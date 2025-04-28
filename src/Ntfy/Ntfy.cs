@@ -1,11 +1,11 @@
-﻿using System;
+﻿namespace Ntfy;
+
+using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text.Json;
 using System.IO;
 using System.Threading.Tasks;
-
-namespace Ntfy;
 
 public static class Notifications
 {
@@ -29,36 +29,34 @@ public static class Notifications
     }
 
     // Sends a notification to the ntfy server
-    public static async Task sendNotification(string message)
+    public static async Task sendNotification(string message, string actions = null, byte[] pImage = null)
     {
-        // Read config and check for missing values
         var (token, domain, topic) = ReadNtfyConfig("token.json");
         if (string.IsNullOrWhiteSpace(token) || string.IsNullOrWhiteSpace(domain) || string.IsNullOrWhiteSpace(topic))
         {
             Console.WriteLine("[ERROR] Config missing or invalid");
             return;
         }
-        // Build the URL for the ntfy server
         string url = $"https://{domain}/{topic}";
-        // Create HttpClient instance
+
         HttpClient client = new HttpClient();
-        // Create HttpRequestMessage for POST
         HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, url);
-        // Add Bearer token to Authorization header
+
         request.Headers.Add("Authorization", $"Bearer {token}");
-        // Set the message content and content type
+        if (!string.IsNullOrWhiteSpace(actions)) request.Headers.Add("Actions", actions);
         request.Content = new System.Net.Http.StringContent(message);
         request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
-        // Debug: print request details
+
         Console.WriteLine($"[DEBUG] POST {url}");
         Console.WriteLine($"[DEBUG] Authorization: Bearer {token}");
+        if (!string.IsNullOrWhiteSpace(actions)) Console.WriteLine($"[DEBUG] Actions: {actions}");
         Console.WriteLine($"[DEBUG] Content-Type: application/x-www-form-urlencoded");
         Console.WriteLine($"[DEBUG] Body: {message}");
+
         try
         {
-            // Send the request and get the response
             HttpResponseMessage response = await client.SendAsync(request);
-            response.EnsureSuccessStatusCode(); // Throws if not 2xx
+            response.EnsureSuccessStatusCode();
             string responseBody = await response.Content.ReadAsStringAsync();
             Console.WriteLine($"[ntfy] Response: {responseBody}");
         }

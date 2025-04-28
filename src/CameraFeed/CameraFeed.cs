@@ -1,78 +1,96 @@
-﻿namespace CameraFeed;
-using Emgu.CV;
-using System.Drawing;
+﻿using Emgu.CV;
+using System;
+using System.IO;
+using SixLabors.ImageSharp; // ImageSharp for cross-platform image handling
+using SixLabors.ImageSharp.PixelFormats;
+using SixLabors.ImageSharp.Formats.Png;
 
-public static class CameraFeed
+namespace CameraFeed
 {
-    public static VideoCapture StartCamera()
+    public static class CameraFeed
     {
-        VideoCapture capture = new VideoCapture(0); // Make a new VideoCapture object (open the webcam)
-        return capture;
-    }
-
-    /// <summary>
-    /// Takes a picture using the provided VideoCapture instance, or creates one if none is provided.
-    /// </summary>
-    /// <param name="capture">Optional VideoCapture instance. If null, a new one is created and disposed.</param>
-    /// <returns>Bitmap image of the captured frame.</returns>
-    public static Bitmap TakePicture(VideoCapture? capture = null)
-    {
-        bool createdCapture = false;
-
-        if (capture == null) // If no capture was given, create one
+        // Start the camera and return a VideoCapture object
+        public static VideoCapture StartCamera()
         {
-            capture = StartCamera();
-            createdCapture = true;
-        }
-
-        // Error checking: ensure capture is not null and is opened
-        if (capture == null)
-        {
-            throw new ArgumentNullException(nameof(capture), "VideoCapture instance cannot be null.");
-        }
-        if (!capture.IsOpened)
-        {
-            if (createdCapture)
+            var capture = new VideoCapture(0); // Open default camera
+            if (capture == null || !capture.IsOpened)
             {
-                StopCamera(capture);
+                throw new InvalidOperationException("Failed to open camera.");
             }
-            throw new InvalidOperationException("The VideoCapture device is not opened.");
+            return capture;
         }
 
-        // Query a frame and convert it to Bitmap
-        using (var frame = capture.QueryFrame())
+        // Take a picture and return the image as a byte array (PNG format)
+        public static byte[] TakePicture(VideoCapture capture = null)
         {
+            bool createdCapture = false;
+            if (capture == null) // If no capture is given, make one
+            {
+                capture = StartCamera();
+                createdCapture = true;
+            }
+            if (capture == null || !capture.IsOpened)
+            {
+                if (createdCapture && capture != null) { StopCamera(capture); }
+                throw new InvalidOperationException("Camera is not available.");
+            }
+            var frame = capture.QueryFrame();
             if (frame == null)
             {
-                if (createdCapture)
-                {
-                    StopCamera(capture);
-                }
-                throw new InvalidOperationException("Failed to capture a frame from the camera.");
+                if (createdCapture) { StopCamera(capture); }
+                throw new InvalidOperationException("Failed to capture frame.");
             }
-            Bitmap image = frame.ToBitmap();
-            // If we created the capture, dispose it
-            if (createdCapture)
+
+            // Convert Mat to byte array using ImageSharp for Linux compatibility
+            var img = frame.ToImage<Emgu.CV.Structure.Bgr, byte>();
+            if (img == null)
             {
-                StopCamera(capture);
+                if (createdCapture) { StopCamera(capture); }
+                throw new InvalidOperationException("Failed to convert frame to EmguCV Image.");
             }
-            return image;
+
+            var image = new Image<Rgb24>(img.Width, img.Height); // Create ImageSharp image
+            for (int y = 0; y < img.Height; y++)
+            {
+                for (int x = 0; x < img.Width; x++)
+                {
+                    var color = img[y, x]; // Bgr
+                    // Convert BGR to RGB and assign to ImageSharp image
+                    image[x, y] = new Rgb24((byte)color.Red, (byte)color.Green, (byte)color.Blue);
+                }
+            }
+            var ms = new MemoryStream();
+            image.Save(ms, new PngEncoder()); // Save as PNG
+            byte[] imageBytes = ms.ToArray();
+            ms.Dispose();
+            image.Dispose();
+
+            if (createdCapture) { StopCamera(capture); }
+            return imageBytes;
         }
-    }
 
-    public static void StopCamera(VideoCapture capture)
-    {
-        capture.Dispose(); // Dispose of the VideoCapture object
-    }
-
-    public static void SaveImage(Bitmap image, string name)
-    {
-        string fileName = $"{name}.png";
-        if (image == null)
+        // Dispose the VideoCapture object
+        public static void StopCamera(VideoCapture capture)
         {
-            throw new ArgumentNullException(nameof(image), "Image cannot be null.");
+            if (capture != null)
+            {
+                capture.Dispose();
+            }
         }
 
-        image.Save(fileName, System.Drawing.Imaging.ImageFormat.Png);
+        // Save the image bytes to a PNG file
+        public static void SaveImage(byte[] imageBytes, string name)
+        {
+            if (imageBytes == null || imageBytes.Length == 0)
+            {
+                throw new ArgumentException("Image bytes cannot be null or empty.");
+            }
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                throw new ArgumentException("Name cannot be null or whitespace.");
+            }
+            string fileName = $"{name}.png";
+            File.WriteAllBytes(fileName, imageBytes);
+        }
     }
 }

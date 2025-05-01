@@ -5,7 +5,7 @@ namespace NonSpecific
 
     public static class ErrorHandler
     {
-        private static Exception CatchError(Action function)
+        private static Exception? CatchError(Action function)
         {
             try
             {
@@ -19,10 +19,10 @@ namespace NonSpecific
         }
         public static bool HandleError(Action function)
         {
-            Exception e = CatchError(function);
+            Exception? e = CatchError(function);
             if (e != null)
             {
-                Logger.Log(function.Method.Name, e.ToString());
+                Logger.Log($"[ERROR] {function.Method.Name}", e.ToString());
                 return false;
             }
             return true;
@@ -34,6 +34,7 @@ namespace NonSpecific
     /// </summary>
     public static class Logger
     {
+        private static bool bWriteToConsole = true;
         private static string GetPath()
         {
             // Get the current directory where the application is executed
@@ -52,11 +53,16 @@ namespace NonSpecific
         {
             DateTime now = DateTime.Now; //get the current date
             string output = $"{now} - {subject}:\n\t{text}\n"; //construct the output
-            //System.Console.WriteLine(output); //! DEBUG
+
             AppendToFile(GetPath(), output); //AppendToFile(fileName, output);
+
+            if (bWriteToConsole)
+            {
+                System.Console.WriteLine(output); // DEBUGGING to console
+            }
         }
 
-        public static string ReadLog() => ReadFile(GetPath()); //ReadFile(fileName);
+        public static string ReadLog() => ReadFile(GetPath())!; //ReadFile(fileName);
     }
 
 }

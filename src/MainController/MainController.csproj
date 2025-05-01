@@ -7,6 +7,7 @@
     <ProjectReference Include="..\MotorController\MotorController.csproj" />
     <ProjectReference Include="..\NonSpecific\NonSpecific.csproj" />
     <ProjectReference Include="..\Sensors\Sensors.csproj" />
+    <ProjectReference Include="..\Ntfy\Ntfy.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

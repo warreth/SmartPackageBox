@@ -73,7 +73,6 @@ namespace MotorController
             controller.Write(HatchProperties.closePin, PinValue.Low);
             Thread.Sleep(1000);
             controller.Write(HatchProperties.openPin, PinValue.High);
-            Console.WriteLine("Hatch Opened");
             Log("MotorController", "Hatch Opened");
             return true;
         }
@@ -82,7 +81,6 @@ namespace MotorController
             controller.Write(HatchProperties.openPin, PinValue.Low);
             Thread.Sleep(1000);
             controller.Write(HatchProperties.closePin, PinValue.High);
-            Console.WriteLine("Hatch Closed");
             Log("MotorController", "Hatch Closed");
             return true;
         }
@@ -90,7 +88,6 @@ namespace MotorController
         {
             controller.Write(HatchProperties.openPin, PinValue.Low);
             controller.Write(HatchProperties.closePin, PinValue.Low);
-            Console.WriteLine("Hatch Stopped");
             Log("MotorController", "Hatch Stopped");
             return true;
         }

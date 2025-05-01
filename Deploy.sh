@@ -13,9 +13,18 @@ for cmd in dotnet sshpass scp ssh konsole; do
 done
 
 # Set remote deployment variables before use
-remote_user="pi"
-remote_host="raspberrypi.local"
-remote_path="/home/pi/SmartPackageBox"
+remote_user="w"
+remote_host="192.168.55.1"
+remote_path="/home/w/SmartPackageBox"
+
+# Parse optional -u argument for remote_host
+while getopts "u:" opt; do
+    case $opt in
+        u)
+            remote_host="$OPTARG"
+            ;;
+    esac
+done
 
 # Error checking: Ensure remote variables are not empty
 if [[ -z "$remote_user" || -z "$remote_host" || -z "$remote_path" ]]; then
@@ -52,11 +61,19 @@ read -rsp "Enter SSH password: " ssh_password
 echo
 
 # Step 2: Remove the entire remote directory and its contents using sudo (do not recreate it)
+# Keep token.json and log.md by moving them out before deletion and restoring them after
+ssh_keep_cmd="sshpass -p \"$ssh_password\" ssh $remote_user@$remote_host 'mkdir -p /tmp/smartpackagebox_keep; if [ -f $remote_path/token.json ]; then mv $remote_path/token.json /tmp/smartpackagebox_keep/; fi; if [ -f $remote_path/log.md ]; then mv $remote_path/log.md /tmp/smartpackagebox_keep/; fi'"
+ssh_keep_output=$(eval "$ssh_keep_cmd" 2>&1)
+ssh_keep_status=$?
+if [[ $ssh_keep_status -ne 0 ]]; then
+    echo "Error: Failed to move files to temporary location. Output was:"
+    echo "$ssh_keep_output"
+    exit 1
+fi
+
 ssh_remove_cmd="sshpass -p \"$ssh_password\" ssh $remote_user@$remote_host 'echo $ssh_password | sudo -S rm -rf $remote_path'"
 ssh_remove_output=$(eval "$ssh_remove_cmd" 2>&1)
 ssh_remove_status=$?
-
-# Error checking: Ensure remote removal succeeded
 if [[ $ssh_remove_status -ne 0 ]]; then
     echo "Error: Failed to remove remote directory. Output was:"
     echo "$ssh_remove_output"
@@ -69,8 +86,6 @@ echo "Remote directory removed."
 ssh_create_cmd="sshpass -p \"$ssh_password\" ssh $remote_user@$remote_host 'mkdir -p $remote_path'"
 ssh_create_output=$(eval "$ssh_create_cmd" 2>&1)
 ssh_create_status=$?
-
-# Error checking: Ensure remote directory was created
 if [[ $ssh_create_status -ne 0 ]]; then
     echo "Error: Failed to create remote directory. Output was:"
     echo "$ssh_create_output"
@@ -78,6 +93,15 @@ if [[ $ssh_create_status -ne 0 ]]; then
 fi
 
 echo "Remote directory created."
+
+# Restore token.json and log.md if they exist
+ssh_restore_cmd="sshpass -p \"$ssh_password\" ssh $remote_user@$remote_host 'if [ -f /tmp/smartpackagebox_keep/token.json ]; then mv /tmp/smartpackagebox_keep/token.json $remote_path/; fi; if [ -f /tmp/smartpackagebox_keep/log.md ]; then mv /tmp/smartpackagebox_keep/log.md $remote_path/; fi; rmdir /tmp/smartpackagebox_keep 2>/dev/null || true'"
+ssh_restore_output=$(eval "$ssh_restore_cmd" 2>&1)
+ssh_restore_status=$?
+if [[ $ssh_restore_status -ne 0 ]]; then
+    echo "Warning: Failed to restore token.json or log.md. Output was:"
+    echo "$ssh_restore_output"
+fi
 
 # Step 3: Copy published files to Raspberry Pi using tar + pv + ssh for a simple progress bar
 # This will show a minimal progress bar (e.g., ----->) like yay/apt

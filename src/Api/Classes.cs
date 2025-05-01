@@ -1,10 +1,13 @@
 using System.Security.Cryptography;
 namespace Api;
+using static NonSpecific.ErrorHandler;
+using static NonSpecific.Logger;
+
 public class ApiInfo
 {
-    public string mNewestUrl;
+    public string mNewestUrl = "";
     protected string baseUrl = "https://example.com/images/latest.jpg";
-    protected string mQueryParameter;
+    protected string mQueryParameter = "";
 }
 
 public class Helper : ApiInfo

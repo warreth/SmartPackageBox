@@ -4,6 +4,8 @@ using System.IO;
 using SixLabors.ImageSharp; // ImageSharp for cross-platform image handling
 using SixLabors.ImageSharp.PixelFormats;
 using SixLabors.ImageSharp.Formats.Png;
+using static NonSpecific.ErrorHandler;
+using static NonSpecific.Logger;
 
 namespace CameraFeed
 {
@@ -15,6 +17,7 @@ namespace CameraFeed
             var capture = new VideoCapture(0); // Open default camera
             if (capture == null || !capture.IsOpened)
             {
+                Log("CameraFeed", "Failed to open camera.");
                 throw new InvalidOperationException("Failed to open camera.");
             }
             return capture;
@@ -32,12 +35,14 @@ namespace CameraFeed
             if (capture == null || !capture.IsOpened)
             {
                 if (createdCapture && capture != null) { StopCamera(capture); }
+                Log("CameraFeed", "Camera is not available.");
                 throw new InvalidOperationException("Camera is not available.");
             }
             var frame = capture.QueryFrame();
             if (frame == null)
             {
                 if (createdCapture) { StopCamera(capture); }
+                Log("CameraFeed", "Failed to capture frame.");
                 throw new InvalidOperationException("Failed to capture frame.");
             }
 
@@ -46,6 +51,7 @@ namespace CameraFeed
             if (img == null)
             {
                 if (createdCapture) { StopCamera(capture); }
+                Log("CameraFeed", "Failed to convert frame to EmguCV Image.");
                 throw new InvalidOperationException("Failed to convert frame to EmguCV Image.");
             }
 
@@ -83,14 +89,17 @@ namespace CameraFeed
         {
             if (imageBytes == null || imageBytes.Length == 0)
             {
+                Log("CameraFeed", "Image bytes cannot be null or empty.");
                 throw new ArgumentException("Image bytes cannot be null or empty.");
             }
             if (string.IsNullOrWhiteSpace(name))
             {
+                Log("CameraFeed", "Name cannot be null or whitespace.");
                 throw new ArgumentException("Name cannot be null or whitespace.");
             }
             string fileName = $"{name}.png";
             File.WriteAllBytes(fileName, imageBytes);
+            Log("CameraFeed", $"Image saved as {fileName}");
         }
     }
 }

@@ -1,7 +1,8 @@
 ﻿using AI;
 using Functions;
 using MotorController;
-
+using static NonSpecific.ErrorHandler;
+using static NonSpecific.Logger;
 
 public class Program
 {
@@ -19,7 +20,7 @@ public class Program
             }
             else
             {
-                Console.WriteLine("Package is not detected");
+                Log("Program", "Package is not detected");
             }
         }
     }

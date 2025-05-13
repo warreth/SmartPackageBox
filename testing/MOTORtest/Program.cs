@@ -33,14 +33,7 @@ while (keepgoing)
     string? command = Console.ReadLine();
     if (command == "y")
     {
-        if (hatch.hatchProperties.isOpen)
-        {
-            hatch.MoveHatch(false); //Close the hatch
-        }
-        if (!hatch.hatchProperties.isOpen) //If closed
-        {
-            hatch.MoveHatch(true); //Open the hatch
-        }
+        hatch.MoveHatch(!hatch.hatchProperties.isOpen); //Open the hatch
     }
     else
     {

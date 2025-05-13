@@ -7,15 +7,6 @@ namespace MotorController
     public class HatchProperties
     {
         /// <summary>
-        /// Indicates the action to be performed on the hatch.
-        /// </summary>
-        /// <remarks>
-        /// True: Opens the hatch.
-        /// False: Closes the hatch.
-        /// </remarks>
-        public bool openAction;
-
-        /// <summary>
         /// Indicates the current position of the hatch
         /// </summary>
         /// True: Open
@@ -46,9 +37,14 @@ namespace MotorController
         public HatchProperties hatchProperties = new();
         private GpioController controller = new();
 
+        /// <summary>
+        /// Opens/Closes the hatch
+        /// </summary>
+        /// <param name="openAction"></param>
+        /// <returns></returns>
         public bool MoveHatch(bool openAction)
         {
-            if (hatchProperties.openAction)
+            if (openAction)
             {
 
                 bool didOpen = HandleError(() => OpenHatch());  // Wrap in lambda
@@ -58,7 +54,7 @@ namespace MotorController
                 }
 
             }
-            else if (!hatchProperties.openAction)
+            else if (!openAction)
             {
                 bool didClose = HandleError(() => CloseHatch());  // Wrap in lambda
                 if (didClose)

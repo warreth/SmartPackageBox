@@ -5,6 +5,7 @@ using Ntfy;
 using System.Threading.Tasks;
 using static NonSpecific.ErrorHandler;
 using static NonSpecific.Logger;
+using Api;
 
 public class Function
 {
@@ -29,7 +30,12 @@ public class Function
         if (File.Exists($"latest.png") && tImage != null)
         {
             CameraFeed.SaveImage(tImage, "latest.png");
+            Log("Function", "Saved image to latest.png");
         }
+
+        Helper apiHelper = Helper.Instance;
+        apiHelper.UpdateUrl(); //Update the photoUrl
+        Log("Function", $"Updated API URL {apiHelper.mNewestUrl}");
 
         if (!hatch.hatchProperties.isOpen) //If closed
         {

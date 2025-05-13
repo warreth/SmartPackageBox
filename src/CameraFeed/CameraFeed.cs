@@ -1,4 +1,5 @@
 ﻿using Emgu.CV;
+using Emgu.CV.Structure;
 using System;
 using System.IO;
 using SixLabors.ImageSharp; // ImageSharp for cross-platform image handling

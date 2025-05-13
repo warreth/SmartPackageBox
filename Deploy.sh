@@ -14,7 +14,7 @@ done
 
 # Set remote deployment variables before use
 remote_user="w"
-remote_host="192.168.55.1"
+remote_host="raspberrypi.local"
 remote_path="/home/w/SmartPackageBox"
 
 # Parse optional -u argument for remote_host

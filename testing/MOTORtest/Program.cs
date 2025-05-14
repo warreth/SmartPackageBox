@@ -23,20 +23,22 @@ while (keepgoing)
             break;
     }
 }
-
 */
+
 bool keepgoing = true;
+hatch.StopHatch();
 
 while (keepgoing)
 {
-    System.Console.WriteLine("Do you want to move the hatch? (y/n)");
+    System.Console.WriteLine("Move the hatch? (n=stop)");
     string? command = Console.ReadLine();
-    if (command == "y")
+    if (command != "n")
     {
         hatch.MoveHatch(!hatch.hatchProperties.isOpen); //Open the hatch
     }
     else
     {
+        hatch.StopHatch();
         keepgoing = false;
     }
 }

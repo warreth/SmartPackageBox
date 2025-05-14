@@ -1,6 +1,6 @@
 namespace Functions;
 using MotorController;
-using CameraFeed;
+using static CameraFeed.CameraFeed;
 using Ntfy;
 using System.Threading.Tasks;
 using static NonSpecific.ErrorHandler;
@@ -15,27 +15,26 @@ public class Function
     {
         Log("Function", "Package is detected");
 
-        // Take a picture and handle any errors, ensuring the program doesn't crash
-        byte[]? tImage = null;
-        bool success = HandleError(() =>
+        //Take the picture + logging
+        bool success;
+        if (handlePicture())
         {
-            tImage = CameraFeed.TakePicture();
-        });
-
-        if (!success || tImage == null)
-        {
-            Log("Function", "Failed to take picture.");
+            Log("Function", "Picture taken and saved.");
+            success = true;
         }
 
-        if (File.Exists($"latest.png") && tImage != null)
+        else
         {
-            CameraFeed.SaveImage(tImage, "latest.png");
-            Log("Function", "Saved image to latest.png");
+            Log("Function", "[ERROR] Failed to take picture.");
+            success = false;
         }
 
-        Helper apiHelper = Helper.Instance;
-        apiHelper.UpdateUrl(); //Update the photoUrl
-        Log("Function", $"Updated API URL {apiHelper.mNewestUrl}");
+        //Update the url
+        if (success)
+        {
+            handleUrl();
+        }
+
 
         if (!hatch.hatchProperties.isOpen) //If closed
         {
@@ -66,10 +65,64 @@ public class Function
         catch (Exception ex)
         {
             // Print any errors to the console
-            Log("Function", $"Error sending notification: {ex.Message}");
+            Log("trySendNotification", $"Error sending notification: {ex.Message}");
         }
     }
+    public bool handlePicture()
+    {
+        byte[]? tImage = null;
 
+        if (!File.Exists($"latest.png"))
+        {
+            Log("handlePicture", "latest.png does not exist.");
+            File.Create("latest.png");
+        }
+
+        bool success = HandleError(() =>
+        {
+            tImage = TakePicture();
+        });
+
+        if (!success || tImage == null)
+        {
+            Log("handlePicture", "[ERROR] Failed to take picture.");
+            return false;
+        }
+        else
+        {
+            Log("handlePicture", "Took picture.");
+        }
+
+        if (tImage != null)
+        {
+            SaveImage(tImage, "latest.png");
+            Log("handlePicture", "Saved image to latest.png");
+        }
+        else
+        {
+            Log("handlePicture", "[ERROR] Failed to save image to latest.png");
+            return false;
+        }
+        return true;
+    }
+    public bool handleUrl()
+    {
+        Helper apiHelper = Helper.Instance;
+        bool success = HandleError(() =>
+        {
+            apiHelper.UpdateUrl(); //Update the photoUrl
+        });
+        if (!success)
+        {
+            Log("handleUrl", "[ERROR] Failed to update URL");
+            return false;
+        }
+        else
+        {
+            Log("Function", $"Updated API URL {apiHelper.mNewestUrl}");
+            return true;
+        }
+    }
     public class StaticFunctions
     {
 

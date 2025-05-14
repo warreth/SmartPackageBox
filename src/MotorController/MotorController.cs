@@ -12,8 +12,8 @@ namespace MotorController
         /// True: Open
         /// False: Closed
         public bool isOpen = false; //! Make sure users cant control both sides at the same time
-        public const byte openPin = 7;
-        public const byte closePin = 8;
+        public const byte openPin = 8;
+        public const byte closePin = 7;
 
         public HatchProperties()
         {

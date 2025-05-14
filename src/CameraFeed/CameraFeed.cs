@@ -13,7 +13,7 @@ namespace CameraFeed
     public static class CameraFeed
     {
         // Start the camera and return a VideoCapture object
-        public static VideoCapture StartCamera()
+        private static VideoCapture StartCamera()
         {
             var capture = new VideoCapture(0); // Open default camera
             if (capture == null || !capture.IsOpened)
@@ -98,7 +98,7 @@ namespace CameraFeed
                 Log("CameraFeed", "Name cannot be null or whitespace.");
                 throw new ArgumentException("Name cannot be null or whitespace.");
             }
-            string fileName = $"{name}.png";
+            string fileName = $"{name}";
             File.WriteAllBytes(fileName, imageBytes);
             Log("CameraFeed", $"Image saved as {fileName}");
         }

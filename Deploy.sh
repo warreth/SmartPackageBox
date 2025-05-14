@@ -32,6 +32,15 @@ if [[ -z "$remote_user" || -z "$remote_host" || -z "$remote_path" ]]; then
     exit 1
 fi
 
+# Step 0: Ping the remote host to check if it is up before proceeding
+# Use 1 ping attempt, wait max 2 seconds, and suppress output
+if ping -c 1 -W 2 "$remote_host" >/dev/null 2>&1; then
+    echo "Device is up: $remote_host is reachable."
+else
+    echo "Device is down: $remote_host is unreachable."
+    exit 1
+fi
+
 # Step 1: Publish the .NET project for Raspberry Pi 4 (linux-arm64) as a single file
 # Use --runtime linux-arm64 and -p:PublishSingleFile=true for ARM64 single-file output
 publish_output=$(dotnet publish --configuration Release --runtime linux-arm64 -p:PublishSingleFile=true 2>&1)

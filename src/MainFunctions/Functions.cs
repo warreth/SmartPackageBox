@@ -1,56 +1,19 @@
-namespace Functions;
+﻿namespace Functions;
 
-using MotorController;
 using static CameraFeed.CameraFeed;
 using Ntfy;
 using System.Threading.Tasks;
 using static NonSpecific.ErrorHandler;
 using static NonSpecific.Logger;
-using Api;
 
-public class Function
+public class MainFunctions
 {
-    public string baseUrl = "https://spb.wath.dev";
-    public string apiUrl = "https://spb.wath.dev/api/";
-    HatchController hatch = new();
-
-    public void packageIsDetected()
+    public MainFunctions(string pApiUrl)
     {
-        Log("Function", "Package is detected");
-
-        //Take the picture + logging
-        bool success;
-        if (handlePicture())
-        {
-            Log("Function", "Picture taken and saved.");
-            success = true;
-        }
-
-        else
-        {
-            Log("Function", "[ERROR] Failed to take picture.");
-            success = false;
-        }
-
-        //Update the url
-        if (success)
-        {
-            handleUrl();
-        }
-
-
-        if (!hatch.hatchProperties.isOpen) //If closed
-        {
-            hatch.MoveHatch(true); //Open the hatch
-        }
-        else
-        {
-            Log("Function", "Hatch is already open");
-        }
-
-        trySentNotification($"{baseUrl}/latest.png");
-        Thread.Sleep(10000); //Wait 10 seconds (10000 milliseconds
+        apiUrl = pApiUrl;
     }
+    public string apiUrl;
+
 
     public void trySentNotification(string pImageUrl = "")
     {
@@ -108,7 +71,7 @@ public class Function
         }
         return true;
     }
-    public bool handleUrl() //TODO: Fix, doesnt work cuz 2 seperate processes
+    /*public bool handleUrl() //? Im using TriggerApiUpdateUrlAsync instead because it will always work and isnt as complicated with shared instances etc.
     {
         Helper apiHelper = Helper.Instance;
         bool success = HandleError(() =>
@@ -125,7 +88,37 @@ public class Function
             Log("Function", $"Updated API URL {apiHelper.mNewestUrl}");
             return true;
         }
+    }*/
+
+    public async Task<bool> TriggerApiUpdateUrlAsync()
+    {
+        // Create HttpClient instance for sending HTTP requests
+        using var client = new HttpClient();
+        try
+        {
+            // Send GET request to the API's /update-url endpoint
+            var response = await client.GetAsync($"{apiUrl}/update-url");
+
+            // Check if the response is successful
+            if (response.IsSuccessStatusCode)
+            {
+                string content = await response.Content.ReadAsStringAsync();
+                Log("TriggerApiUpdateUrlAsync", $"UpdateUrl triggered successfully: {content}");
+                return true;
+            }
+            else
+            {
+                Log("TriggerApiUpdateUrlAsync", $"Failed to trigger UpdateUrl. Status: {response.StatusCode}");
+                return false;
+            }
+        }
+        catch (Exception ex)
+        {
+            Log("TriggerApiUpdateUrlAsync", $"Exception while triggering UpdateUrl: {ex.Message}");
+            return false;
+        }
     }
+
     public class StaticFunctions
     {
 

@@ -1,12 +1,13 @@
 using System.Security.Cryptography;
 namespace Api;
+
 using static NonSpecific.ErrorHandler;
 using static NonSpecific.Logger;
 
 public class ApiInfo
 {
     public string mNewestUrl = "";
-    protected string baseUrl = "https://example.com/images/latest.jpg";
+    protected string baseUrl;
     protected string mQueryParameter = "";
 }
 
@@ -16,6 +17,9 @@ public class Helper : ApiInfo
     public static readonly Helper Instance = new Helper();
 
     public Helper() { } // Public constructor allows creating new instances if needed
+
+    public static string BaseUrl;
+
 
     public void UpdateUrl() // Update the URL when a new photo is uploaded
     {

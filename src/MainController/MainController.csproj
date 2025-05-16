@@ -8,6 +8,8 @@
     <ProjectReference Include="..\NonSpecific\NonSpecific.csproj" />
     <ProjectReference Include="..\Sensors\Sensors.csproj" />
     <ProjectReference Include="..\Ntfy\Ntfy.csproj" />
+    <ProjectReference Include="..\MainFunctions\MainFunctions.csproj" />
+    <ProjectReference Include="..\ImageServer\ImageServer.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

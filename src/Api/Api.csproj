@@ -1,13 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
-
-  <ItemGroup>
-    <ProjectReference Include="..\NonSpecific\NonSpecific.csproj" />
-  </ItemGroup>
-
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <OutputType>Library</OutputType>
   </PropertyGroup>
-
+  <ItemGroup>
+    <ProjectReference Include="..\NonSpecific\NonSpecific.csproj" />
+    <ProjectReference Include="..\MotorController\MotorController.csproj" />
+    <ProjectReference Include="..\CameraFeed\CameraFeed.csproj" />
+    <ProjectReference Include="..\MainFunctions\MainFunctions.csproj" />
+  </ItemGroup>
 </Project>

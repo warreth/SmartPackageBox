@@ -1,54 +1,82 @@
-using Microsoft.AspNetCore.Mvc; // For IActionResult
+using Microsoft.AspNetCore.Mvc;
 using Api;
 using System;
 using static NonSpecific.ErrorHandler;
 using static NonSpecific.Logger;
 using MotorController;
+using static CameraFeed.CameraFeed;
+using Functions;
 
-var builder = WebApplication.CreateBuilder(args);
-builder.WebHost.UseUrls("https://0.0.0.0:5000"); // Listen on static port 5000
-var app = builder.Build();
-
-app.MapGet("/", () => "The API is online");
-
-
-Helper apiHelper = Helper.Instance; // Use the shared Helper instance
-
-
-app.MapGet("/newest-url", () =>
+public static class ApiHost
 {
-    try
+    // Start the API server with a shared HatchController instance
+    public static void Start(HatchController hatch, string port)
     {
-        apiHelper.UpdateUrl(); // Update the URL to ensure it is fresh
-        Log("Api", "Updated newest URL");
-        return Results.Ok(new { newestUrl = apiHelper.mNewestUrl }); // Return the newest URL as JSON
-    }
-    catch (Exception ex)
-    {
-        Log("Api", $"Error updating or fetching newest URL: {ex.Message}");
-        // Return error details if something goes wrong
-        return Results.Problem($"Error updating or fetching newest URL: {ex.Message}");
-    }
-});
+        var builder = WebApplication.CreateBuilder();
+        builder.WebHost.UseUrls($"https://0.0.0.0:{port}");
+        var app = builder.Build();
 
-app.MapGet("/open-hatch", () =>
-{
-    HandleError(() =>
-    {
-        if (!hatch.hatchProperties.isOpen) //If closed
+        app.MapGet("/", () => "The API is online");
+
+        Helper apiHelper = Helper.Instance;
+
+        app.MapGet("/newest-url", () =>
         {
-            Log("Api", "Opening hatch");
-            hatch.MoveHatch(true); //Open the hatch
-        }
-        else
+            try
+            {
+                //apiHelper.UpdateUrl();
+                //Log("Api", "Updated newest URL");
+                return Results.Ok(new { newestUrl = apiHelper.mNewestUrl });
+            }
+            catch (Exception ex)
+            {
+                Log("Api", $"Error updating or fetching newest URL: {ex.Message}");
+                return Results.Problem($"Error updating or fetching newest URL: {ex.Message}");
+            }
+        });
+
+        app.MapGet("/update-url", () =>
         {
-            Log("Api", "Closing hatch");
-            hatch.MoveHatch(false); //Close the hatch
-        }
-    })
-})
+            bool success = HandleError(() =>
+            {
+                apiHelper.UpdateUrl(); // Update the URL using the API's Helper instance
+            });
+            if (!success)
+            {
+                Log("Api", "Failed to update URL via /update-url endpoint");
+                return Results.Problem("Failed to update URL");
+            }
+            Log("Api", $"Updated newest URL to {apiHelper.mNewestUrl}");
+            return Results.Ok(new { newestUrl = apiHelper.mNewestUrl });
+        });
 
-app.Run();
+        app.MapGet("/open-hatch", () =>
+        {
+            HandleError(() =>
+            {
+                if (!hatch.hatchProperties.isOpen)
+                {
+                    Log("Api", "Opening hatch");
+                    hatch.MoveHatch(true);
+                }
+                else
+                {
+                    Log("Api", "Closing hatch");
+                    hatch.MoveHatch(false);
+                }
+            });
+            return Results.Ok(new { isOpen = hatch.hatchProperties.isOpen });
+        });
 
-//TODO: Make the api accept commands to open the hatch, restart, ...
-//! Implement auth + use cf tunnels
+        app.MapGet("/take-picture", () =>
+        {
+            HandleError(() =>
+            {
+                Log("Api", "Taking picture");
+                TakePicture();
+            });
+        });
+
+        app.Run();
+    }
+}

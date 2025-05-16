@@ -3,6 +3,7 @@ using Api;
 using System;
 using static NonSpecific.ErrorHandler;
 using static NonSpecific.Logger;
+using MotorController;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.WebHost.UseUrls("https://0.0.0.0:5000"); // Listen on static port 5000
@@ -29,6 +30,23 @@ app.MapGet("/newest-url", () =>
         return Results.Problem($"Error updating or fetching newest URL: {ex.Message}");
     }
 });
+
+app.MapGet("/open-hatch", () =>
+{
+    HandleError(() =>
+    {
+        if (!hatch.hatchProperties.isOpen) //If closed
+        {
+            Log("Api", "Opening hatch");
+            hatch.MoveHatch(true); //Open the hatch
+        }
+        else
+        {
+            Log("Api", "Closing hatch");
+            hatch.MoveHatch(false); //Close the hatch
+        }
+    })
+})
 
 app.Run();
 

@@ -12,10 +12,20 @@ for cmd in dotnet sshpass scp ssh konsole; do
     fi
 done
 
-# Set remote deployment variables before use
+# Dynamically determine the project folder name from the current working directory (where the script is run)
+project_dir="$(pwd)"
+projectName="$(basename "$project_dir")"
+
+# Error checking: Ensure projectName is not empty
+if [[ -z "$projectName" ]]; then
+    echo "Error: Could not determine project folder name."
+    exit 1
+fi
+
+# Set remote deployment variables before use, always using the variable for the directory name
 remote_user="w"
 remote_host="raspberrypi.local"
-remote_path="/home/w/SmartPackageBox"
+remote_path="~/$projectName"
 
 # Parse optional -u argument for remote_host
 while getopts "u:" opt; do
@@ -43,7 +53,7 @@ fi
 
 # Step 1: Publish the .NET project for Raspberry Pi 4 (linux-arm64) as a single file
 # Use --runtime linux-arm64 and -p:PublishSingleFile=true for ARM64 single-file output
-publish_output=$(dotnet publish --configuration Release --runtime linux-arm64 -p:PublishSingleFile=true 2>&1)
+publish_output=$(dotnet publish --configuration Release --runtime linux-arm64  2>&1) #-p:PublishSingleFile=true
 publish_status=$?
 
 # Check if publish succeeded by exit status only
@@ -92,7 +102,8 @@ fi
 echo "Remote directory removed."
 
 # Step 2b: Recreate the remote directory before copying files
-ssh_create_cmd="sshpass -p \"$ssh_password\" ssh $remote_user@$remote_host 'mkdir -p $remote_path'"
+# Use bash -c to ensure ~ is expanded to the user's home directory on the remote side
+ssh_create_cmd="sshpass -p \"$ssh_password\" ssh $remote_user@$remote_host 'bash -c \"mkdir -p $remote_path\"'"
 ssh_create_output=$(eval "$ssh_create_cmd" 2>&1)
 ssh_create_status=$?
 if [[ $ssh_create_status -ne 0 ]]; then
@@ -131,7 +142,7 @@ fi
 # The bar will look like: [=====>   ] 50%
 sshpass -p "$ssh_password" tar -C "$publish_dir" -cf - . \
     | pv -s "$publish_size" -pterb \
-    | sshpass -p "$ssh_password" ssh $remote_user@$remote_host "tar -C \"$remote_path\" -xf -"
+    | sshpass -p "$ssh_password" ssh $remote_user@$remote_host "bash -c 'tar -C \"$HOME/$projectName\" -xf -'"
 
 # Error checking: Check exit status of the last command in the pipeline
 if [[ ${PIPESTATUS[2]} -ne 0 || ${PIPESTATUS[0]} -ne 0 ]]; then
@@ -140,9 +151,22 @@ if [[ ${PIPESTATUS[2]} -ne 0 || ${PIPESTATUS[0]} -ne 0 ]]; then
 fi
 
 echo "Files successfully copied to Raspberry Pi."
-
-# Step 4: Prompt user to start SSH session in current terminal
-read -rsp $"Press Enter to start an SSH session to $remote_user@$remote_host..." dummy_var
+# Step 4: Prompt user to start SSH session in current terminal (y/n)
+while true; do
+    read -rp $"Do you want to start an SSH session to $remote_user@$remote_host? (y/n): " yn
+    case "$yn" in
+        [Yy]*)
+            break
+            ;;
+        [Nn]*)
+            echo "Skipping SSH session."
+            exit 0
+            ;;
+        *)
+            echo "Please answer y or n."
+            ;;
+    esac
+done
 
 # Open SSH session directly in current terminal with a normal shell experience
 # -t forces pseudo-terminal allocation for interactivity

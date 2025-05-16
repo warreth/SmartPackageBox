@@ -4,7 +4,7 @@ using System.Device.Gpio;
 
 namespace MotorController
 {
-    public class HatchProperties
+    public class HatchProperties //TODO: Make a shared instance or use a stored json file for the isOpen value
     {
         /// <summary>
         /// Indicates the current position of the hatch

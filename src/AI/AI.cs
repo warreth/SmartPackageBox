@@ -7,7 +7,16 @@ public class AiHelper
 {
     public bool detectPackageAI()
     {
-        Log("AiHelper", "Package detected");
-        return true; //simulate that a package is detected
+        System.Console.WriteLine("Do you want to run the main program? (y/n)");
+        string input = Console.ReadLine();
+        if (input == "y")
+        {
+            Log("AiHelper", "Package detected");
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

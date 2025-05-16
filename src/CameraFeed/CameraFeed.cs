@@ -1,11 +1,7 @@
 ﻿using Emgu.CV;
-using Emgu.CV.Structure;
-using System;
-using System.IO;
 using SixLabors.ImageSharp; // ImageSharp for cross-platform image handling
 using SixLabors.ImageSharp.PixelFormats;
 using SixLabors.ImageSharp.Formats.Png;
-using static NonSpecific.ErrorHandler;
 using static NonSpecific.Logger;
 
 namespace CameraFeed

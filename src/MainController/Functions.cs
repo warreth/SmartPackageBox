@@ -1,4 +1,5 @@
 namespace Functions;
+
 using MotorController;
 using static CameraFeed.CameraFeed;
 using Ntfy;
@@ -9,6 +10,8 @@ using Api;
 
 public class Function
 {
+    public string baseUrl = "https://spb.wath.dev";
+    public string apiUrl = "https://spb.wath.dev/api/";
     HatchController hatch = new();
 
     public void packageIsDetected()
@@ -45,7 +48,7 @@ public class Function
             Log("Function", "Hatch is already open");
         }
 
-        trySentNotification("https://yavuzceliker.github.io/sample-images/image-9.jpg");
+        trySentNotification($"{baseUrl}/latest.png");
         Thread.Sleep(10000); //Wait 10 seconds (10000 milliseconds
     }
 
@@ -75,7 +78,7 @@ public class Function
         if (!File.Exists($"latest.png"))
         {
             Log("handlePicture", "latest.png does not exist.");
-            File.Create("latest.png");
+            File.Create("./wwwroot/latest.png");
         }
 
         bool success = HandleError(() =>
@@ -95,8 +98,8 @@ public class Function
 
         if (tImage != null)
         {
-            SaveImage(tImage, "latest.png");
-            Log("handlePicture", "Saved image to latest.png");
+            HandleError(() => SaveImage(tImage, "./wwwroot/latest.png"));
+            //Log("handlePicture", "Saved image to latest.png");
         }
         else
         {
@@ -105,7 +108,7 @@ public class Function
         }
         return true;
     }
-    public bool handleUrl()
+    public bool handleUrl() //TODO: Fix, doesnt work cuz 2 seperate processes
     {
         Helper apiHelper = Helper.Instance;
         bool success = HandleError(() =>

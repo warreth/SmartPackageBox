@@ -1,5 +1,6 @@
 using static NonSpecific.ErrorHandler;
 using static NonSpecific.Logger;
+using Microsoft.Extensions.Logging;
 
 public static class ImageServer
 {
@@ -14,7 +15,11 @@ public static class ImageServer
 
         // Use Array.Empty<string>() instead of undefined 'args' (library context) //!Thank you GPT-4.1 because i couldnt find the error at all.
         var builder = WebApplication.CreateBuilder(Array.Empty<string>());
+        builder.Logging.ClearProviders(); // Removes Console logger and others
+        builder.WebHost.UseUrls($"https://0.0.0.0:{port}");
+
         var app = builder.Build();
+        app.UseHttpsRedirection();
 
         app.MapGet("/", () => "Server is up and running!");
 
@@ -22,12 +27,12 @@ public static class ImageServer
         if (CheckWwwRootExists())
         {
             // Serve static files from wwwroot
-            app.UseFileServer();
+            app.UseStaticFiles();
         }
 
+        Log("ImageServer", $"Trying to start ImageServer on https://localhost:{port}");
         // Run the application on the specified port
-        app.Run($"http://localhost:{port}");
-        Log("ImageServer", $"Server started on http://localhost:{port}");
+        app.Run();
     }
 
     public static bool CheckWwwRootExists()

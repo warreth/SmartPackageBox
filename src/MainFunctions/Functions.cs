@@ -34,43 +34,6 @@ public class MainFunctions
             Log("trySendNotification", $"Error sending notification: {ex.Message}");
         }
     }
-    public bool handlePicture()
-    {
-        byte[]? tImage = null;
-
-        if (!File.Exists($"latest.png"))
-        {
-            Log("handlePicture", "latest.png does not exist.");
-            File.Create("./wwwroot/latest.png");
-        }
-
-        bool success = HandleError(() =>
-        {
-            tImage = TakePicture();
-        });
-
-        if (!success || tImage == null)
-        {
-            Log("handlePicture", "[ERROR] Failed to take picture.");
-            return false;
-        }
-        else
-        {
-            Log("handlePicture", "Took picture.");
-        }
-
-        if (tImage != null)
-        {
-            HandleError(() => SaveImage(tImage, "./wwwroot/latest.png"));
-            //Log("handlePicture", "Saved image to latest.png");
-        }
-        else
-        {
-            Log("handlePicture", "[ERROR] Failed to save image to latest.png");
-            return false;
-        }
-        return true;
-    }
     /*public bool handleUrl() //? Im using TriggerApiUpdateUrlAsync instead because it will always work and isnt as complicated with shared instances etc.
     {
         Helper apiHelper = Helper.Instance;
@@ -118,9 +81,51 @@ public class MainFunctions
             return false;
         }
     }
+}
 
-    public class StaticFunctions
+public class CameraFunctions
+{
+    // Singleton instance
+    public static readonly CameraFunctions Instance = new CameraFunctions();
+
+    // Private constructor to prevent external instantiation
+    private CameraFunctions() { }
+
+    public bool handlePicture()
     {
+        byte[]? tImage = null;
 
+        if (!File.Exists($"latest.png"))
+        {
+            Log("handlePicture", "latest.png does not exist.");
+            File.Create("./wwwroot/latest.png");
+        }
+
+        bool success = HandleError(() =>
+        {
+            tImage = TakePicture();
+        });
+
+        if (!success || tImage == null)
+        {
+            Log("handlePicture", "[ERROR] Failed to take picture.");
+            return false;
+        }
+        else
+        {
+            Log("handlePicture", "Took picture.");
+        }
+
+        if (tImage != null)
+        {
+            HandleError(() => SaveImage(tImage, "./wwwroot/latest.png"));
+            //Log("handlePicture", "Saved image to latest.png");
+        }
+        else
+        {
+            Log("handlePicture", "[ERROR] Failed to save image to latest.png");
+            return false;
+        }
+        return true;
     }
 }

@@ -4,8 +4,8 @@ using System;
 using static NonSpecific.ErrorHandler;
 using static NonSpecific.Logger;
 using MotorController;
-using static CameraFeed.CameraFeed;
 using Functions;
+using Microsoft.Extensions.Logging;
 
 public static class ApiHost
 {
@@ -13,8 +13,11 @@ public static class ApiHost
     public static void Start(HatchController hatch, string port)
     {
         var builder = WebApplication.CreateBuilder();
+        builder.Logging.ClearProviders(); // Removes Console logger and others
+
         builder.WebHost.UseUrls($"https://0.0.0.0:{port}");
         var app = builder.Build();
+        app.UseHttpsRedirection();
 
         app.MapGet("/", () => "The API is online");
 
@@ -70,13 +73,26 @@ public static class ApiHost
 
         app.MapGet("/take-picture", () =>
         {
+            // Error checking: ensure handlePicture returns a bool and log result
+            bool pictureSuccess = false;
             HandleError(() =>
             {
                 Log("Api", "Taking picture");
-                TakePicture();
+                pictureSuccess = CameraFunctions.Instance.handlePicture(); // Call singleton instance method
+                if (pictureSuccess)
+                {
+                    Log("Api", "Picture taken");
+                }
+                else
+                {
+                    Log("Api", "[ERROR] Picture not taken");
+                }
             });
+            // Return result with error checking
+            return Results.Ok(new { success = pictureSuccess });
         });
 
+        Log("Api", $"Trying to start API server on https://localhost:{port}");
         app.Run();
     }
 }

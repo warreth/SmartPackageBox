@@ -17,6 +17,8 @@ namespace CameraFeed
                 Log("CameraFeed", "Failed to open camera.");
                 throw new InvalidOperationException("Failed to open camera.");
             }
+
+            System.Threading.Thread.Sleep(500); //TODO: Check if works: short delay to allow camera to warm up (important on Linux)
             return capture;
         }
 

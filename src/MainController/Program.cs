@@ -44,7 +44,7 @@ public class Program
 
         //Take the picture + logging
         bool success;
-        if (mainFunction.handlePicture())
+        if (CameraFunctions.Instance.handlePicture())
         {
             Log("HelperFunctions", "Picture taken and saved.");
             success = true;

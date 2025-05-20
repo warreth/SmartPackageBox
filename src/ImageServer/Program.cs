@@ -6,44 +6,44 @@ public static class ImageServer
 {
     public static void Start(string port)
     {
-        // Error checking: ensure port is not null or empty
         if (string.IsNullOrEmpty(port))
         {
-            Log("ImageServer", "Port is null or empty. Defaulting to \"8080\".");
-            port = "8080";
+            Log("ImageServer", "Port is null or empty. Defaulting to \"8081\".");
+            port = "8081";
         }
 
-        // Use Array.Empty<string>() instead of undefined 'args' (library context) //!Thank you GPT-4.1 because i couldnt find the error at all.
         var builder = WebApplication.CreateBuilder(Array.Empty<string>());
-        builder.Logging.ClearProviders(); // Removes Console logger and others
-        builder.WebHost.UseUrls($"https://0.0.0.0:{port}");
+        builder.Logging.ClearProviders();
+        builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
 
         var app = builder.Build();
-        app.UseHttpsRedirection();
+        //app.UseHttpsRedirection();
 
         app.MapGet("/", () => "Server is up and running!");
 
-        // Check if wwwroot exists, create if not
-        if (CheckWwwRootExists())
+        string contentRootPath = builder.Environment.ContentRootPath;
+        string wwwRootPath = Path.Combine(contentRootPath, "wwwroot");
+
+        if (!Directory.Exists(wwwRootPath))
         {
-            // Serve static files from wwwroot
-            app.UseStaticFiles();
+            Log("ImageServerSetup", $"wwwroot directory does not exist at '{wwwRootPath}'. Creating it.");
+            try
+            {
+                Directory.CreateDirectory(wwwRootPath);
+                Log("ImageServerSetup", $"Created wwwroot directory at '{wwwRootPath}'.");
+            }
+            catch (Exception ex)
+            {
+                Log("ImageServerSetup", $"[ERROR] Failed to create wwwroot directory at '{wwwRootPath}': {ex.Message}");
+            }
+        }
+        else
+        {
+            Log("ImageServerSetup", $"wwwroot directory already exists at '{wwwRootPath}'.");
         }
 
-        Log("ImageServer", $"Trying to start ImageServer on https://localhost:{port}");
-        // Run the application on the specified port
+        app.UseStaticFiles();
+        Log("ImageServer", $"Trying to start ImageServer on http://localhost:{port}");
         app.Run();
-    }
-
-    public static bool CheckWwwRootExists()
-    {
-        if (!Directory.Exists("wwwroot"))
-        {
-            Log("WwwRootExists", "wwwroot directory does not exist.");
-            Directory.CreateDirectory("wwwroot");
-            Log("WwwRootExists", "Created wwwroot directory. (not error checked)");
-            return false;
-        }
-        return true;
     }
 }

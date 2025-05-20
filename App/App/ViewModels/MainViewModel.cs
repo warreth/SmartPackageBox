@@ -4,14 +4,13 @@ using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using App.Services;
-using Avalonia.Markup.Xaml.MarkupExtensions;
 
 namespace App.ViewModels;
 
 public partial class MainViewModel : ViewModelBase
 {
     [ObservableProperty]
-    private string imageServerUrl = "https://raspberrypi.local:8081";
+    private string imageServerUrl = "http://raspberrypi.local:8081/latest.png";
 
     [ObservableProperty]
     private string apiUrl = "https://raspberrypi.local:8080";
@@ -56,9 +55,9 @@ public partial class MainViewModel : ViewModelBase
     [RelayCommand]
     private async Task RefreshImageAsync()
     {
-        string? result = await _apiService.ContactUrlAsync(ImageServerUrl, "newest-url");
-        Log(result);
-        NewestImageUrl = result;
+        string? result = await _apiService.ContactUrlAsync(ApiUrl, "newest-url");
+        NewestImageUrl = ImageServerUrl + result;
+        Log($"Refreshimage result: {NewestImageUrl}");
         OnPropertyChanged(nameof(LogMessages));
     }
 
@@ -66,7 +65,10 @@ public partial class MainViewModel : ViewModelBase
     private async Task OpenHatchAsync()
     {
         string? result = await _apiService.ContactUrlAsync(ApiUrl, "open-hatch");
-        Log(result);
+
+        bool isOpen = Convert.ToBoolean(result);
+        result = isOpen ? "Hatch is now open" : "Hatch is now closed";
+        Log($"Openhatch result: {result}");
 
         OnPropertyChanged(nameof(LogMessages));
     }
@@ -75,7 +77,10 @@ public partial class MainViewModel : ViewModelBase
     private async Task TakePictureAsync()
     {
         string? result = await _apiService.ContactUrlAsync(ApiUrl, "take-picture");
-        Log(result);
+
+        bool isOpen = Convert.ToBoolean(result);
+        result = isOpen ? "Picture taken" : "Picture couldnt be taken (see RPi logs)";
+        Log($"Openhatch result: {result}");
 
         OnPropertyChanged(nameof(LogMessages));
     }

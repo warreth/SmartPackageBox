@@ -35,43 +35,79 @@ namespace CameraFeed
             {
                 if (createdCapture && capture != null) { StopCamera(capture); }
                 Log("CameraFeed", "Camera is not available.");
+                Log("CameraFeed", $"Available video devices: {string.Join(", ", ListVideoDevices())}");
                 throw new InvalidOperationException("Camera is not available.");
             }
-            var frame = capture.QueryFrame();
-            if (frame == null)
+            byte[] imageBytes;
+            int maxRetries = 5;
+            int delayMs = 300;
+            bool frameCaptured = false;
+            imageBytes = Array.Empty<byte>();
+            for (int attempt = 1; attempt <= maxRetries; attempt++)
             {
-                if (createdCapture) { StopCamera(capture); }
-                Log("CameraFeed", "Failed to capture frame.");
-                throw new InvalidOperationException("Failed to capture frame.");
-            }
-
-            // Convert Mat to byte array using ImageSharp for Linux compatibility
-            var img = frame.ToImage<Emgu.CV.Structure.Bgr, byte>();
-            if (img == null)
-            {
-                if (createdCapture) { StopCamera(capture); }
-                Log("CameraFeed", "Failed to convert frame to EmguCV Image.");
-                throw new InvalidOperationException("Failed to convert frame to EmguCV Image.");
-            }
-
-            var image = new Image<Rgb24>(img.Width, img.Height); // Create ImageSharp image
-            for (int y = 0; y < img.Height; y++)
-            {
-                for (int x = 0; x < img.Width; x++)
+                using (var frame = capture.QueryFrame())
                 {
-                    var color = img[y, x]; // Bgr
-                    // Convert BGR to RGB and assign to ImageSharp image
-                    image[x, y] = new Rgb24((byte)color.Red, (byte)color.Green, (byte)color.Blue);
+                    if (frame != null)
+                    {
+                        using (var img = frame.ToImage<Emgu.CV.Structure.Bgr, byte>())
+                        {
+                            if (img == null)
+                            {
+                                Log("CameraFeed", "Failed to convert frame to EmguCV Image.");
+                                continue;
+                            }
+                            // Convert to ImageSharp image
+                            var image = new Image<Rgb24>(img.Width, img.Height);
+                            for (int y = 0; y < img.Height; y++)
+                            {
+                                for (int x = 0; x < img.Width; x++)
+                                {
+                                    var color = img[y, x]; // Bgr
+                                    image[x, y] = new Rgb24((byte)color.Red, (byte)color.Green, (byte)color.Blue);
+                                }
+                            }
+                            using (var ms = new MemoryStream())
+                            {
+                                image.Save(ms, new PngEncoder());
+                                imageBytes = ms.ToArray();
+                            }
+                            image.Dispose();
+                            frameCaptured = true;
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        Log("CameraFeed", $"[WARNING] Failed to capture frame (attempt {attempt}/{maxRetries}). Retrying...");
+                        Thread.Sleep(delayMs);
+                    }
                 }
             }
-            var ms = new MemoryStream();
-            image.Save(ms, new PngEncoder()); // Save as PNG
-            byte[] imageBytes = ms.ToArray();
-            ms.Dispose();
-            image.Dispose();
-
+            if (!frameCaptured)
+            {
+                if (createdCapture) { StopCamera(capture); }
+                Log("CameraFeed", $"[ERROR] Failed to capture frame after {maxRetries} attempts.");
+                Log("CameraFeed", $"Available video devices: {string.Join(", ", ListVideoDevices())}");
+                throw new InvalidOperationException("Failed to capture frame.");
+            }
             if (createdCapture) { StopCamera(capture); }
             return imageBytes;
+        }
+
+        // Helper: List available video devices (Linux only)
+        private static List<string> ListVideoDevices()
+        {
+            var devices = new List<string>();
+            try
+            {
+                string[] devs = Directory.GetFiles("/dev", "video*");
+                devices.AddRange(devs);
+            }
+            catch (Exception ex)
+            {
+                Log("CameraFeed", $"[ERROR] Could not list /dev/video* devices: {ex.Message}");
+            }
+            return devices;
         }
 
         // Dispose the VideoCapture object

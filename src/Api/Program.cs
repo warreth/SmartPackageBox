@@ -81,8 +81,19 @@ public static class ApiHost
                 pictureSuccess = MainFunctions.Instance.handlePicture(); // Call singleton instance method
                 if (pictureSuccess)
                 {
-                    MainFunctions.Instance.TriggerApiUpdateUrlAsync();
                     Log("Api", "Picture taken");
+                    bool success = HandleError(() =>
+                    {
+                        apiHelper.UpdateUrl(); // Update the URL using the API's Helper instance
+                    });
+                    if (!success)
+                    {
+                        Log("Api", "Failed to update URL");
+                    }
+                    else
+                    {
+                        Log("Api", $"Updated newest URL to {apiHelper.mNewestUrl}");
+                    }
                 }
                 else
                 {

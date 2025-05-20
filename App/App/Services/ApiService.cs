@@ -1,5 +1,6 @@
 using System;
 using System.Net.Http;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace App.Services;
@@ -18,9 +19,9 @@ public class ApiService
     public async Task<string> ContactUrlAsync(string pUrl, string endpoint)
     {
         if (string.IsNullOrWhiteSpace(pUrl))
-            throw new System.ArgumentException("API URL cannot be null or empty.", nameof(pUrl));
+            throw new ArgumentException("API URL cannot be null or empty.", nameof(pUrl));
         if (string.IsNullOrWhiteSpace(endpoint))
-            throw new System.ArgumentException("Endpoint cannot be null or empty.", nameof(endpoint));
+            throw new ArgumentException("Endpoint cannot be null or empty.", nameof(endpoint));
 
         string fullUrl = $"{pUrl.TrimEnd('/')}/{endpoint.TrimStart('/')}";
 
@@ -34,34 +35,53 @@ public class ApiService
 
                 if (string.IsNullOrEmpty(jsonContent))
                 {
-                    return "String is empty or null.";
+                    return "Error: Received empty JSON content.";
                 }
-
-                // Deserialize the JSON string + check for null result
-                string? result = System.Text.Json.JsonSerializer.Deserialize<string>(jsonContent);
-                if (result == null)
+                //Parse the json
+                using (JsonDocument doc = JsonDocument.Parse(jsonContent))
                 {
-                    return "Error: Deserialized string is null.";
+                    JsonElement root = doc.RootElement;
+
+                    if (root.ValueKind == JsonValueKind.Object)
+                    {
+                        //Use first json property
+                        foreach (JsonProperty property in root.EnumerateObject())
+                        {
+                            JsonElement valueElement = property.Value;
+
+                            switch (valueElement.ValueKind)
+                            {
+                                case JsonValueKind.String:
+                                    return valueElement.GetString() ?? string.Empty;
+                                default:
+                                    return valueElement.GetRawText();
+                            }
+                        }
+                        // If the foreach loop completes, the JSON object was empty (no properties).
+                        return "Error: JSON object is empty (contains no properties).";
+                    }
+                    else
+                    {
+                        return "Error: Root of JSON content is not an object.";
+                    }
                 }
-                return result;
             }
             else
             {
-                return $"Error: {response.StatusCode}";
+                return $"Error: HTTP request failed with status code {response.StatusCode}";
             }
         }
-        catch (System.Text.Json.JsonException e)
+        catch (JsonException e) // Handles errors from JsonDocument.Parse
         {
-            return $"JsonError: {e.Message}";
+            return $"JsonError: Failed to parse JSON content. Message: {e.Message}";
         }
-        catch (HttpRequestException e)
+        catch (HttpRequestException e) // Handles network errors or other HTTP issues
         {
-            return $"HttpError: {e.Message}";
+            return $"HttpError: Request to {fullUrl} failed. Message: {e.Message}";
         }
-        catch (Exception e)
+        catch (Exception e) // Catch-all for other unexpected errors
         {
-            return $"ExcepError: {e.Message}";
+            return $"UnexpectedError: An unexpected error occurred. Message: {e.Message}";
         }
     }
-
 }

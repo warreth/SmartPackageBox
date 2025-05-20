@@ -8,11 +8,9 @@ using static NonSpecific.Logger;
 
 public class MainFunctions
 {
-    public MainFunctions(string pApiUrl)
-    {
-        apiUrl = pApiUrl;
-    }
-    public string apiUrl;
+    // Singleton instance
+    public static readonly MainFunctions Instance = new MainFunctions();
+    public string apiUrl = "https://localhost:8080";
 
 
     public void trySentNotification(string pImageUrl = "")
@@ -81,16 +79,6 @@ public class MainFunctions
             return false;
         }
     }
-}
-
-public class CameraFunctions
-{
-    // Singleton instance
-    public static readonly CameraFunctions Instance = new CameraFunctions();
-
-    // Private constructor to prevent external instantiation
-    private CameraFunctions() { }
-
     public bool handlePicture()
     {
         byte[]? tImage = null;
@@ -98,7 +86,8 @@ public class CameraFunctions
         if (!File.Exists($"latest.png"))
         {
             Log("handlePicture", "latest.png does not exist.");
-            File.Create("./wwwroot/latest.png");
+            // Create the file and immediately close the handle to avoid locking
+            using (var fs = File.Create("./wwwroot/latest.png")) { }
         }
 
         bool success = HandleError(() =>

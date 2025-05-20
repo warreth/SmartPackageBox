@@ -19,10 +19,10 @@ public class Program
         AiHelper aiHelper = new();
         Helper.BaseUrl = apiUrl;
 
-        MainFunctions mainFunction = new(apiUrl);
+        MainFunctions mainFunction = MainFunctions.Instance;
 
         // Start API in a background thread so it doesn't block the main loop
-        Task.Run(() => ApiHost.Start(sharedHatch, "8080")); //TODO: Fix that it blocks all other code from running
+        Task.Run(() => ApiHost.Start(sharedHatch, "8080"));
         Task.Run(() => ImageServer.Start("8081"));
 
         // Infinite loop to continuously check for package detection
@@ -44,7 +44,7 @@ public class Program
 
         //Take the picture + logging
         bool success;
-        if (CameraFunctions.Instance.handlePicture())
+        if (mainFunction.handlePicture())
         {
             Log("HelperFunctions", "Picture taken and saved.");
             success = true;

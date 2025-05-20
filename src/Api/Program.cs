@@ -78,9 +78,10 @@ public static class ApiHost
             HandleError(() =>
             {
                 Log("Api", "Taking picture");
-                pictureSuccess = CameraFunctions.Instance.handlePicture(); // Call singleton instance method
+                pictureSuccess = MainFunctions.Instance.handlePicture(); // Call singleton instance method
                 if (pictureSuccess)
                 {
+                    MainFunctions.Instance.TriggerApiUpdateUrlAsync();
                     Log("Api", "Picture taken");
                 }
                 else

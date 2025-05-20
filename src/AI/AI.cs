@@ -2,7 +2,7 @@
 
 using static NonSpecific.ErrorHandler;
 using static NonSpecific.Logger;
-
+// TODO: Make this actually do something
 public class AiHelper
 {
     public bool detectPackageAI()

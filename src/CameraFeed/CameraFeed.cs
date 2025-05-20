@@ -97,8 +97,27 @@ namespace CameraFeed
                 throw new ArgumentException("Name cannot be null or whitespace.");
             }
             string fileName = $"{name}";
-            File.WriteAllBytes(fileName, imageBytes);
-            Log("CameraFeed", $"Image saved as {fileName}");
+            int maxRetries = 5;
+            int delayMs = 200;
+            for (int attempt = 1; attempt <= maxRetries; attempt++)
+            {
+                try
+                {
+                    File.WriteAllBytes(fileName, imageBytes);
+                    Log("CameraFeed", $"Image saved as {fileName}");
+                    return;
+                }
+                catch (IOException ex)
+                {
+                    if (attempt == maxRetries)
+                    {
+                        Log("CameraFeed", $"[ERROR] Failed to save image after {maxRetries} attempts: {ex.Message}");
+                        throw;
+                    }
+                    Log("CameraFeed", $"[WARNING] File in use, retrying ({attempt}/{maxRetries})...");
+                    Thread.Sleep(delayMs);
+                }
+            }
         }
     }
 }

@@ -66,7 +66,18 @@ public partial class MainViewModel : ViewModelBase
     {
         string? result = await _apiService.ContactUrlAsync(ApiUrl, "open-hatch");
 
-        bool isOpen = Convert.ToBoolean(result);
+        // Check if result is "true" or "false" before converting
+        bool isOpen;
+        if (result == "true" || result == "false")
+        {
+            isOpen = Convert.ToBoolean(result);
+        }
+        else
+        {
+            Log($"Openhatch request failed: unexpected response '{result}'");
+            OnPropertyChanged(nameof(LogMessages));
+            return;
+        }
         result = isOpen ? "Hatch is now open" : "Hatch is now closed";
         Log($"Openhatch result: {result}");
 
@@ -78,7 +89,18 @@ public partial class MainViewModel : ViewModelBase
     {
         string? result = await _apiService.ContactUrlAsync(ApiUrl, "take-picture");
 
-        bool isOpen = Convert.ToBoolean(result);
+        // Check if result is "true" or "false" before converting
+        bool isOpen;
+        if (result == "true" || result == "false")
+        {
+            isOpen = Convert.ToBoolean(result);
+        }
+        else
+        {
+            Log($"TakePicture request failed: unexpected response '{result}'");
+            OnPropertyChanged(nameof(LogMessages));
+            return;
+        }
         result = isOpen ? "Picture taken" : "Picture couldnt be taken (see RPi logs)";
         Log($"Openhatch result: {result}");
 

@@ -122,15 +122,49 @@ namespace CameraFeed
         // Save the image bytes to a PNG file
         public static void SaveImage(byte[] imageBytes, string name)
         {
+            // Check for null or empty image bytes
             if (imageBytes == null || imageBytes.Length == 0)
             {
                 Log("CameraFeed", "Image bytes cannot be null or empty.");
                 throw new ArgumentException("Image bytes cannot be null or empty.");
             }
+            // Check for null or whitespace name
             if (string.IsNullOrWhiteSpace(name))
             {
                 Log("CameraFeed", "Name cannot be null or whitespace.");
                 throw new ArgumentException("Name cannot be null or whitespace.");
+            }
+            // Check if imageBytes is a valid PNG image (corruption check)
+            try
+            {
+                using (var ms = new MemoryStream(imageBytes))
+                {
+                    var decoder = SixLabors.ImageSharp.Image.DetectFormat(ms);
+                    if (decoder == null || decoder.Name != "PNG")
+                    {
+                        Log("CameraFeed", "[ERROR] Image bytes are not a valid PNG file or are corrupted.");
+                        throw new InvalidDataException("Image bytes are not a valid PNG file or are corrupted.");
+                    }
+                    // Try to load the image to check for corruption
+                    ms.Position = 0;
+                    try
+                    {
+                        using (var img = SixLabors.ImageSharp.Image.Load(ms))
+                        {
+                            // If loading succeeds, image is valid
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Log("CameraFeed", $"[ERROR] Image bytes are corrupted or unreadable: {ex.Message}");
+                        throw new InvalidDataException("Image bytes are corrupted or unreadable.", ex);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Log("CameraFeed", $"[ERROR] Exception during image validation: {ex.Message}");
+                throw;
             }
             string fileName = $"{name}";
             int maxRetries = 5;
@@ -152,6 +186,21 @@ namespace CameraFeed
                     }
                     Log("CameraFeed", $"[WARNING] File in use, retrying ({attempt}/{maxRetries})...");
                     Thread.Sleep(delayMs);
+                }
+                catch (UnauthorizedAccessException ex)
+                {
+                    Log("CameraFeed", $"[ERROR] Unauthorized access when saving image: {ex.Message}");
+                    throw;
+                }
+                catch (ArgumentException ex)
+                {
+                    Log("CameraFeed", $"[ERROR] Invalid file name or argument: {ex.Message}");
+                    throw;
+                }
+                catch (Exception ex)
+                {
+                    Log("CameraFeed", $"[ERROR] Unexpected error when saving image: {ex.Message}");
+                    throw;
                 }
             }
         }

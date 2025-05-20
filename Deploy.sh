@@ -68,6 +68,27 @@ fi
 # Define the publish directory for .NET 9.0
 publish_dir="bin/Release/net9.0/linux-arm64/publish"
 
+# If the project is MainController, copy wwwroot from ImageServer to publish_dir
+if [[ "$projectName" == "MainController" ]]; then
+    src_wwwroot="../ImageServer/wwwroot"
+    dest_wwwroot="$publish_dir/wwwroot"
+    # Error checking: Ensure source wwwroot exists
+    if [[ ! -d "$src_wwwroot" ]]; then
+        echo "Error: Source wwwroot directory $src_wwwroot does not exist."
+        exit 1
+    fi
+    # Remove any existing wwwroot in publish_dir to avoid stale files
+    rm -rf "$dest_wwwroot"
+    # Copy wwwroot directory and its contents, preserving permissions
+    cp -a "$src_wwwroot" "$dest_wwwroot"
+    # Error checking: Ensure copy succeeded
+    if [[ $? -ne 0 || ! -d "$dest_wwwroot" ]]; then
+        echo "Error: Failed to copy wwwroot to publish directory."
+        exit 1
+    fi
+    echo "Copied wwwroot to publish directory."
+fi
+
 # Error checking: Ensure publish_dir exists and is not empty
 if [[ ! -d "$publish_dir" || -z $(ls -A "$publish_dir") ]]; then
     echo "Error: publish_dir $publish_dir does not exist or is empty."

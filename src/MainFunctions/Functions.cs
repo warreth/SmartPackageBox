@@ -83,13 +83,7 @@ public class MainFunctions
     {
         byte[]? tImage = null;
 
-        if (!File.Exists($"latest.png"))
-        {
-            Log("handlePicture", "latest.png does not exist.");
-            // Create the file and immediately close the handle to avoid locking
-            using (var fs = File.Create("./wwwroot/latest.png")) { }
-        }
-
+        // Try to take a picture and check for errors
         bool success = HandleError(() =>
         {
             tImage = TakePicture();
@@ -105,10 +99,25 @@ public class MainFunctions
             Log("handlePicture", "Took picture.");
         }
 
+        // Only create and save the file if the image was taken successfully
         if (tImage != null)
         {
-            HandleError(() => SaveImage(tImage, "./wwwroot/latest.png"));
-            //Log("handlePicture", "Saved image to latest.png");
+            try
+            {
+                // SaveImage will validate and save the image, including error checking
+                HandleError(() => SaveImage(tImage, "./wwwroot/latest.png"));
+                // If file does not exist after save, create an empty file as fallback (should not happen)
+                if (!File.Exists("./wwwroot/latest.png"))
+                {
+                    Log("handlePicture", "[WARNING] Image save did not create file, creating empty file as fallback.");
+                    using (var fs = File.Create("./wwwroot/latest.png")) { }
+                }
+            }
+            catch (Exception ex)
+            {
+                Log("handlePicture", $"[ERROR] Exception during image save: {ex.Message}");
+                return false;
+            }
         }
         else
         {

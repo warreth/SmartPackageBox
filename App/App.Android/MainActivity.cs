@@ -6,7 +6,7 @@ using Avalonia.Android;
 namespace App.Android;
 
 [Activity(
-    Label = "App.Android",
+    Label = "SmartPackageBox",
     Theme = "@style/MyTheme.NoActionBar",
     Icon = "@drawable/icon",
     MainLauncher = true,

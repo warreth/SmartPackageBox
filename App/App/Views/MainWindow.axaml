@@ -6,7 +6,7 @@
         xmlns:views="clr-namespace:App.Views"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="App.Views.MainWindow"
-        Icon="/Assets/avalonia-logo.ico"
-        Title="App">
+        Icon="/Assets/Logo.ico"
+        Title="SmartPackageBox">
         <views:MainView />
 </Window>

@@ -42,23 +42,32 @@ public partial class MainViewModel : ViewModelBase
 
     private readonly ApiService _apiService = new ApiService();
 
-    public void Log(string message)
+    public void Log(string message) //TODO: Make the logs scroll down when new log is added
     {
         if (message == null)
         {
             message = "[null log message]";
         }
-        string logEntry = $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] {message}";
+        string logEntry = $"[{DateTime.Now:HH:mm:ss}] {message}";
         LogMessages.Add(logEntry);
     }
 
     [RelayCommand]
-    private async Task RefreshImageAsync()
+    private async Task RefreshImageAsync() //TODO: Fix image not showing up on mobile (prob issue with the asyncImageLoader library)
     {
         string? result = await _apiService.ContactUrlAsync(ApiUrl, "newest-url");
+
+        if (string.IsNullOrEmpty(result) || result.Contains("Error"))
+        {
+            Log($"Refreshimage request failed: {result}");
+            OnPropertyChanged(nameof(LogMessages));
+            NewestImageUrl = ImageServerUrl;
+            return;
+        }
         NewestImageUrl = ImageServerUrl + result;
         Log($"Refreshimage result: {NewestImageUrl}");
         OnPropertyChanged(nameof(LogMessages));
+
     }
 
     [RelayCommand]
@@ -102,7 +111,7 @@ public partial class MainViewModel : ViewModelBase
             return;
         }
         result = isOpen ? "Picture taken" : "Picture couldnt be taken (see RPi logs)";
-        Log($"Openhatch result: {result}");
+        Log($"TakePicture result: {result}");
 
         OnPropertyChanged(nameof(LogMessages));
     }
@@ -118,6 +127,13 @@ public partial class MainViewModel : ViewModelBase
     }
 
     [RelayCommand]
+    private void ClearLogs()
+    {
+        LogMessages.Clear();
+        Log("Cleared logs");
+    }
+
+    [RelayCommand]
     private void SaveSettings()
     {
         if (string.IsNullOrWhiteSpace(EditableApiUrl) || string.IsNullOrWhiteSpace(EditableImageUrl))
@@ -130,7 +146,13 @@ public partial class MainViewModel : ViewModelBase
         ImageServerUrl = EditableImageUrl;
         ImageVisible = EditableImageVisible;
         LogVisible = EditableLogVisible;
-        Log($"Settings saved: API URL = {ApiUrl}, Image URL = {ImageServerUrl}, Image Visible = {ImageVisible}");
+        /*Log(
+            $"Settings saved:\n" +
+            $"  API URL      = {ApiUrl}\n" +
+            $"  Image URL    = {ImageServerUrl}\n" +
+            $"  Image Visible= {ImageVisible}\n" +
+            $"  Log Visible  = {LogVisible}"
+        );*/
     }
 
     partial void OnApiUrlChanged(string value)

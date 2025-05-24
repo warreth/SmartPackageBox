@@ -79,7 +79,7 @@ public class MainFunctions
             return false;
         }
     }
-    public bool handlePicture()
+    public bool handlePicture(string filePath = "./wwwroot/latest.png")
     {
         byte[]? tImage = null;
 
@@ -105,12 +105,12 @@ public class MainFunctions
             try
             {
                 // SaveImage will validate and save the image, including error checking
-                HandleError(() => SaveImage(tImage, "./wwwroot/latest.png"));
+                HandleError(() => SaveImage(tImage, $"{filePath}"));
                 // If file does not exist after save, create an empty file as fallback (should not happen)
-                if (!File.Exists("./wwwroot/latest.png"))
+                if (!File.Exists($"{filePath}"))
                 {
                     Log("handlePicture", "[WARNING] Image save did not create file, creating empty file as fallback.");
-                    using (var fs = File.Create("./wwwroot/latest.png")) { }
+                    using (var fs = File.Create($"{filePath}")) { }
                 }
             }
             catch (Exception ex)

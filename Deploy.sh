@@ -102,25 +102,33 @@ echo
 
 # Step 2: Remove the entire remote directory and its contents using sudo (do not recreate it)
 # Keep token.json and log.md by moving them out before deletion and restoring them after
-ssh_keep_cmd="sshpass -p \"$ssh_password\" ssh $remote_user@$remote_host 'mkdir -p /tmp/smartpackagebox_keep; if [ -f $remote_path/token.json ]; then mv $remote_path/token.json /tmp/smartpackagebox_keep/; fi; if [ -f $remote_path/log.md ]; then mv $remote_path/log.md /tmp/smartpackagebox_keep/; fi'"
+keep_files=("token.json" "apiKey.json" "log.md")
+
+ssh_keep_cmd="sshpass -p \"$ssh_password\" ssh $remote_user@$remote_host 'mkdir -p /tmp/smartpackagebox_keep;"
+for file in "${keep_files[@]}"; do
+  ssh_keep_cmd+=" if [ -f $remote_path/$file ]; then mv $remote_path/$file /tmp/smartpackagebox_keep/; fi;"
+done
+ssh_keep_cmd+="'"
+
 ssh_keep_output=$(eval "$ssh_keep_cmd" 2>&1)
 ssh_keep_status=$?
 if [[ $ssh_keep_status -ne 0 ]]; then
-    echo "Error: Failed to move files to temporary location. Output was:"
-    echo "$ssh_keep_output"
-    exit 1
+  echo "Error: Failed to move files to temporary location. Output was:"
+  echo "$ssh_keep_output"
+  exit 1
 fi
 
 ssh_remove_cmd="sshpass -p \"$ssh_password\" ssh $remote_user@$remote_host 'echo $ssh_password | sudo -S rm -rf $remote_path'"
 ssh_remove_output=$(eval "$ssh_remove_cmd" 2>&1)
 ssh_remove_status=$?
 if [[ $ssh_remove_status -ne 0 ]]; then
-    echo "Error: Failed to remove remote directory. Output was:"
-    echo "$ssh_remove_output"
-    exit 1
+  echo "Error: Failed to remove remote directory. Output was:"
+  echo "$ssh_remove_output"
+  exit 1
 fi
 
 echo "Remote directory removed."
+
 
 # Step 2b: Recreate the remote directory before copying files
 # Use bash -c to ensure ~ is expanded to the user's home directory on the remote side

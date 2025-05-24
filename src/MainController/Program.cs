@@ -72,7 +72,7 @@ public class Program
             Log("HelperFunctions", "Hatch is already open");
         }
 
-        mainFunction.trySentNotification($"{imageServerUrl}/latest.png");
+        mainFunction.trySentNotification($"http://raspberrypi.local:8081/latest.png");
         Thread.Sleep(10000); //Wait 10 seconds (10000 milliseconds
     }
 }

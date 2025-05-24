@@ -23,7 +23,7 @@ class Program
         // Define the actions header
         string actions = "view, Open App, smartpackagebox://open, clear=true;";
 
-        string imageUrl = "https://yavuzceliker.github.io/sample-images/image-9.jpg";
+        string imageUrl = "http://raspberrypi.local:8081/latest.png";
 
         // Run the async method synchronously and handle exceptions
         try

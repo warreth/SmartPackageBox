@@ -487,3 +487,6 @@ docs/hardware/.$ArduinoDiagram.drawio.bkp
 testing/DeployGuide.md
 token.json
 src/.vscode/settings.json
+src/AI/config.json
+src/AI/apiKey.json
+testing/AItest/apiKey.json

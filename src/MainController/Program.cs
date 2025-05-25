@@ -10,9 +10,6 @@ public class Program
 {
     public static string imageServerUrl = "https://localhost:8081";
     public static string apiUrl = "https://localhost:8080";
-
-
-
     public static void Main(string[] args)
     {
         HatchController sharedHatch = new();
@@ -28,18 +25,25 @@ public class Program
         // Infinite loop to continuously check for package detection
         while (true)
         {
-            mainFunction.handlePicture(imagePath);
-
-            if (HandleAIDetection(imagePath).GetAwaiter().GetResult()) // Wait for the AI detection to complete
+            if (mainFunction.enableDetection)
             {
-                Log("Program", "Package is detected");
-                packageIsDetected(mainFunction, sharedHatch);
+                mainFunction.handlePicture(imagePath);
+
+                if (HandleAIDetection(imagePath).GetAwaiter().GetResult()) // Wait for the AI detection to complete
+                {
+                    Log("Program", "Package is detected");
+                    packageIsDetected(mainFunction, sharedHatch);
+                }
+                else
+                {
+                    Log("Program", "No package detected");
+                }
             }
             else
             {
-                Log("Program", "No package detected");
-                Thread.Sleep(10000); // Wait for 5 seconds before the next check
+                Log("Program", "Package detection is disabled");
             }
+            Thread.Sleep(10000); // Wait for 10 seconds before the next check
         }
     }
     public static async Task<bool> HandleAIDetection(string imagePath, bool isLocal = true)

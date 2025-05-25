@@ -94,6 +94,28 @@ public partial class MainViewModel : ViewModelBase
     }
 
     [RelayCommand]
+    private async Task ToggleDetectionAsync()
+    {
+        string? result = await _apiService.ContactUrlAsync(ApiUrl, "toggle-detection");
+
+        if (result == "enabled")
+        {
+            Log("Detection is now enabled");
+        }
+        else if (result == "disabled")
+        {
+            Log("Detection is now disabled");
+        }
+        else
+        {
+            Log($"ToggleDetection request failed: unexpected response '{result}'");
+            OnPropertyChanged(nameof(LogMessages));
+            return;
+        }
+        OnPropertyChanged(nameof(LogMessages));
+    }
+
+    [RelayCommand]
     private async Task MoveHatchAsync()
     {
         string? result = await _apiService.ContactUrlAsync(ApiUrl, "move-hatch");

@@ -22,6 +22,7 @@ public static class ApiHost
         app.MapGet("/", () => "The API is online");
 
         Helper apiHelper = Helper.Instance;
+        MainFunctions mainFunction = MainFunctions.Instance;
 
         app.MapGet("/newest-url", () =>
         {
@@ -112,6 +113,22 @@ public static class ApiHost
                 hatch.StopHatch();
             });
             return Results.Ok(new { message = "Hatch stopped" });
+        });
+
+        app.MapGet("/toggle-detection", () =>
+        {
+            if (mainFunction.enableDetection)
+            {
+                Log("Api", "Disabling AI detection");
+                mainFunction.enableDetection = false; // Disable detection
+                return Results.Ok(new { message = "disabled" });
+            }
+            else
+            {
+                Log("Api", "Enabling AI detection");
+                mainFunction.enableDetection = true; // Enable detection
+                return Results.Ok(new { message = "enabled" });
+            }
         });
 
         Log("Api", $"Trying to start API server on https://localhost:{port}");

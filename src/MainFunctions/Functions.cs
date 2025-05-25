@@ -11,6 +11,7 @@ public class MainFunctions
     // Singleton instance
     public static readonly MainFunctions Instance = new MainFunctions();
     public string apiUrl = "https://localhost:8080";
+    public bool enableDetection = false;
 
 
     public void trySentNotification(string pImageUrl = "")

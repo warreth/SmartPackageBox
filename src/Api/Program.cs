@@ -53,7 +53,7 @@ public static class ApiHost
             return Results.Ok(new { newestUrl = apiHelper.mNewestUrl });
         });
 
-        app.MapGet("/open-hatch", () =>
+        app.MapGet("/move-hatch", () =>
         {
             HandleError(() =>
             {
@@ -102,6 +102,16 @@ public static class ApiHost
             });
             // Return result with error checking
             return Results.Ok(new { success = pictureSuccess });
+        });
+
+        app.MapGet("/stop-hatch", () =>
+        {
+            HandleError(() =>
+            {
+                Log("Api", "Stopping hatch");
+                hatch.StopHatch();
+            });
+            return Results.Ok(new { message = "Hatch stopped" });
         });
 
         Log("Api", $"Trying to start API server on https://localhost:{port}");

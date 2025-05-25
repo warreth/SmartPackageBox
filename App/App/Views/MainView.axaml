@@ -22,9 +22,10 @@
           <Grid Grid.Row="1" RowDefinitions="Auto,Auto" ColumnDefinitions="*">
             <!-- Buttons Row -->
             <WrapPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10">
-              <Button Content="Open Hatch" Command="{Binding OpenHatchCommand}" HorizontalAlignment="Center" Margin="0,8,12,0"/>
+              <Button Content="Move Hatch" Command="{Binding MoveHatchCommand}" HorizontalAlignment="Center" Margin="0,8,12,0"/>
               <Button Content="Take Picture" Command="{Binding TakePictureCommand}" HorizontalAlignment="Center" Margin="0,8,12,0"/>
-              <Button Content="Refresh Image" Command="{Binding RefreshImageCommand}" HorizontalAlignment="Center" Margin="0,8,0,0"/>
+              <Button Content="Refresh Image" Command="{Binding RefreshImageCommand}" HorizontalAlignment="Center" Margin="0,8,12,0"/>
+              <Button Content="Stop Hatch" Command="{Binding StopHatchCommand}" HorizontalAlignment="Center" Margin="0,8,0,0"/>
             </WrapPanel>
             
             <!-- Image Row -->

@@ -71,9 +71,32 @@ public partial class MainViewModel : ViewModelBase
     }
 
     [RelayCommand]
-    private async Task OpenHatchAsync()
+    private async Task StopHatchAsync()
     {
-        string? result = await _apiService.ContactUrlAsync(ApiUrl, "open-hatch");
+        string? result = await _apiService.ContactUrlAsync(ApiUrl, "stop-hatch");
+
+        // Check if result is "true" or "false" before converting
+        bool isOpen;
+        if (result == "true" || result == "false")
+        {
+            isOpen = Convert.ToBoolean(result);
+        }
+        else
+        {
+            Log($"StopHatch request failed: unexpected response '{result}'");
+            OnPropertyChanged(nameof(LogMessages));
+            return;
+        }
+        result = isOpen ? "Hatch is now stopped" : "Hatch could not be stopped (see RPi logs)";
+        Log($"StopHatch result: {result}");
+
+        OnPropertyChanged(nameof(LogMessages));
+    }
+
+    [RelayCommand]
+    private async Task MoveHatchAsync()
+    {
+        string? result = await _apiService.ContactUrlAsync(ApiUrl, "move-hatch");
 
         // Check if result is "true" or "false" before converting
         bool isOpen;

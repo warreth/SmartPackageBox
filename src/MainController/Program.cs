@@ -21,7 +21,7 @@ public class Program
         Task.Run(() => ApiHost.Start(sharedHatch, "8080"));
         Task.Run(() => ImageServer.Start("8081"));
 
-        string imagePath = "latest.png";
+        string imagePath = "./wwwroot/latest.png";
         // Infinite loop to continuously check for package detection
         while (true)
         {
@@ -32,6 +32,7 @@ public class Program
                 if (HandleAIDetection(imagePath).GetAwaiter().GetResult()) // Wait for the AI detection to complete
                 {
                     Log("Program", "Package is detected");
+
                     packageIsDetected(mainFunction, sharedHatch);
                 }
                 else
@@ -43,7 +44,7 @@ public class Program
             {
                 Log("Program", "Package detection is disabled");
             }
-            Thread.Sleep(10000); // Wait for 10 seconds before the next check
+            Thread.Sleep(5000); // Wait for 10 seconds before the next check
         }
     }
     public static async Task<bool> HandleAIDetection(string imagePath, bool isLocal = true)
@@ -78,6 +79,7 @@ public class Program
         Log("HelperFunctions", "Package is detected");
 
         //Take the picture + logging
+        /*
         bool success;
         if (mainFunction.handlePicture())
         {
@@ -90,12 +92,10 @@ public class Program
             Log("HelperFunctions", "[ERROR] Failed to take picture.");
             success = false;
         }
-
+        */
         //Update the url
-        if (success)
-        {
-            mainFunction.TriggerApiUpdateUrlAsync();
-        }
+        mainFunction.TriggerApiUpdateUrlAsync();
+
 
 
         if (!hatch.hatchProperties.isOpen) //If closed
@@ -108,6 +108,10 @@ public class Program
         }
 
         mainFunction.trySentNotification($"http://raspberrypi.local:8081/latest.png");
-        Thread.Sleep(10000); //Wait 10 seconds (10000 milliseconds
+        Thread.Sleep(5000);
+        hatch.MoveHatch(false);
+        Log("HelperFunctions", "Hatch closed after 5 seconds");
+
+        Thread.Sleep(5000); // Wait for 5 seconds before the next check
     }
 }

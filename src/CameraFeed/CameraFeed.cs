@@ -1,125 +1,172 @@
 ﻿using Emgu.CV;
-using SixLabors.ImageSharp; // ImageSharp for cross-platform image handling
+using Emgu.CV.Structure;
+using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 using SixLabors.ImageSharp.Formats.Png;
+using System.IO;
+using System.Threading;
 using static NonSpecific.Logger;
 
 namespace CameraFeed
 {
     public static class CameraFeed
     {
-        // Start the camera and return a VideoCapture object
-        private static VideoCapture StartCamera()
-        {
-            var capture = new VideoCapture(0); // Open default camera
-            if (capture == null || !capture.IsOpened)
-            {
-                Log("CameraFeed", "Failed to open camera.");
-                throw new InvalidOperationException("Failed to open camera.");
-            }
+        private static VideoCapture? _globalCapture; // Keep a single instance
+        private static readonly object _lock = new object(); // For thread safety
 
-            System.Threading.Thread.Sleep(500); //TODO: Check if works: short delay to allow camera to warm up (important on Linux)
-            return capture;
+        // Modified StartCamera to manage the global instance
+        private static VideoCapture GetOrStartCamera()
+        {
+            lock (_lock)
+            {
+                if (_globalCapture == null || !_globalCapture.IsOpened)
+                {
+                    _globalCapture?.Dispose(); // Dispose if it exists but isn't open
+                    _globalCapture = new VideoCapture(0); // Open default camera
+                    if (_globalCapture == null || !_globalCapture.IsOpened)
+                    {
+                        Log("CameraFeed", "Failed to open camera.");
+                        throw new InvalidOperationException("Failed to open camera.");
+                    }
+                    Log("CameraFeed", "Camera started/re-opened successfully.");
+                    System.Threading.Thread.Sleep(1000); // Increased delay, might help
+                }
+                return _globalCapture;
+            }
         }
 
-        // Take a picture and return the image as a byte array (PNG format)
-        public static byte[] TakePicture(VideoCapture? capture = null)
+        public static byte[] TakePicture()
         {
-            bool createdCapture = false;
-            if (capture == null) // If no capture is given, make one
-            {
-                capture = StartCamera();
-                createdCapture = true;
-            }
-            if (capture == null || !capture.IsOpened)
-            {
-                if (createdCapture && capture != null) { StopCamera(capture); }
-                Log("CameraFeed", "Camera is not available.");
-                Log("CameraFeed", $"Available video devices: {string.Join(", ", ListVideoDevices())}");
-                throw new InvalidOperationException("Camera is not available.");
-            }
-            byte[] imageBytes;
+            VideoCapture capture = GetOrStartCamera();
+            byte[] imageBytes = Array.Empty<byte>();
             int maxRetries = 5;
+            int grabRetries = 3;
             int delayMs = 300;
-            bool frameCaptured = false;
-            imageBytes = Array.Empty<byte>();
-            for (int attempt = 1; attempt <= maxRetries; attempt++)
+            bool frameCapturedSuccessfully = false;
+
+            // Leeg de camerabuffer door meerdere dummy grabs uit te voeren
+            lock (_lock)
             {
-                using (var frame = capture.QueryFrame())
+                int dummyGrabs = 8; // Genoeg grabs om oude frames te verwijderen
+                for (int i = 0; i < dummyGrabs; i++)
                 {
-                    if (frame != null)
-                    {
-                        using (var img = frame.ToImage<Emgu.CV.Structure.Bgr, byte>())
-                        {
-                            if (img == null)
-                            {
-                                Log("CameraFeed", "Failed to convert frame to EmguCV Image.");
-                                continue;
-                            }
-                            // Convert to ImageSharp image
-                            var image = new Image<Rgb24>(img.Width, img.Height);
-                            for (int y = 0; y < img.Height; y++)
-                            {
-                                for (int x = 0; x < img.Width; x++)
-                                {
-                                    var color = img[y, x]; // Bgr
-                                    image[x, y] = new Rgb24((byte)color.Red, (byte)color.Green, (byte)color.Blue);
-                                }
-                            }
-                            using (var ms = new MemoryStream())
-                            {
-                                image.Save(ms, new PngEncoder());
-                                imageBytes = ms.ToArray();
-                            }
-                            image.Dispose();
-                            frameCaptured = true;
-                            break;
-                        }
-                    }
-                    else
-                    {
-                        Log("CameraFeed", $"[WARNING] Failed to capture frame (attempt {attempt}/{maxRetries}). Retrying...");
-                        Thread.Sleep(delayMs);
-                    }
+                    capture.Grab(); // Vraag een frame op, maar gebruik het niet
+                    Thread.Sleep(30); // Kleine delay voor betrouwbaarheid
                 }
             }
-            if (!frameCaptured)
+
+            for (int attempt = 1; attempt <= maxRetries; attempt++)
             {
-                if (createdCapture) { StopCamera(capture); }
+                lock (_lock)
+                {
+                    if (!capture.IsOpened)
+                    {
+                        Log("CameraFeed", $"[WARNING] Camera not open at start of attempt {attempt}. Trying to re-open.");
+                        _globalCapture?.Dispose();
+                        _globalCapture = null;
+                        try
+                        {
+                            capture = GetOrStartCamera();
+                        }
+                        catch (Exception ex)
+                        {
+                            Log("CameraFeed", $"[ERROR] Failed to re-open camera in attempt {attempt}: {ex.Message}");
+                            Thread.Sleep(delayMs);
+                            continue;
+                        }
+                    }
+                    bool currentFrameGrabbed = false;
+                    for (int gr = 1; gr <= grabRetries; gr++)
+                    {
+                        if (capture.Grab())
+                        {
+                            using (var frameMat = new Mat())
+                            {
+                                if (capture.Retrieve(frameMat) && !frameMat.IsEmpty)
+                                {
+                                    using (var img = frameMat.ToImage<Bgr, byte>())
+                                    {
+                                        if (img == null)
+                                        {
+                                            continue;
+                                        }
+                                        // Zet het frame om naar PNG bytes
+                                        var imageSharpImg = new Image<Rgb24>(img.Width, img.Height);
+                                        for (int y = 0; y < img.Height; y++)
+                                        {
+                                            for (int x = 0; x < img.Width; x++)
+                                            {
+                                                var color = img[y, x];
+                                                imageSharpImg[x, y] = new Rgb24((byte)color.Red, (byte)color.Green, (byte)color.Blue);
+                                            }
+                                        }
+                                        using (var ms = new MemoryStream())
+                                        {
+                                            imageSharpImg.Save(ms, new PngEncoder());
+                                            imageBytes = ms.ToArray();
+                                        }
+                                        imageSharpImg.Dispose();
+                                        frameCapturedSuccessfully = true;
+                                        currentFrameGrabbed = true;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        if (currentFrameGrabbed) break;
+                        Thread.Sleep(delayMs / 2);
+                    }
+                    if (frameCapturedSuccessfully)
+                    {
+                        break;
+                    }
+                    if (attempt >= maxRetries / 2 && attempt < maxRetries)
+                    {
+                        Log("CameraFeed", $"[WARNING] Attempting to re-initialize camera due to persistent frame capture failure (attempt {attempt}).");
+                        _globalCapture?.Dispose();
+                        _globalCapture = null;
+                        try
+                        {
+                            capture = GetOrStartCamera();
+                        }
+                        catch (Exception ex)
+                        {
+                            Log("CameraFeed", $"[ERROR] Failed to re-initialize camera during retry: {ex.Message}");
+                        }
+                    }
+                }
+                if (frameCapturedSuccessfully) break;
+                Thread.Sleep(delayMs);
+            }
+            if (!frameCapturedSuccessfully)
+            {
                 Log("CameraFeed", $"[ERROR] Failed to capture frame after {maxRetries} attempts.");
-                Log("CameraFeed", $"Available video devices: {string.Join(", ", ListVideoDevices())}");
                 throw new InvalidOperationException("Failed to capture frame.");
             }
-            if (createdCapture) { StopCamera(capture); }
             return imageBytes;
         }
 
-        // Helper: List available video devices (Linux only)
-        private static List<string> ListVideoDevices()
+        // Substitute for StopCamera
+        public static void ReleaseCamera()
         {
-            var devices = new List<string>();
-            try
+            lock (_lock)
             {
-                string[] devs = Directory.GetFiles("/dev", "video*");
-                devices.AddRange(devs);
+                if (_globalCapture != null)
+                {
+                    _globalCapture.Dispose();
+                    _globalCapture = null;
+                    Log("CameraFeed", "Global camera capture released.");
+                }
             }
-            catch (Exception ex)
-            {
-                Log("CameraFeed", $"[ERROR] Could not list /dev/video* devices: {ex.Message}");
-            }
-            return devices;
         }
 
-        // Dispose the VideoCapture object
-        public static void StopCamera(VideoCapture capture)
+        public static void StopCamera(VideoCapture? capture) // Kept for if needed
         {
             if (capture != null)
             {
                 capture.Dispose();
             }
         }
-
-        // Save the image bytes to a PNG file
         public static void SaveImage(byte[] imageBytes, string name)
         {
             // Check for null or empty image bytes

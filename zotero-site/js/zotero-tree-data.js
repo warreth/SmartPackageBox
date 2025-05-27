@@ -182,8 +182,75 @@ var tree =
           },
           {
             "text": "Rolluik",
-            "item-id": "c5,iNone",
+            "item-id": "c5,i245",
             "nodes": [
+              {
+                "text": "Setting Lower Limit; Setting Upper Limit; Testing New Limits - SOMFY LT50 Settings Manual [Page 2]",
+                "item-id": "i245",
+                "nodes": [
+                  {
+                    "text": "How to setup the \u201cendelopes\u201d of the motor",
+                    "item-id": "n247",
+                    "icon": "glyphicon glyphicon-text-background",
+                    "item_title": "How to setup the \u201cendelopes\u201d of the motor",
+                    "item_type": "note",
+                    "item_note": "<div class=\"zotero-note znv1\"><div data-schema-version=\"9\"><p>How to setup the \u201cendelopes\u201d of the motor</p>\n</div></div>",
+                    "node_type": "note"
+                  },
+                  {
+                    "text": "Snapshot",
+                    "item-id": "i246",
+                    "icon": "glyphicon glyphicon-paperclip",
+                    "item_title": "Snapshot",
+                    "item_type": "attachment",
+                    "item_note": null,
+                    "node_type": "item",
+                    "metadata": [
+                      [
+                        "Access Date",
+                        "2025-05-25 17:36:13"
+                      ],
+                      [
+                        "Title",
+                        "Snapshot"
+                      ],
+                      [
+                        "URL",
+                        "https://www.manualslib.com/manual/1839198/Somfy-Lt50.html?page=2#manual"
+                      ]
+                    ],
+                    "resource": "storage/i246.html"
+                  }
+                ],
+                "icon": "glyphicon glyphicon-bookmark",
+                "item_title": "Setting Lower Limit; Setting Upper Limit; Testing New Limits - SOMFY LT50 Settings Manual [Page 2]",
+                "item_type": "webpage",
+                "item_note": null,
+                "node_type": "item",
+                "metadata": [
+                  [
+                    "Abstract Note",
+                    "SOMFY LT50 Manual Online: setting lower limit, Setting Upper Limit, Testing New Limits. 4. Press The Down Button On The Switch And Release The Button When The Motor Reaches Its Lower Limit. Press The Corresponding Limit Switch Button On The Motor To Set Your Lower Limit. 5. Press The..."
+                  ],
+                  [
+                    "Access Date",
+                    "2025-05-25 17:36:09"
+                  ],
+                  [
+                    "Title",
+                    "Setting Lower Limit; Setting Upper Limit; Testing New Limits - SOMFY LT50 Settings Manual [Page 2]"
+                  ],
+                  [
+                    "URL",
+                    "https://www.manualslib.com/manual/1839198/Somfy-Lt50.html"
+                  ],
+                  [
+                    "Website Title",
+                    "ManualsLib"
+                  ]
+                ],
+                "selectable": false
+              },
               {
                 "text": "buy",
                 "item-id": "c12,i55",
@@ -913,8 +980,550 @@ var tree =
         "nodes": [
           {
             "text": "AI",
-            "item-id": "c10,iNone",
+            "item-id": "c10,i242",
             "nodes": [
+              {
+                "text": "DataSets",
+                "item-id": "c25,i224",
+                "nodes": [
+                  {
+                    "text": "COCO Dataset Dataset > Overview",
+                    "item-id": "i222",
+                    "nodes": [
+                      {
+                        "text": "Snapshot",
+                        "item-id": "i223",
+                        "icon": "glyphicon glyphicon-paperclip",
+                        "item_title": "Snapshot",
+                        "item_type": "attachment",
+                        "item_note": null,
+                        "node_type": "item",
+                        "metadata": [
+                          [
+                            "Access Date",
+                            "2025-05-23 16:38:29"
+                          ],
+                          [
+                            "Title",
+                            "Snapshot"
+                          ],
+                          [
+                            "URL",
+                            "https://universe.roboflow.com/microsoft/coco"
+                          ]
+                        ],
+                        "resource": "storage/i223.html"
+                      }
+                    ],
+                    "icon": "glyphicon glyphicon-bookmark",
+                    "item_title": "COCO Dataset Dataset > Overview",
+                    "item_type": "webpage",
+                    "item_note": null,
+                    "node_type": "item",
+                    "metadata": [
+                      [
+                        "Abstract Note",
+                        "123272 open source object images plus a pre-trained COCO Dataset model and API. Created by Microsoft"
+                      ],
+                      [
+                        "Access Date",
+                        "2025-05-23 16:38:25"
+                      ],
+                      [
+                        "Language",
+                        "en"
+                      ],
+                      [
+                        "Title",
+                        "COCO Dataset Dataset > Overview"
+                      ],
+                      [
+                        "URL",
+                        "https://universe.roboflow.com/microsoft/coco"
+                      ],
+                      [
+                        "Website Title",
+                        "Roboflow"
+                      ]
+                    ],
+                    "selectable": false
+                  },
+                  {
+                    "text": "Mass Labeling of Classification Images - Community Help",
+                    "item-id": "i217",
+                    "nodes": [
+                      {
+                        "text": "Snapshot",
+                        "item-id": "i218",
+                        "icon": "glyphicon glyphicon-paperclip",
+                        "item_title": "Snapshot",
+                        "item_type": "attachment",
+                        "item_note": null,
+                        "node_type": "item",
+                        "metadata": [
+                          [
+                            "Access Date",
+                            "2025-05-23 07:03:52"
+                          ],
+                          [
+                            "Title",
+                            "Snapshot"
+                          ],
+                          [
+                            "URL",
+                            "https://discuss.roboflow.com/t/mass-labeling-of-classification-images/4437"
+                          ]
+                        ],
+                        "resource": "storage/i218.html"
+                      }
+                    ],
+                    "icon": "glyphicon glyphicon-bookmark",
+                    "item_title": "Mass Labeling of Classification Images - Community Help",
+                    "item_type": "webpage",
+                    "item_note": null,
+                    "node_type": "item",
+                    "metadata": [
+                      [
+                        "Abstract Note",
+                        "For a classification project with thousands of images per class, is there any good way to annotate  large groups of images? I am uploading images without a label and they all have the same class, but there doesn\u2019t seem to be a way to select all the images and apply a single label to them all at once. Any help here? I\u2019ve used other platforms in which I could search a file by name or upload/load images methodically where I can simply apply a label to an entire sorted group."
+                      ],
+                      [
+                        "Access Date",
+                        "2025-05-23 07:03:45"
+                      ],
+                      [
+                        "Date",
+                        "2024-02-09 2024-02-09T16:33:18+00:00"
+                      ],
+                      [
+                        "Extra",
+                        "Section: Community Help"
+                      ],
+                      [
+                        "Language",
+                        "en"
+                      ],
+                      [
+                        "Title",
+                        "Mass Labeling of Classification Images - Community Help"
+                      ],
+                      [
+                        "URL",
+                        "https://discuss.roboflow.com/t/mass-labeling-of-classification-images/4437"
+                      ],
+                      [
+                        "Website Title",
+                        "Roboflow"
+                      ]
+                    ],
+                    "selectable": false
+                  },
+                  {
+                    "text": "Packages Detection > Browse",
+                    "item-id": "i215",
+                    "nodes": [
+                      {
+                        "text": "Snapshot",
+                        "item-id": "i216",
+                        "icon": "glyphicon glyphicon-paperclip",
+                        "item_title": "Snapshot",
+                        "item_type": "attachment",
+                        "item_note": null,
+                        "node_type": "item",
+                        "metadata": [
+                          [
+                            "Access Date",
+                            "2025-05-23 06:37:48"
+                          ],
+                          [
+                            "Title",
+                            "Snapshot"
+                          ],
+                          [
+                            "URL",
+                            "https://universe.roboflow.com/package-box-detection/packages-detection-jtvye/browse?queryText=&pageSize=200&startingIndex=0&browseQuery=true"
+                          ]
+                        ],
+                        "resource": "storage/i216.html"
+                      }
+                    ],
+                    "icon": "glyphicon glyphicon-bookmark",
+                    "item_title": "Packages Detection > Browse",
+                    "item_type": "webpage",
+                    "item_note": null,
+                    "node_type": "item",
+                    "metadata": [
+                      [
+                        "Abstract Note",
+                        "50 open source packages images. Packages Detection dataset by Package Box Detection"
+                      ],
+                      [
+                        "Access Date",
+                        "2025-05-23 06:37:44"
+                      ],
+                      [
+                        "Language",
+                        "en"
+                      ],
+                      [
+                        "Title",
+                        "Packages Detection > Browse"
+                      ],
+                      [
+                        "URL",
+                        "https://universe.roboflow.com/package-box-detection/packages-detection-jtvye"
+                      ],
+                      [
+                        "Website Title",
+                        "Roboflow"
+                      ]
+                    ],
+                    "selectable": false
+                  },
+                  {
+                    "text": "Process of getting the datasets",
+                    "item-id": "n221",
+                    "icon": "glyphicon glyphicon-text-background",
+                    "item_title": "Process of getting the datasets",
+                    "item_type": "note",
+                    "item_note": "<div class=\"zotero-note znv1\"><div data-citation-items=\"%5B%7B%22uris%22%3A%5B%22http%3A%2F%2Fzotero.org%2Fusers%2F15490272%2Fitems%2FMLFCCV6S%22%5D%2C%22itemData%22%3A%7B%22id%22%3A%22http%3A%2F%2Fzotero.org%2Fusers%2F15490272%2Fitems%2FMLFCCV6S%22%2C%22type%22%3A%22webpage%22%2C%22abstract%22%3A%22123272%20open%20source%20object%20images%20plus%20a%20pre-trained%20COCO%20Dataset%20model%20and%20API.%20Created%20by%20Microsoft%22%2C%22container-title%22%3A%22Roboflow%22%2C%22language%22%3A%22en%22%2C%22title%22%3A%22COCO%20Dataset%20Dataset%20%3E%20Overview%22%2C%22URL%22%3A%22https%3A%2F%2Funiverse.roboflow.com%2Fmicrosoft%2Fcoco%22%2C%22accessed%22%3A%7B%22date-parts%22%3A%5B%5B%222025%22%2C5%2C23%5D%5D%7D%2C%22citation-key%22%3A%22COCODatasetDataset%22%7D%7D%5D\" data-schema-version=\"9\"><h1>Process of getting the datasets</h1>\n<p></p>\n<p>1) I cloned images from package boxes datasets</p>\n<p>I removed the bad samples and then quickly wrote a script to automatically assign all images to the class \u201cpackages\u201d (see Batch-Annotate.sh)</p>\n<p>2) I trained the first model with 200 Images, but when i uploaded a picture of a football then it said package. So i tried again with 900 Images, still same problem.</p>\n<p>But after that i realized that i only had one class, so the model only knew packages.</p>\n<p>Now i could solve this by using object detection, but it would be a lot more work at the model would interference a lot slower.</p>\n<p>I solved it by selecting classes from the MS-COCO dataset (see <span class=\"citation\" data-citation=\"%7B%22citationItems%22%3A%5B%7B%22uris%22%3A%5B%22http%3A%2F%2Fzotero.org%2Fusers%2F15490272%2Fitems%2FMLFCCV6S%22%5D%7D%5D%2C%22properties%22%3A%7B%7D%7D\">(<span class=\"citation-item\">\u201cCOCO Dataset Dataset &gt; Overview\u201d</span>)</span></p>\n<p>I selected classes that could reasonably get into the package box like:</p>\n<ul>\n<li>\nbooks\n</li>\n<li>\napples\n</li>\n<li>\netc\n</li>\n<li>\nnot planes of course\n</li>\n</ul>\n<p>Then i added these classes into one class named \u201cnot-package\u201d (very good name indeed)</p>\n<p>These are called negative samples</p>\n<p></p>\n</div></div>",
+                    "node_type": "note"
+                  },
+                  {
+                    "text": "box > Browse",
+                    "item-id": "i213",
+                    "nodes": [
+                      {
+                        "text": "Snapshot",
+                        "item-id": "i214",
+                        "icon": "glyphicon glyphicon-paperclip",
+                        "item_title": "Snapshot",
+                        "item_type": "attachment",
+                        "item_note": null,
+                        "node_type": "item",
+                        "metadata": [
+                          [
+                            "Access Date",
+                            "2025-05-23 06:33:52"
+                          ],
+                          [
+                            "Title",
+                            "Snapshot"
+                          ],
+                          [
+                            "URL",
+                            "https://universe.roboflow.com/project-creo0/box-7whnv/browse?queryText=&pageSize=200&startingIndex=800&browseQuery=true"
+                          ]
+                        ],
+                        "resource": "storage/i214.html"
+                      }
+                    ],
+                    "icon": "glyphicon glyphicon-bookmark",
+                    "item_title": "box > Browse",
+                    "item_type": "webpage",
+                    "item_note": null,
+                    "node_type": "item",
+                    "metadata": [
+                      [
+                        "Abstract Note",
+                        "833 open source box images. box dataset by project-creo0"
+                      ],
+                      [
+                        "Access Date",
+                        "2025-05-23 06:33:48"
+                      ],
+                      [
+                        "Language",
+                        "en"
+                      ],
+                      [
+                        "Title",
+                        "box > Browse"
+                      ],
+                      [
+                        "URL",
+                        "https://universe.roboflow.com/project-creo0/box-7whnv"
+                      ],
+                      [
+                        "Website Title",
+                        "Roboflow"
+                      ]
+                    ],
+                    "selectable": false
+                  },
+                  {
+                    "text": "finalMerged > Browse",
+                    "item-id": "i219",
+                    "nodes": [
+                      {
+                        "text": "Snapshot",
+                        "item-id": "i220",
+                        "icon": "glyphicon glyphicon-paperclip",
+                        "item_title": "Snapshot",
+                        "item_type": "attachment",
+                        "item_note": null,
+                        "node_type": "item",
+                        "metadata": [
+                          [
+                            "Access Date",
+                            "2025-05-23 09:55:12"
+                          ],
+                          [
+                            "Title",
+                            "Snapshot"
+                          ],
+                          [
+                            "URL",
+                            "https://universe.roboflow.com/jians/finalmerged-ikg5m/browse?queryText=&pageSize=50&startingIndex=0&browseQuery=true"
+                          ]
+                        ],
+                        "resource": "storage/i220.html"
+                      }
+                    ],
+                    "icon": "glyphicon glyphicon-bookmark",
+                    "item_title": "finalMerged > Browse",
+                    "item_type": "webpage",
+                    "item_note": null,
+                    "node_type": "item",
+                    "metadata": [
+                      [
+                        "Abstract Note",
+                        "925 open source package images plus a pre-trained finalMerged model and API. Created by Jians"
+                      ],
+                      [
+                        "Access Date",
+                        "2025-05-23 09:55:05"
+                      ],
+                      [
+                        "Language",
+                        "en"
+                      ],
+                      [
+                        "Title",
+                        "finalMerged > Browse"
+                      ],
+                      [
+                        "URL",
+                        "https://universe.roboflow.com/jians/finalmerged-ikg5m"
+                      ],
+                      [
+                        "Website Title",
+                        "Roboflow"
+                      ]
+                    ],
+                    "selectable": false
+                  },
+                  {
+                    "text": "floor > Browse",
+                    "item-id": "i224",
+                    "nodes": [
+                      {
+                        "text": "Snapshot",
+                        "item-id": "i225",
+                        "icon": "glyphicon glyphicon-paperclip",
+                        "item_title": "Snapshot",
+                        "item_type": "attachment",
+                        "item_note": null,
+                        "node_type": "item",
+                        "metadata": [
+                          [
+                            "Access Date",
+                            "2025-05-23 16:49:52"
+                          ],
+                          [
+                            "Title",
+                            "Snapshot"
+                          ],
+                          [
+                            "URL",
+                            "https://universe.roboflow.com/ku-fmmwm/floor-8t6bn/browse?queryText=&pageSize=200&startingIndex=0&browseQuery=true"
+                          ]
+                        ],
+                        "resource": "storage/i225.html"
+                      }
+                    ],
+                    "icon": "glyphicon glyphicon-bookmark",
+                    "item_title": "floor > Browse",
+                    "item_type": "webpage",
+                    "item_note": null,
+                    "node_type": "item",
+                    "metadata": [
+                      [
+                        "Abstract Note",
+                        "127 open source floor images plus a pre-trained floor model and API. Created by KU"
+                      ],
+                      [
+                        "Access Date",
+                        "2025-05-23 16:49:44"
+                      ],
+                      [
+                        "Language",
+                        "en"
+                      ],
+                      [
+                        "Title",
+                        "floor > Browse"
+                      ],
+                      [
+                        "URL",
+                        "https://universe.roboflow.com/ku-fmmwm/floor-8t6bn"
+                      ],
+                      [
+                        "Website Title",
+                        "Roboflow"
+                      ]
+                    ],
+                    "selectable": false
+                  }
+                ],
+                "item_title": "DataSets",
+                "item_type": null,
+                "item_note": null,
+                "node_type": "collection",
+                "selectable": false
+              },
+              {
+                "text": "LMArena",
+                "item-id": "i237",
+                "nodes": [
+                  {
+                    "text": "Okay i had a problem, you see on the desktop every image would show, but on mobile non would show up. After searching fo",
+                    "item-id": "n241",
+                    "icon": "glyphicon glyphicon-text-background",
+                    "item_title": "Okay i had a problem, you see on the desktop every image would show, but on mobile non would show up. After searching fo",
+                    "item_type": "note",
+                    "item_note": "<div class=\"zotero-note znv1\"><div data-schema-version=\"9\"><p>Okay i had a problem, you see on the desktop every image would show, but on mobile non would show up. After searching for 30m and messaging the owner of the AsyncImageLoader library that i used, i just asked it to Gemini 2.5Pro.<br><br>First he began saying things that werent true at all, but then he mentioned something, i tried it, and boom it worked. </p>\n<p>The problem was that android blocks http requests by default and i used http to show the image, because then i didnt need to implement a custom AsyncImageLoader (because that crashes when you use self-signed certs)</p>\n<p>Gemini2.5 Began spitting out complex solutions, but i just made android allow http using</p>\n<pre>android:usesCleartextTraffic=\"true\"</pre>\n</div></div>",
+                    "node_type": "note"
+                  },
+                  {
+                    "text": "Snapshot",
+                    "item-id": "i238",
+                    "icon": "glyphicon glyphicon-paperclip",
+                    "item_title": "Snapshot",
+                    "item_type": "attachment",
+                    "item_note": null,
+                    "node_type": "item",
+                    "metadata": [
+                      [
+                        "Access Date",
+                        "2025-05-24 22:50:20"
+                      ],
+                      [
+                        "Title",
+                        "Snapshot"
+                      ],
+                      [
+                        "URL",
+                        "https://beta.lmarena.ai/c/4a10d1b9-2ea1-479e-9979-605e5c006450"
+                      ]
+                    ],
+                    "resource": "storage/i238.html"
+                  }
+                ],
+                "icon": "glyphicon glyphicon-bookmark",
+                "item_title": "LMArena",
+                "item_type": "webpage",
+                "item_note": null,
+                "node_type": "item",
+                "metadata": [
+                  [
+                    "Abstract Note",
+                    "An open platform for evaluating AI through human preference"
+                  ],
+                  [
+                    "Access Date",
+                    "2025-05-24 22:50:18"
+                  ],
+                  [
+                    "Language",
+                    "en"
+                  ],
+                  [
+                    "Title",
+                    "LMArena"
+                  ],
+                  [
+                    "URL",
+                    "https://beta.lmarena.ai"
+                  ],
+                  [
+                    "Website Title",
+                    "LMArena"
+                  ]
+                ],
+                "selectable": false
+              },
+              {
+                "text": "LMArena",
+                "item-id": "i242",
+                "nodes": [
+                  {
+                    "text": "Alr i have no clue how to properly serialize and parse Json data so i asked help from gemini.",
+                    "item-id": "n244",
+                    "icon": "glyphicon glyphicon-text-background",
+                    "item_title": "Alr i have no clue how to properly serialize and parse Json data so i asked help from gemini.",
+                    "item_type": "note",
+                    "item_note": "<div class=\"zotero-note znv1\"><div data-schema-version=\"9\"><p>Alr i have no clue how to properly serialize and parse Json data so i asked help from gemini.</p>\n<p>He gave me a bunch of code, which i trimmed down and adapted to my needs.</p>\n</div></div>",
+                    "node_type": "note"
+                  },
+                  {
+                    "text": "Snapshot",
+                    "item-id": "i243",
+                    "icon": "glyphicon glyphicon-paperclip",
+                    "item_title": "Snapshot",
+                    "item_type": "attachment",
+                    "item_note": null,
+                    "node_type": "item",
+                    "metadata": [
+                      [
+                        "Access Date",
+                        "2025-05-24 23:05:00"
+                      ],
+                      [
+                        "Title",
+                        "Snapshot"
+                      ],
+                      [
+                        "URL",
+                        "https://beta.lmarena.ai/c/381eb921-b31e-4c33-9225-c4734313d4e5"
+                      ]
+                    ],
+                    "resource": "storage/i243.html"
+                  }
+                ],
+                "icon": "glyphicon glyphicon-bookmark",
+                "item_title": "LMArena",
+                "item_type": "webpage",
+                "item_note": null,
+                "node_type": "item",
+                "metadata": [
+                  [
+                    "Abstract Note",
+                    "An open platform for evaluating AI through human preference"
+                  ],
+                  [
+                    "Access Date",
+                    "2025-05-24 23:04:58"
+                  ],
+                  [
+                    "Language",
+                    "en"
+                  ],
+                  [
+                    "Title",
+                    "LMArena"
+                  ],
+                  [
+                    "URL",
+                    "https://beta.lmarena.ai"
+                  ],
+                  [
+                    "Website Title",
+                    "LMArena"
+                  ]
+                ],
+                "selectable": false
+              },
               {
                 "text": "OnHomeserver",
                 "item-id": "c18,i28",
@@ -2200,6 +2809,77 @@ var tree =
                 "item_note": null,
                 "node_type": "collection",
                 "selectable": false
+              },
+              {
+                "text": "roboflow-api-snippets/.NET/InferenceLocal.cs at main \u00b7 roboflow/roboflow-api-snippets",
+                "item-id": "i230",
+                "nodes": [
+                  {
+                    "text": "Snapshot",
+                    "item-id": "i231",
+                    "icon": "glyphicon glyphicon-paperclip",
+                    "item_title": "Snapshot",
+                    "item_type": "attachment",
+                    "item_note": null,
+                    "node_type": "item",
+                    "metadata": [
+                      [
+                        "Access Date",
+                        "2025-05-24 22:13:50"
+                      ],
+                      [
+                        "Title",
+                        "Snapshot"
+                      ],
+                      [
+                        "URL",
+                        "https://github.com/roboflow/roboflow-api-snippets/blob/main/.NET/InferenceLocal.cs"
+                      ]
+                    ],
+                    "resource": "storage/i231.html"
+                  },
+                  {
+                    "text": "These snippets were really handy to show me how i should upload the image to the server. Because i kept getting errors t",
+                    "item-id": "n236",
+                    "icon": "glyphicon glyphicon-text-background",
+                    "item_title": "These snippets were really handy to show me how i should upload the image to the server. Because i kept getting errors t",
+                    "item_type": "note",
+                    "item_note": "<div class=\"zotero-note znv1\"><div data-schema-version=\"9\"><p>These snippets were really handy to show me how i should upload the image to the server. Because i kept getting errors that the base64 was malformed</p>\n</div></div>",
+                    "node_type": "note"
+                  }
+                ],
+                "icon": "glyphicon glyphicon-bookmark",
+                "item_title": "roboflow-api-snippets/.NET/InferenceLocal.cs at main \u00b7 roboflow/roboflow-api-snippets",
+                "item_type": "webpage",
+                "item_note": null,
+                "node_type": "item",
+                "metadata": [
+                  [
+                    "Abstract Note",
+                    "repo for versioning snippets that show how to use Roboflow APIs - roboflow/roboflow-api-snippets"
+                  ],
+                  [
+                    "Access Date",
+                    "2025-05-24 22:13:46"
+                  ],
+                  [
+                    "Language",
+                    "en"
+                  ],
+                  [
+                    "Title",
+                    "roboflow-api-snippets/.NET/InferenceLocal.cs at main \u00b7 roboflow/roboflow-api-snippets"
+                  ],
+                  [
+                    "URL",
+                    "https://github.com/roboflow/roboflow-api-snippets/blob/main/.NET/InferenceLocal.cs"
+                  ],
+                  [
+                    "Website Title",
+                    "GitHub"
+                  ]
+                ],
+                "selectable": false
               }
             ],
             "item_title": "AI",
@@ -2686,7 +3366,7 @@ var tree =
           },
           {
             "text": "App",
-            "item-id": "c8,i5",
+            "item-id": "c8,i226",
             "nodes": [
               {
                 "text": "C# Async/Await/Task Explained (Deep Dive)",
@@ -2798,6 +3478,131 @@ var tree =
                   [
                     "URL",
                     "https://docs.avaloniaui.net/docs/guides/data-binding/how-to-bind-image-files"
+                  ]
+                ],
+                "selectable": false
+              },
+              {
+                "text": "LMArena",
+                "item-id": "i226",
+                "nodes": [
+                  {
+                    "text": "Snapshot",
+                    "item-id": "i227",
+                    "icon": "glyphicon glyphicon-paperclip",
+                    "item_title": "Snapshot",
+                    "item_type": "attachment",
+                    "item_note": null,
+                    "node_type": "item",
+                    "metadata": [
+                      [
+                        "Access Date",
+                        "2025-05-24 14:12:08"
+                      ],
+                      [
+                        "Title",
+                        "Snapshot"
+                      ],
+                      [
+                        "URL",
+                        "https://beta.lmarena.ai/c/4a10d1b9-2ea1-479e-9979-605e5c006450"
+                      ]
+                    ],
+                    "resource": "storage/i227.html"
+                  }
+                ],
+                "icon": "glyphicon glyphicon-bookmark",
+                "item_title": "LMArena",
+                "item_type": "webpage",
+                "item_note": null,
+                "node_type": "item",
+                "metadata": [
+                  [
+                    "Abstract Note",
+                    "An open platform for evaluating AI through human preference"
+                  ],
+                  [
+                    "Access Date",
+                    "2025-05-24 14:12:05"
+                  ],
+                  [
+                    "Language",
+                    "en"
+                  ],
+                  [
+                    "Title",
+                    "LMArena"
+                  ],
+                  [
+                    "URL",
+                    "https://beta.lmarena.ai"
+                  ],
+                  [
+                    "Website Title",
+                    "LMArena"
+                  ]
+                ],
+                "selectable": false
+              },
+              {
+                "text": "irihitech/Semi.Avalonia",
+                "item-id": "i211",
+                "nodes": [
+                  {
+                    "text": "Voor de GUI, heb in het begin alleen plain AXAML gebruikt. Eenmaal de app werkte heb ik deze library gebruikt omdat er v",
+                    "item-id": "n212",
+                    "icon": "glyphicon glyphicon-text-background",
+                    "item_title": "Voor de GUI, heb in het begin alleen plain AXAML gebruikt. Eenmaal de app werkte heb ik deze library gebruikt omdat er v",
+                    "item_type": "note",
+                    "item_note": "<div class=\"zotero-note znv1\"><div data-schema-version=\"9\"><p>Voor de GUI, heb in het begin alleen plain AXAML gebruikt.<br>Eenmaal de app werkte heb ik deze library gebruikt omdat er van default mooie gestijlde delen in zaten en dan moest ik niet alles zelf stylen.</p>\n<p></p>\n<p>Hierdoor bleef mijn UI code redelijk overzichtelijk en was het duidelijk te lezen</p>\n</div></div>",
+                    "node_type": "note"
+                  }
+                ],
+                "icon": "glyphicon glyphicon-floppy-disk",
+                "item_title": "irihitech/Semi.Avalonia",
+                "item_type": "computerProgram",
+                "item_note": null,
+                "node_type": "item",
+                "metadata": [
+                  [
+                    "Abstract Note",
+                    "Avalonia theme inspired by Semi Design"
+                  ],
+                  [
+                    "Access Date",
+                    "2025-05-21 07:01:31"
+                  ],
+                  [
+                    "Company",
+                    "IRIHI Technology"
+                  ],
+                  [
+                    "Date",
+                    "2025-05-21 2025-05-21T05:45:59Z"
+                  ],
+                  [
+                    "Extra",
+                    "original-date: 2022-11-04T13:49:03Z"
+                  ],
+                  [
+                    "Library Catalog",
+                    "GitHub"
+                  ],
+                  [
+                    "Programming Language",
+                    "C#"
+                  ],
+                  [
+                    "Rights",
+                    "MIT"
+                  ],
+                  [
+                    "Title",
+                    "irihitech/Semi.Avalonia"
+                  ],
+                  [
+                    "URL",
+                    "https://github.com/irihitech/Semi.Avalonia"
                   ]
                 ],
                 "selectable": false
@@ -2949,6 +3754,147 @@ var tree =
                 "https://github.com/Fuyi-Yang/Package-Detection-PyTorch-YOLOv4"
               ]
             ],
+            "selectable": false
+          },
+          {
+            "text": "HostImages",
+            "item-id": "c22,i210",
+            "nodes": [
+              {
+                "text": "Deze error en fix van Gemini2.5Pro preview was echt fenomenaal. Het probleem was dat de UI de foto vanop de server NIET ",
+                "item-id": "n208",
+                "icon": "glyphicon glyphicon-text-background",
+                "item_title": "Deze error en fix van Gemini2.5Pro preview was echt fenomenaal. Het probleem was dat de UI de foto vanop de server NIET ",
+                "item_type": "note",
+                "item_note": "<div class=\"zotero-note znv1\"><div data-schema-version=\"9\"><p>Deze error en fix van Gemini2.5Pro preview was echt fenomenaal.<br>Het probleem was dat de UI de foto vanop de server NIET wou tonen.<br>Ik had ongeveer 3uur gezocht naar het probleem en niets gevonden, tot als ik gemini erbij nam.</p>\n<ul>\n<li>\nEerst gaf ik al mijn code\n</li>\n<li>\nDan gaf ik het probleem\n</li>\n</ul>\n<p>En hij vond het probleem. Het probleem was net hezelfde als die van </p>\n<p><a href=\"zotero://note/u/IIAN2KRI/\" rel=\"noopener noreferrer nofollow\">SSL ERROR</a></p>\n<p>namelijk de SLL cert.</p>\n<p>Gemini heeft de oplossing gevonden door naar mijn bestaande code te kijken en mijn fix daar te zien en te zien dat die ook nodig was in de ImageServer</p>\n<h1>Promp</h1>\n<p></p>\n<p>What is wrong with my implementation of <a href=\"https://github.com/AvaloniaUtils/AsyncImageLoader.Avalonia\" rel=\"noopener noreferrer nofollow\">https://github.com/AvaloniaUtils/AsyncImageLoader.Avalonia</a> ?</p>\n<blockquote>\n<p>hier stond alle code van mijn app, maar heb ik effe weggedaan voor leesbaarheid<br></p>\n</blockquote>\n<p>[The problem] The problem is that while the image shows up on the imageserver, the image isnt loaded into the UI. I use app.UseStaticFiles to host the image and it works very good.</p>\n<p>What would be the problem?</p>\n<h1>Answer</h1>\n<p>The primary issues are likely:</p>\n<ol>\n<li>\n<strong>URL Concatenation for </strong><code>NewestImageUrl</code>: Your <code>ImageServerUrl</code> is initialized as <code>\"https://raspberrypi.local:8081/latest.png\"</code>. In <code>RefreshImageAsync</code>, you do <code>NewestImageUrl = ImageServerUrl + result;</code>. If <code>result</code> from your API is something like <code>\"new_image.jpg\"</code>, then <code>NewestImageUrl</code> becomes <code>\"https://raspberrypi.local:8081/latest.pngnew_image.jpg\"</code>, which is incorrect. <code>ImageServerUrl</code> should probably be the <em>base</em> URL like <code>\"https://raspberrypi.local:8081/\"</code>.\n</li>\n<li>\n<strong>SSL Certificate Validation for AsyncImageLoader:</strong> You've correctly set up your <code>ApiService</code> to bypass SSL certificate validation for <code>HttpClient</code>. However, <code>AsyncImageLoader.Avalonia</code> uses its own internal <code>HttpClient</code> instance. If <code>https://raspberrypi.local:8081/</code> uses a self-signed certificate (which is highly likely given the <code>local</code> domain and custom port), <code>AsyncImageLoader</code> will fail to download the image due to SSL trust issues, unless you configure it similarly.\n</li>\n</ol>\n<p></p>\n<h1>Conclusie</h1>\n<p>Nu issue 1 die hij gaf was totaal geen probleem. Dus zeker ai niet vertrouwen</p>\n<p>Issue 2 was wel een probleem, maar hierna gaf hij een oplossing die totaal niet zou werken + ook niet werkte.</p>\n<p>Hij probeerde de SSL error te bypassen, maar dat is veel te complex</p>\n<p></p>\n<p>Dus als fix heb ik SSL encryption (dus https) voor de images uitgezet want die blijven toch lokaal in production.</p>\n</div></div>",
+                "node_type": "note"
+              },
+              {
+                "text": "Dus als de imageServer starte voordat er een image in de wwwroot directory was dan bleef hij een error tonen, zelf als d",
+                "item-id": "n210",
+                "icon": "glyphicon glyphicon-text-background",
+                "item_title": "Dus als de imageServer starte voordat er een image in de wwwroot directory was dan bleef hij een error tonen, zelf als d",
+                "item_type": "note",
+                "item_note": "<div class=\"zotero-note znv1\"><div data-schema-version=\"9\"><p>Dus als de imageServer starte voordat er een image in de wwwroot directory was dan bleef hij een error tonen, zelf als de foto vervangen werdt.</p>\n<p></p>\n<p>Daarom heb ik het deploy script aangepast zodat voordat de server startte een dummy image geplaatst werdt in de wwwroot directory.</p>\n<p>Eerst had ik niet door waarom het niet werkte, en eigenlijk is dit geen echt goede fix, maar het werkt wel goed nu.</p>\n</div></div>",
+                "node_type": "note"
+              },
+              {
+                "text": "LMArena",
+                "item-id": "i189",
+                "nodes": [
+                  {
+                    "text": "Snapshot",
+                    "item-id": "i191",
+                    "icon": "glyphicon glyphicon-paperclip",
+                    "item_title": "Snapshot",
+                    "item_type": "attachment",
+                    "item_note": null,
+                    "node_type": "item",
+                    "metadata": [
+                      [
+                        "Access Date",
+                        "2025-05-14 09:02:35"
+                      ],
+                      [
+                        "Title",
+                        "Snapshot"
+                      ],
+                      [
+                        "URL",
+                        "https://beta.lmarena.ai/c/c7bb46b7-2ad6-48d3-a36c-f9a7701f9078"
+                      ]
+                    ],
+                    "resource": "storage/i191.html"
+                  }
+                ],
+                "icon": "glyphicon glyphicon-bookmark",
+                "item_title": "LMArena",
+                "item_type": "webpage",
+                "item_note": null,
+                "node_type": "item",
+                "metadata": [
+                  [
+                    "Abstract Note",
+                    "An open platform for evaluating AI through human preference"
+                  ],
+                  [
+                    "Access Date",
+                    "2025-05-14 09:02:32"
+                  ],
+                  [
+                    "Language",
+                    "en"
+                  ],
+                  [
+                    "Title",
+                    "LMArena"
+                  ],
+                  [
+                    "URL",
+                    "https://beta.lmarena.ai"
+                  ],
+                  [
+                    "Website Title",
+                    "LMArena"
+                  ]
+                ],
+                "selectable": false
+              },
+              {
+                "text": "how to host images locally accessible from a local url like localhost://image.png at DuckDuckGo",
+                "item-id": "i188",
+                "nodes": [
+                  {
+                    "text": "how to host images locally accessible from a local url like localhost://image.png at DuckDuckGo",
+                    "item-id": "i190",
+                    "icon": "glyphicon glyphicon-paperclip",
+                    "item_title": "how to host images locally accessible from a local url like localhost://image.png at DuckDuckGo",
+                    "item_type": "attachment",
+                    "item_note": null,
+                    "node_type": "item",
+                    "metadata": [
+                      [
+                        "Access Date",
+                        "2025-05-14 09:02:33"
+                      ],
+                      [
+                        "Title",
+                        "how to host images locally accessible from a local url like localhost://image.png at DuckDuckGo"
+                      ],
+                      [
+                        "URL",
+                        "https://duckduckgo.com/?q=how+to+host+images+locally+accessible+from+a+local+url+like+localhost%3A%2F%2Fimage.png&t=ftsa&ia=web"
+                      ]
+                    ],
+                    "resource": "storage/i190.html"
+                  }
+                ],
+                "icon": "glyphicon glyphicon-bookmark",
+                "item_title": "how to host images locally accessible from a local url like localhost://image.png at DuckDuckGo",
+                "item_type": "webpage",
+                "item_note": null,
+                "node_type": "item",
+                "metadata": [
+                  [
+                    "Access Date",
+                    "2025-05-14 09:02:24"
+                  ],
+                  [
+                    "Title",
+                    "how to host images locally accessible from a local url like localhost://image.png at DuckDuckGo"
+                  ],
+                  [
+                    "URL",
+                    "https://duckduckgo.com/?q=how+to+host+images+locally+accessible+from+a+local+url+like+localhost%3A%2F%2Fimage.png&t=ftsa&ia=web"
+                  ]
+                ],
+                "selectable": false
+              }
+            ],
+            "item_title": "HostImages",
+            "item_type": null,
+            "item_note": null,
+            "node_type": "collection",
             "selectable": false
           },
           {
@@ -3122,6 +4068,215 @@ var tree =
                         "https://emgu.com/wiki/index.php/Main_Page"
                       ]
                     ],
+                    "selectable": false
+                  },
+                  {
+                    "text": "Fix Camera Timeout error",
+                    "item-id": "c26,i257",
+                    "nodes": [
+                      {
+                        "text": "After circa 6 images, the camera begins showing this error. It was random, and i couldnt find an error in my code that c",
+                        "item-id": "n248",
+                        "icon": "glyphicon glyphicon-text-background",
+                        "item_title": "After circa 6 images, the camera begins showing this error. It was random, and i couldnt find an error in my code that c",
+                        "item_type": "note",
+                        "item_note": "<div class=\"zotero-note znv1\"><div data-schema-version=\"9\"><p>After circa 6 images, the camera begins showing this error. It was random, and i couldnt find an error in my code that cause it.</p>\n<p>So i tried a different webcam from niels, but after a while i still got the same error.</p>\n<pre>[ WARN:0@39.267] global cap_v4l.cpp:1136 tryIoctl VIDEOIO(V4L2:/dev/video0): select() timeout. 14/05/2025 15:56:00 - CameraFeed: [WARNING] Failed to capture frame (attempt 1/5). Retrying...\n</pre>\n</div></div>",
+                        "node_type": "note"
+                      },
+                      {
+                        "text": "Build software better, together",
+                        "item-id": "i251",
+                        "nodes": [
+                          {
+                            "text": "Snapshot",
+                            "item-id": "i254",
+                            "icon": "glyphicon glyphicon-paperclip",
+                            "item_title": "Snapshot",
+                            "item_type": "attachment",
+                            "item_note": null,
+                            "node_type": "item",
+                            "metadata": [
+                              [
+                                "Access Date",
+                                "2025-05-27 06:34:36"
+                              ],
+                              [
+                                "Title",
+                                "Snapshot"
+                              ],
+                              [
+                                "URL",
+                                "https://github.com/emgucv/emgucv/issues/931"
+                              ]
+                            ],
+                            "resource": "storage/i254.html"
+                          }
+                        ],
+                        "icon": "glyphicon glyphicon-bookmark",
+                        "item_title": "Build software better, together",
+                        "item_type": "webpage",
+                        "item_note": null,
+                        "node_type": "item",
+                        "metadata": [
+                          [
+                            "Abstract Note",
+                            "GitHub is where people build software. More than 150 million people use GitHub to discover, fork, and contribute to over 420 million projects."
+                          ],
+                          [
+                            "Access Date",
+                            "2025-05-27 06:34:29"
+                          ],
+                          [
+                            "Language",
+                            "en"
+                          ],
+                          [
+                            "Title",
+                            "Build software better, together"
+                          ],
+                          [
+                            "URL",
+                            "https://github.com"
+                          ],
+                          [
+                            "Website Title",
+                            "GitHub"
+                          ]
+                        ],
+                        "selectable": false
+                      },
+                      {
+                        "text": "OpenCV v4l2 select timeout error SOLVED! High FPS! - Raspberry Pi Forums",
+                        "item-id": "i249",
+                        "nodes": [
+                          {
+                            "text": "OpenCV v4l2 select timeout error SOLVED! High FPS! - Raspberry Pi Forums",
+                            "item-id": "i252",
+                            "icon": "glyphicon glyphicon-paperclip",
+                            "item_title": "OpenCV v4l2 select timeout error SOLVED! High FPS! - Raspberry Pi Forums",
+                            "item_type": "attachment",
+                            "item_note": null,
+                            "node_type": "item",
+                            "metadata": [
+                              [
+                                "Access Date",
+                                "2025-05-27 06:34:30"
+                              ],
+                              [
+                                "Title",
+                                "OpenCV v4l2 select timeout error SOLVED! High FPS! - Raspberry Pi Forums"
+                              ],
+                              [
+                                "URL",
+                                "https://forums.raspberrypi.com/viewtopic.php?t=35689#p305473"
+                              ]
+                            ],
+                            "resource": "storage/i252.html"
+                          }
+                        ],
+                        "icon": "glyphicon glyphicon-bookmark",
+                        "item_title": "OpenCV v4l2 select timeout error SOLVED! High FPS! - Raspberry Pi Forums",
+                        "item_type": "webpage",
+                        "item_note": null,
+                        "node_type": "item",
+                        "metadata": [
+                          [
+                            "Access Date",
+                            "2025-05-27 06:34:23"
+                          ],
+                          [
+                            "Title",
+                            "OpenCV v4l2 select timeout error SOLVED! High FPS! - Raspberry Pi Forums"
+                          ],
+                          [
+                            "URL",
+                            "https://forums.raspberrypi.com/viewtopic.php?t=35689#p305473"
+                          ]
+                        ],
+                        "selectable": false
+                      },
+                      {
+                        "text": "Oplossing voor de timeout error:",
+                        "item-id": "n256",
+                        "icon": "glyphicon glyphicon-text-background",
+                        "item_title": "Oplossing voor de timeout error:",
+                        "item_type": "note",
+                        "item_note": "<div class=\"zotero-note znv1\"><div data-schema-version=\"9\"><h1>Oplossing voor de timeout error:</h1>\n<p>Dus eigenlijk heb je een statisch object nodig zodat je niet steeds een nieuwe connectie moet starten met de camera.</p>\n<p></p>\n<h1>Prompt</h1>\n<p>Okay, the <code>select() timeout</code> error from V4L2 (Video4Linux2, the kernel interface for video devices on Linux) is a classic one, especially when dealing with webcams in a loop. It usually means the driver or the device isn't responding in time when OpenCV (which EmguCV wraps) tries to grab a frame. The fact that it works for 6-10 images and then fails strongly suggests a resource issue or a problem with repeatedly initializing/releasing the camera.</p>\n<p>Let's break down potential issues and solutions:</p>\n<p><strong>Primary Suspect: Repeatedly Opening and Closing the Camera</strong></p>\n<p>In your <code>handlePicture</code> function:</p>\n<pre>public bool handlePicture(string filePath = \"./wwwroot/latest.png\")\n{\n &nbsp; &nbsp;byte[]? tImage = null;\n &nbsp; &nbsp;bool success = HandleError(() =&gt;\n &nbsp; &nbsp;{\n &nbsp; &nbsp; &nbsp; &nbsp;tImage = TakePicture(); // No VideoCapture instance passed\n &nbsp; &nbsp;});\n &nbsp; &nbsp;// ...\n}</pre>\n<p>And in your <code>TakePicture</code> function:</p>\n<pre>public static byte[] TakePicture(VideoCapture? capture = null)\n{\n &nbsp; &nbsp;bool createdCapture = false;\n &nbsp; &nbsp;if (capture == null) // If no capture is given, make one\n &nbsp; &nbsp;{\n &nbsp; &nbsp; &nbsp; &nbsp;capture = StartCamera();\n &nbsp; &nbsp; &nbsp; &nbsp;createdCapture = true;\n &nbsp; &nbsp;}\n &nbsp; &nbsp;// ...\n &nbsp; &nbsp;if (createdCapture) { StopCamera(capture); } // Stops camera if created internally\n &nbsp; &nbsp;return imageBytes;\n}</pre>\n<p>This means <strong>every single time </strong><code>handlePicture</code> is called, it creates a new <code>VideoCapture</code> object, starts the camera, takes one picture, and then stops and disposes of the camera.</p>\n<p>Doing this rapidly (e.g., once per second or faster) can often lead to issues:</p>\n<ol>\n<li>\n<strong>Driver/Hardware Stress:</strong> Webcam drivers and hardware might not be designed for such frequent start/stop cycles. They might need more time to release resources properly or re-initialize.\n</li>\n<li>\n<strong>Resource Leaks (less likely with </strong><code>Dispose</code>, but possible at driver level): While you are disposing <code>VideoCapture</code>, the underlying V4L2 driver might not clean up perfectly after rapid open/close operations, leading to a state where it can no longer open the device or grab frames.\n</li>\n</ol>\n<p><strong>Solution 1: Keep the Camera Open (Recommended)</strong></p>\n<p>The best approach is to open the camera once when your application/service starts (or when you first need it) and keep the <code>VideoCapture</code> object alive. Only call <code>QueryFrame</code> when you need a picture, and dispose of the <code>VideoCapture</code> object when your application/service is shutting down.</p>\n<p><strong>How to implement this:</strong></p>\n<p>You'll need to manage the <code>VideoCapture</code> instance at a higher level.</p>\n</div></div>",
+                        "node_type": "note"
+                      },
+                      {
+                        "text": "Toen ik deze error oploste door de volgende oplossing, kreeg ik een ander probleem:",
+                        "item-id": "n257",
+                        "icon": "glyphicon glyphicon-text-background",
+                        "item_title": "Toen ik deze error oploste door de volgende oplossing, kreeg ik een ander probleem:",
+                        "item_type": "note",
+                        "item_note": "<div class=\"zotero-note znv1\"><div data-schema-version=\"9\"><p>Toen ik deze error oploste door de volgende oplossing, kreeg ik een ander probleem:</p>\n<p><a href=\"zotero://note/u/ESS7VU5E/\" rel=\"noopener noreferrer nofollow\">After circa 6 images, the camera begins showing this error. It was random, and i couldnt find an error in my code that c</a></p>\n<p></p>\n<p><a href=\"zotero://note/u/V6W2BDXX/\" rel=\"noopener noreferrer nofollow\">Oplossing voor de timeout error:</a></p>\n<p></p>\n<h1>Het nieuwe probleem:</h1>\n<p>De vorige image bleef gebufferd? En het kwam niet door de imageServer, want als ik het bestand fysiek bekeek bleek het ook gebufferd.</p>\n<p></p>\n<p>Dus als ik foto1 neem, dan zie ik die niet, totdat ik foto 2 neem, en dan zie ik pas foto1 alsof die dan pas opgeslagen wordt.</p>\n<p>En dan zie ik foto2 pas als ik foto3 neem.</p>\n<p></p>\n<p></p>\n<h1>Oplossing:</h1>\n<p><a href=\"zotero://note/u/995M4ZFS/\" rel=\"noopener noreferrer nofollow\">WarreTh: #file:Functions.cs #websearch #codebase</a></p>\n<p></p>\n<p><code>// Leeg de camerabuffer door meerdere dummy grabs uit te voeren</code></p>\n<p><code>lock (_lock)</code></p>\n<p><code>{</code></p>\n<p><code>int dummyGrabs = 8; // Genoeg grabs om oude frames te verwijderen</code></p>\n<p><code>for (int i = 0; i &lt; dummyGrabs; i++)</code></p>\n<p><code>{</code></p>\n<p><code>capture.Grab(); // Vraag een frame op, maar gebruik het niet</code></p>\n<p><code>Thread.Sleep(30); // Kleine delay voor betrouwbaarheid</code></p>\n<p><code>}</code></p>\n<p><code>}</code></p>\n<p></p>\n<p>Hierdoor is het probleem eindelijk opgelost</p>\n</div></div>",
+                        "node_type": "note"
+                      },
+                      {
+                        "text": "WarreTh: #file:Functions.cs #websearch #codebase",
+                        "item-id": "n255",
+                        "icon": "glyphicon glyphicon-text-background",
+                        "item_title": "WarreTh: #file:Functions.cs #websearch #codebase",
+                        "item_type": "note",
+                        "item_note": "<div class=\"zotero-note znv1\"><div data-schema-version=\"9\"><p>WarreTh: #file:Functions.cs #websearch #codebase</p>\n<p></p>\n<p>Waarom blijf de vorige image gebufferd? En nee niet door de imageserver want als ik het fysieke bestand lees, lijkt dat ook gebufferd.</p>\n<p>Dus als ik foto1 neem, ja dan zie ik die niet, totdat ik foto 2 neem, en dan zie ik pas foto1 alsof die dan pas opgeslagen wordt?? En dan zie ik foto2 pas als ik foto3 neem.</p>\n<p>GitHub Copilot: Dit probleem is typisch voor camera's (vooral met OpenCV/EmguCV) waarbij de interne buffer van de camera niet direct de laatste frame levert, maar een oudere. Dit gebeurt vaak als je direct na het openen van de camera een foto neemt, of als je niet genoeg \"dummy frames\" (grabs) doet om de buffer te legen.</p>\n<p><strong>Waarom gebeurt dit?</strong></p>\n<ul>\n<li>\nDe camera heeft een interne buffer. Als je een frame vraagt, krijg je vaak het oudste frame in de buffer, niet het nieuwste.\n</li>\n<li>\nZeker bij USB-webcams op Linux is dit bekend gedrag.\n</li>\n<li>\nJe ziet dus altijd de vorige foto, omdat je bij het eerste <code>Grab()</code>/<code>Retrieve()</code> nog het oude frame krijgt.\n</li>\n</ul>\n<p><strong>Hoe los je dit op?</strong></p>\n<ul>\n<li>\nJe moet meerdere keren <code>Grab()</code> of <code>Read()</code> doen voordat je het frame gebruikt. Zo leeg je de buffer en krijg je het meest recente beeld.\n</li>\n<li>\nIn jouw code doe je al <code>dummyGrabs</code>, maar mogelijk niet genoeg of niet op het juiste moment.\n</li>\n</ul>\n<p><strong>Concrete verbeteringen voor jouw code:</strong></p>\n<ol>\n<li>\n<strong>Voer meer dummy grabs uit v\u00f3\u00f3r je het frame opslaat.</strong>\n</li>\n<li>\n<strong>Voeg een korte delay toe na het openen van de camera voordat je frames gaat lezen.</strong>\n</li>\n<li>\n<strong>Gebruik altijd de laatste frame na meerdere grabs.</strong>\n</li>\n</ol>\n<p></p>\n</div></div>",
+                        "node_type": "note"
+                      },
+                      {
+                        "text": "[ WARN:0@39.267] global cap_v4l.cpp:1136 tryIoctl VIDEOIO(V4L2:/dev/video0): select() timeout. 14/05/2025 15:56:00 - CameraFeed: [WARNING] Failed to capture frame (attempt 1/5). Retrying... at DuckDuckGo",
+                        "item-id": "i250",
+                        "nodes": [
+                          {
+                            "text": "[ WARN:0@39.267] global cap_v4l.cpp:1136 tryIoctl VIDEOIO(V4L2:/dev/video0): select() timeout. 14/05/2025 15:56:00 - CameraFeed: [WARNING] Failed to capture frame (attempt 1/5). Retrying... at DuckDuckGo",
+                            "item-id": "i253",
+                            "icon": "glyphicon glyphicon-paperclip",
+                            "item_title": "[ WARN:0@39.267] global cap_v4l.cpp:1136 tryIoctl VIDEOIO(V4L2:/dev/video0): select() timeout. 14/05/2025 15:56:00 - CameraFeed: [WARNING] Failed to capture frame (attempt 1/5). Retrying... at DuckDuckGo",
+                            "item_type": "attachment",
+                            "item_note": null,
+                            "node_type": "item",
+                            "metadata": [
+                              [
+                                "Access Date",
+                                "2025-05-27 06:34:33"
+                              ],
+                              [
+                                "Title",
+                                "[ WARN:0@39.267] global cap_v4l.cpp:1136 tryIoctl VIDEOIO(V4L2:/dev/video0): select() timeout. 14/05/2025 15:56:00 - CameraFeed: [WARNING] Failed to capture frame (attempt 1/5). Retrying... at DuckDuckGo"
+                              ],
+                              [
+                                "URL",
+                                "https://duckduckgo.com/?t=ftsa&q=%5B+WARN%3A0%4039.267%5D+global+cap_v4l.cpp%3A1136+tryIoctl+VIDEOIO(V4L2%3A%2Fdev%2Fvideo0)%3A+select()+timeout.+14%2F05%2F2025+15%3A56%3A00+-+CameraFeed%3A+++++++++%5BWARNING%5D+Failed+to+capture+frame+(attempt+1%2F5).+Retrying...+&ia=web"
+                              ]
+                            ],
+                            "resource": "storage/i253.html"
+                          }
+                        ],
+                        "icon": "glyphicon glyphicon-bookmark",
+                        "item_title": "[ WARN:0@39.267] global cap_v4l.cpp:1136 tryIoctl VIDEOIO(V4L2:/dev/video0): select() timeout. 14/05/2025 15:56:00 - CameraFeed: [WARNING] Failed to capture frame (attempt 1/5). Retrying... at DuckDuckGo",
+                        "item_type": "webpage",
+                        "item_note": null,
+                        "node_type": "item",
+                        "metadata": [
+                          [
+                            "Access Date",
+                            "2025-05-27 06:34:26"
+                          ],
+                          [
+                            "Title",
+                            "[ WARN:0@39.267] global cap_v4l.cpp:1136 tryIoctl VIDEOIO(V4L2:/dev/video0): select() timeout. 14/05/2025 15:56:00 - CameraFeed: [WARNING] Failed to capture frame (attempt 1/5). Retrying... at DuckDuckGo"
+                          ],
+                          [
+                            "URL",
+                            "https://duckduckgo.com/?t=ftsa&q=%5B+WARN%3A0%4039.267%5D+global+cap_v4l.cpp%3A1136+tryIoctl+VIDEOIO(V4L2%3A%2Fdev%2Fvideo0)%3A+select()+timeout.+14%2F05%2F2025+15%3A56%3A00+-+CameraFeed%3A+++++++++%5BWARNING%5D+Failed+to+capture+frame+(attempt+1%2F5).+Retrying...+&ia=web"
+                          ]
+                        ],
+                        "selectable": false
+                      }
+                    ],
+                    "item_title": "Fix Camera Timeout error",
+                    "item_type": null,
+                    "item_note": null,
+                    "node_type": "collection",
                     "selectable": false
                   },
                   {
@@ -3409,6 +4564,294 @@ var tree =
                 "item_type": null,
                 "item_note": null,
                 "node_type": "collection"
+              }
+            ],
+            "item_title": "MainController",
+            "item_type": null,
+            "item_note": null,
+            "node_type": "collection",
+            "selectable": false
+          },
+          {
+            "text": "MainController",
+            "item-id": "c23,iNone",
+            "nodes": [
+              {
+                "text": "Contact Update-Url api",
+                "item-id": "c24,i198",
+                "nodes": [
+                  {
+                    "text": "Answer to \"How do I correctly use HttpClient with async/await?",
+                    "item-id": "i197",
+                    "nodes": [
+                      {
+                        "text": "Snapshot",
+                        "item-id": "i200",
+                        "icon": "glyphicon glyphicon-paperclip",
+                        "item_title": "Snapshot",
+                        "item_type": "attachment",
+                        "item_note": null,
+                        "node_type": "item",
+                        "metadata": [
+                          [
+                            "Access Date",
+                            "2025-05-16 07:06:10"
+                          ],
+                          [
+                            "Title",
+                            "Snapshot"
+                          ],
+                          [
+                            "URL",
+                            "https://stackoverflow.com/questions/31102741/how-do-i-correctly-use-httpclient-with-async-await"
+                          ]
+                        ],
+                        "resource": "storage/i200.html"
+                      }
+                    ],
+                    "icon": "glyphicon glyphicon-unchecked",
+                    "item_title": "Answer to \"How do I correctly use HttpClient with async/await?",
+                    "item_type": "forumPost",
+                    "item_note": null,
+                    "node_type": "item",
+                    "metadata": [
+                      [
+                        "Access Date",
+                        "2025-05-16 07:05:58"
+                      ],
+                      [
+                        "Creators",
+                        "Nguyen Kien"
+                      ],
+                      [
+                        "Date",
+                        "2015-06-28 2015-06-28"
+                      ],
+                      [
+                        "Forum Title",
+                        "Stack Overflow"
+                      ],
+                      [
+                        "Short Title",
+                        "Answer to \"How do I correctly use HttpClient with async/await?"
+                      ],
+                      [
+                        "Title",
+                        "Answer to \"How do I correctly use HttpClient with async/await?\""
+                      ],
+                      [
+                        "URL",
+                        "https://stackoverflow.com/a/31102831"
+                      ]
+                    ],
+                    "selectable": false
+                  },
+                  {
+                    "text": "Answer to \"How do I correctly use HttpClient with async/await?",
+                    "item-id": "i198",
+                    "nodes": [
+                      {
+                        "text": "Snapshot",
+                        "item-id": "i201",
+                        "icon": "glyphicon glyphicon-paperclip",
+                        "item_title": "Snapshot",
+                        "item_type": "attachment",
+                        "item_note": null,
+                        "node_type": "item",
+                        "metadata": [
+                          [
+                            "Access Date",
+                            "2025-05-16 07:06:10"
+                          ],
+                          [
+                            "Title",
+                            "Snapshot"
+                          ],
+                          [
+                            "URL",
+                            "https://stackoverflow.com/questions/31102741/how-do-i-correctly-use-httpclient-with-async-await"
+                          ]
+                        ],
+                        "resource": "storage/i201.html"
+                      }
+                    ],
+                    "icon": "glyphicon glyphicon-unchecked",
+                    "item_title": "Answer to \"How do I correctly use HttpClient with async/await?",
+                    "item_type": "forumPost",
+                    "item_note": null,
+                    "node_type": "item",
+                    "metadata": [
+                      [
+                        "Access Date",
+                        "2025-05-16 07:05:58"
+                      ],
+                      [
+                        "Creators",
+                        " nativehr"
+                      ],
+                      [
+                        "Date",
+                        "2015-06-28 2015-06-28"
+                      ],
+                      [
+                        "Forum Title",
+                        "Stack Overflow"
+                      ],
+                      [
+                        "Short Title",
+                        "Answer to \"How do I correctly use HttpClient with async/await?"
+                      ],
+                      [
+                        "Title",
+                        "Answer to \"How do I correctly use HttpClient with async/await?\""
+                      ],
+                      [
+                        "URL",
+                        "https://stackoverflow.com/a/31102843"
+                      ]
+                    ],
+                    "selectable": false
+                  },
+                  {
+                    "text": "How do I correctly use HttpClient with async/await?",
+                    "item-id": "i196",
+                    "nodes": [
+                      {
+                        "text": "Snapshot",
+                        "item-id": "i199",
+                        "icon": "glyphicon glyphicon-paperclip",
+                        "item_title": "Snapshot",
+                        "item_type": "attachment",
+                        "item_note": null,
+                        "node_type": "item",
+                        "metadata": [
+                          [
+                            "Access Date",
+                            "2025-05-16 07:06:10"
+                          ],
+                          [
+                            "Title",
+                            "Snapshot"
+                          ],
+                          [
+                            "URL",
+                            "https://stackoverflow.com/questions/31102741/how-do-i-correctly-use-httpclient-with-async-await"
+                          ]
+                        ],
+                        "resource": "storage/i199.html"
+                      },
+                      {
+                        "text": "This post learned me how to use the httpclient async in a function which i then used to call the update-url endpoint fro",
+                        "item-id": "n203",
+                        "icon": "glyphicon glyphicon-text-background",
+                        "item_title": "This post learned me how to use the httpclient async in a function which i then used to call the update-url endpoint fro",
+                        "item_type": "note",
+                        "item_note": "<div class=\"zotero-note znv1\"><div data-schema-version=\"9\"><p>This post learned me how to use the httpclient async in a function which i then used to call the update-url endpoint from the Maincontroller so i could update the url (couldnt do it another way, because the API was running in a task in the background and i couldnt access it to run the function, so this is a nice solution)</p>\n</div></div>",
+                        "node_type": "note"
+                      }
+                    ],
+                    "icon": "glyphicon glyphicon-unchecked",
+                    "item_title": "How do I correctly use HttpClient with async/await?",
+                    "item_type": "forumPost",
+                    "item_note": null,
+                    "node_type": "item",
+                    "metadata": [
+                      [
+                        "Access Date",
+                        "2025-05-16 07:05:58"
+                      ],
+                      [
+                        "Creators",
+                        " user9993"
+                      ],
+                      [
+                        "Date",
+                        "2015-06-28 2015-06-28"
+                      ],
+                      [
+                        "Forum Title",
+                        "Stack Overflow"
+                      ],
+                      [
+                        "Post Type",
+                        "Forum post"
+                      ],
+                      [
+                        "Title",
+                        "How do I correctly use HttpClient with async/await?"
+                      ],
+                      [
+                        "URL",
+                        "https://stackoverflow.com/q/31102741"
+                      ]
+                    ],
+                    "selectable": false
+                  },
+                  {
+                    "text": "contact api using httpclient C# async at DuckDuckGo",
+                    "item-id": "i194",
+                    "nodes": [
+                      {
+                        "text": "",
+                        "item-id": "n202",
+                        "icon": "glyphicon glyphicon-text-background",
+                        "item_title": "",
+                        "item_type": "note",
+                        "item_note": "<div class=\"zotero-note znv1\"></div>",
+                        "node_type": "note"
+                      },
+                      {
+                        "text": "contact api using httpclient C# async at DuckDuckGo",
+                        "item-id": "i195",
+                        "icon": "glyphicon glyphicon-paperclip",
+                        "item_title": "contact api using httpclient C# async at DuckDuckGo",
+                        "item_type": "attachment",
+                        "item_note": null,
+                        "node_type": "item",
+                        "metadata": [
+                          [
+                            "Access Date",
+                            "2025-05-16 07:05:52"
+                          ],
+                          [
+                            "Title",
+                            "contact api using httpclient C# async at DuckDuckGo"
+                          ],
+                          [
+                            "URL",
+                            "https://duckduckgo.com/?q=contact+api+using+httpclient+C%23+async&t=ftsa&ia=web"
+                          ]
+                        ],
+                        "resource": "storage/i195.html"
+                      }
+                    ],
+                    "icon": "glyphicon glyphicon-bookmark",
+                    "item_title": "contact api using httpclient C# async at DuckDuckGo",
+                    "item_type": "webpage",
+                    "item_note": null,
+                    "node_type": "item",
+                    "metadata": [
+                      [
+                        "Access Date",
+                        "2025-05-16 07:05:43"
+                      ],
+                      [
+                        "Title",
+                        "contact api using httpclient C# async at DuckDuckGo"
+                      ],
+                      [
+                        "URL",
+                        "https://duckduckgo.com/?q=contact+api+using+httpclient+C%23+async&t=ftsa&ia=web"
+                      ]
+                    ],
+                    "selectable": false
+                  }
+                ],
+                "item_title": "Contact Update-Url api",
+                "item_type": null,
+                "item_note": null,
+                "node_type": "collection",
+                "selectable": false
               }
             ],
             "item_title": "MainController",
@@ -3803,8 +5246,17 @@ var tree =
           },
           {
             "text": "c# project",
-            "item-id": "c11,i46",
+            "item-id": "c11,i207",
             "nodes": [
+              {
+                "text": "AI Lost probleem op:",
+                "item-id": "n206",
+                "icon": "glyphicon glyphicon-text-background",
+                "item_title": "AI Lost probleem op:",
+                "item_type": "note",
+                "item_note": "<div class=\"zotero-note znv1\"><div data-schema-version=\"9\"><p>AI Lost probleem op:</p>\n<p>I have a problem:</p>\n<p>I wanted to use the handlePicture function from the api but i get this error:</p>\n<p> &nbsp; &nbsp;/home/w/Documents/School/2024-2025/Eindwerk/Package Detector/SmartPackageBox/src/MainFunctions/Functions.cs(8,7): error CS0246: The type or namespace name 'Api' could not be found (are you missing a using directive or an assembly reference?)</p>\n<p> &nbsp; &nbsp; </p>\n<p>But when i add the library then i get this error:</p>\n<p>/usr/share/dotnet/sdk/9.0.203/NuGet.targets(1307,5): error MSB4006: There is a circular dependency in the target dependency graph involving target \"_GenerateRestoreProjectPathWalk\".</p>\n<p>Restore failed with 1 error(s) in 1.8s</p>\n<p>and thats because i want to use the api from the MainFunctions library (namelijk handleUrl) but i also want to use functions from the MainFunctions library inside the api.</p>\n<p>Dit heb ik opgelost door van de Api een library te maken die door de Maincontroller gestart wordt. (Dit is niet aangeraden in production aangezien je moeilijker kan debuggen + memory safety)</p>\n<p>Ik wou dan ook de ImageServer omvormen naar een classlibrary, maar dat lukte niet ik kreeg altijd deze error:</p>\n<p> &nbsp;ImageServer failed with 2 error(s) (5.4s)</p>\n<p> &nbsp; &nbsp;CSC : error CS5001: Program does not contain a static 'Main' method suitable for an entry point</p>\n<p> &nbsp; &nbsp;/home/w/Documents/School/2024-2025/Eindwerk/Package Detector/SmartPackageBox/src/ImageServer/Program.cs(15,52): error CS0103: The name 'args' does not exist in the current context</p>\n<p>En dan heeft mijn goede vriend github copilot geholpen (model GPT-4.1)</p>\n<p>zie de andere note voor de prompt + antwoordt. &nbsp;Hier heeft ai me heel goed geholpen.</p>\n</div></div>",
+                "node_type": "note"
+              },
               {
                 "text": "C# multithreading \ud83e\uddf6",
                 "item-id": "i42",
@@ -4202,6 +5654,24 @@ var tree =
                   ]
                 ],
                 "selectable": false
+              },
+              {
+                "text": "Prompt:",
+                "item-id": "n205",
+                "icon": "glyphicon glyphicon-text-background",
+                "item_title": "Prompt:",
+                "item_type": "note",
+                "item_note": "<div class=\"zotero-note znv1\"><div data-schema-version=\"9\"><h1>Prompt:</h1>\n<p><br>WarreTh: error, the imageServer is seen as an app and not a library.</p>\n<p> Here is the relevant error. #websearch #codebase</p>\n<p>ImageServer failed with 2 error(s) (5.4s) CSC : error CS5001: Program does not contain a static 'Main' method suitable for an entry point /home/w/Documents/School/2024-2025/Eindwerk/Package Detector/SmartPackageBox/src/ImageServer/Program.cs(15,52): error CS0103: The name 'args' does not exist in the current context</p>\n<h1>Antwoord AI:</h1>\n<p><br>Workspace: Collecting workspace information<br>You have two issues:</p>\n<ol>\n<li>\n<strong>ImageServer is still configured as an executable app, not a library.</strong>\n</li>\n<li>\n<strong>Your </strong><code>ImageServer.Start</code> method references <code>args</code>, which is undefined.\n</li>\n</ol>\n<h3>How to Fix</h3>\n<h4>1. Change ImageServer to a Class Library</h4>\n<p>Open ImageServer.csproj and change the output type to <code>Library</code>:</p>\n<pre>&lt;!-- ...existing code... --&gt;\n&lt;PropertyGroup&gt;\n &nbsp;&lt;OutputType&gt;Library&lt;/OutputType&gt;\n &nbsp;&lt;TargetFramework&gt;net9.0&lt;/TargetFramework&gt;\n &nbsp;&lt;!-- ...other properties... --&gt;\n&lt;/PropertyGroup&gt;\n&lt;!-- ...existing code... --&gt;</pre>\n<h4>2. Remove <code>args</code> from ImageServer.Start</h4>\n<p>Your <code>ImageServer.Start</code> method tries to use <code>args</code>, but it is not passed in.<br>Replace <code>args</code> with an empty string array or refactor as below:</p>\n<pre>public static void Start(string port)\n{\n &nbsp; &nbsp;if (port == null)\n &nbsp; &nbsp;{\n &nbsp; &nbsp; &nbsp; &nbsp;Log(\"ImageServer\", \"Port is null.\");\n &nbsp; &nbsp; &nbsp; &nbsp;port = \"8080\";\n &nbsp; &nbsp;}\n\n &nbsp; &nbsp;// Use an empty string array for args since this is now a library\n &nbsp; &nbsp;var builder = WebApplication.CreateBuilder(Array.Empty&lt;string&gt;());\n &nbsp; &nbsp;var app = builder.Build();\n\n &nbsp; &nbsp;app.MapGet(\"/\", () =&gt; \"Server is up and running!\");\n\n &nbsp; &nbsp;if (CheckWwwRootExists())\n &nbsp; &nbsp;{\n &nbsp; &nbsp; &nbsp; &nbsp;// Serve static files from wwwroot\n &nbsp; &nbsp; &nbsp; &nbsp;app.UseFileServer();\n &nbsp; &nbsp;}\n\n &nbsp; &nbsp;// Run the application\n &nbsp; &nbsp;app.Run($\"http://localhost:{port}\");\n &nbsp; &nbsp;Log(\"ImageServer\", $\"Server started on http://localhost:{port}\");\n}</pre>\n<p><strong>Summary of corrections:</strong></p>\n<ul>\n<li>\nSet <code>OutputType</code> to <code>Library</code> in the <code>.csproj</code>.\n</li>\n<li>\nReplace <code>args</code> with <code>Array.Empty&lt;string&gt;()</code> in <code>ImageServer.Start</code>.\n</li>\n</ul>\n<hr>\n<p><strong>Terminology Note:</strong><br>You referred to \"imageServer is still seen as an app and not a library.\"<br>This is a project configuration issue, not a code issue.<br>The error <code>CS5001</code> means the compiler is looking for a <code>Main</code> method because the project is set as an executable.</p>\n<hr>\n<p>If you need to expose more functionality from ImageServer, ensure all entry points are public static methods.</p>\n<p>WarreTh: alr fix it #codebase</p>\n<p>GitHub Copilot: I will update Program.cs to remove the undefined variable args and replace it with Array.Empty() for WebApplication.CreateBuilder, with error checking and comments as per your rules.</p>\n<pre></pre>\n<p>Made changes.</p>\n<p>The undefined args variable is now replaced with Array.Empty() in ImageServer/Program.cs, with error checking and comments added as required. If you still see errors about entry points, ensure your ImageServer project is set to OutputType Library in its .csproj file. If you need help with that, let me know.</p>\n</div></div>",
+                "node_type": "note"
+              },
+              {
+                "text": "SSL ERROR",
+                "item-id": "n207",
+                "icon": "glyphicon glyphicon-text-background",
+                "item_title": "SSL ERROR",
+                "item_type": "note",
+                "item_note": "<div class=\"zotero-note znv1\"><div data-schema-version=\"9\"><p>SSL ERROR</p>\n<p>Hier heeft ai me weer geholpen. De Api en imageserver die ik host gebruiken https, maar met een self-signed certificate wat niet vertrouwd wordt. AI heeft me geholpen om deze warning te bypassen. <br><br></p>\n<h1>Conversation</h1>\n<p><br>WarreTh: I get this error: the ssl connection couldnt be established. I think its because my api uses a selfsigned certificate. How can i trust it/ bypass the error?</p>\n<p></p>\n<p>GitHub Copilot: To allow your <code>HttpClient</code> to accept self-signed SSL certificates (for development only), you must configure a custom <code>HttpClientHandler</code> that bypasses certificate validation.<br><strong>Warning:</strong> This is insecure and should never be used in production.</p>\n<p>Here\u2019s how to update your <code>ApiService</code> to trust self-signed certificates:</p>\n<pre>using System;\nusing System.Net.Http;\nusing System.Threading.Tasks;\nusing System.Net.Security;\nusing System.Security.Cryptography.X509Certificates;\n\nnamespace App.Services;\n\npublic class ApiService\n{\n &nbsp; &nbsp;private readonly HttpClient _client;\n\n &nbsp; &nbsp;public ApiService()\n &nbsp; &nbsp;{\n &nbsp; &nbsp; &nbsp; &nbsp;// Create a handler that bypasses SSL certificate validation\n &nbsp; &nbsp; &nbsp; &nbsp;var handler = new HttpClientHandler();\n\n &nbsp; &nbsp; &nbsp; &nbsp;// This callback always returns true, so all certificates are accepted\n &nbsp; &nbsp; &nbsp; &nbsp;handler.ServerCertificateCustomValidationCallback = (HttpRequestMessage httpRequestMessage, X509Certificate2? cert, X509Chain? cetChain, SslPolicyErrors policyErrors) =&gt;\n &nbsp; &nbsp; &nbsp; &nbsp;{\n &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;// Log a warning if there are SSL policy errors\n &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;if (policyErrors != SslPolicyErrors.None)\n &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{\n &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Console.WriteLine($\"Warning: SSL policy errors: {policyErrors}\");\n &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;}\n &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;return true; // Accept all certificates (INSECURE)\n &nbsp; &nbsp; &nbsp; &nbsp;};\n\n &nbsp; &nbsp; &nbsp; &nbsp;_client = new HttpClient(handler);\n &nbsp; &nbsp;}\n\n &nbsp; &nbsp;public async Task&lt;string&gt; ContactUrlAsync(string pUrl, string endpoint)\n &nbsp; &nbsp;{\n &nbsp; &nbsp; &nbsp; &nbsp;if (string.IsNullOrWhiteSpace(pUrl))\n &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;throw new System.ArgumentException(\"API URL cannot be null or empty.\", nameof(pUrl));\n &nbsp; &nbsp; &nbsp; &nbsp;if (string.IsNullOrWhiteSpace(endpoint))\n &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;throw new System.ArgumentException(\"Endpoint cannot be null or empty.\", nameof(endpoint));\n\n &nbsp; &nbsp; &nbsp; &nbsp;string fullUrl = $\"{pUrl.TrimEnd('/')}/{endpoint.TrimStart('/')}\";\n\n &nbsp; &nbsp; &nbsp; &nbsp;try\n &nbsp; &nbsp; &nbsp; &nbsp;{\n &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;HttpResponseMessage response = await _client.GetAsync(fullUrl);\n\n &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;if (response.IsSuccessStatusCode)\n &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{\n &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;string jsonContent = await response.Content.ReadAsStringAsync();\n\n &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;if (string.IsNullOrEmpty(jsonContent))\n &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{\n &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;return \"String is empty or null.\";\n &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;}\n\n &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;// Deserialize the JSON string + check for null result\n &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;string? result = System.Text.Json.JsonSerializer.Deserialize&lt;string&gt;(jsonContent);\n &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;if (result == null)\n &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{\n &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;return \"Error: Deserialized string is null.\";\n &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;}\n &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;return result;\n &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;}\n &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;else\n &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{\n &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;return $\"Error: {response.StatusCode}\";\n &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;}\n &nbsp; &nbsp; &nbsp; &nbsp;}\n &nbsp; &nbsp; &nbsp; &nbsp;catch (System.Text.Json.JsonException e)\n &nbsp; &nbsp; &nbsp; &nbsp;{\n &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;return $\"JsonError: {e.Message}\";\n &nbsp; &nbsp; &nbsp; &nbsp;}\n &nbsp; &nbsp; &nbsp; &nbsp;catch (HttpRequestException e)\n &nbsp; &nbsp; &nbsp; &nbsp;{\n &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;return $\"HttpError: {e.Message}\";\n &nbsp; &nbsp; &nbsp; &nbsp;}\n &nbsp; &nbsp; &nbsp; &nbsp;catch (Exception e)\n &nbsp; &nbsp; &nbsp; &nbsp;{\n &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;return $\"ExcepError: {e.Message}\";\n &nbsp; &nbsp; &nbsp; &nbsp;}\n &nbsp; &nbsp;}\n}</pre>\n<p><strong>Summary of changes:</strong></p>\n<ul>\n<li>\nAdded a custom <code>HttpClientHandler</code> in the constructor.\n</li>\n<li>\nSet <code>ServerCertificateCustomValidationCallback</code> to always return <code>true</code> (accept all certificates).\n</li>\n<li>\nAdded a warning log if there are SSL policy errors.\n</li>\n</ul>\n<p><strong>Arch Linux / fish terminal note:</strong><br>No system-wide changes are required for this code to work.<br>If you want to trust the certificate system-wide, you must add your self-signed cert to your OS trust store, but this code bypasses that for development.</p>\n<p></p>\n</div></div>",
+                "node_type": "note"
               },
               {
                 "text": "Setup a Raspberry Pi for headless use with USB serial console | TalOrg",

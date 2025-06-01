@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Ntfy;
 
 class Program
-{/*
+{
     static async Task Main(string[] args)
     {
         // Test the Notifications.sendNotification method with a timestamped message and actions
@@ -14,7 +14,7 @@ class Program
 
         string imageUrl = "https://yavuzceliker.github.io/sample-images/image-9.jpg";
         await Notifications.sendNotification(msg, "Package Detected!", actions, imageUrl);
-    }*/
+    }/*
     public static void Main(string[] args)
     {
         // Test the Notifications.sendNotification method with a timestamped message and actions
@@ -23,7 +23,7 @@ class Program
         // Define the actions header
         string actions = "view, Open App, smartpackagebox://open, clear=true;";
 
-        string imageUrl = "http://raspberrypi.local:8081/latest.png";
+        string imageUrl = "https://picsum.photos/200/300";
 
         // Run the async method synchronously and handle exceptions
         try
@@ -37,5 +37,5 @@ class Program
             // Print any errors to the console
             Console.WriteLine($"Error sending notification: {ex.Message}");
         }
-    }
+    }*/
 }

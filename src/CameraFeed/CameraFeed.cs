@@ -7,14 +7,16 @@ using System.IO;
 using System.Threading;
 using static NonSpecific.Logger;
 
+// Camera feed and image handling
 namespace CameraFeed
 {
     public static class CameraFeed
     {
+        // Global camera instance
         private static VideoCapture? _globalCapture; // Keep a single instance
         private static readonly object _lock = new object(); // For thread safety
 
-        // Modified StartCamera to manage the global instance
+        // Start or get camera
         private static VideoCapture GetOrStartCamera()
         {
             lock (_lock)
@@ -35,6 +37,7 @@ namespace CameraFeed
             }
         }
 
+        // Take a picture and return bytes
         public static byte[] TakePicture()
         {
             VideoCapture capture = GetOrStartCamera();
@@ -44,17 +47,18 @@ namespace CameraFeed
             int delayMs = 300;
             bool frameCapturedSuccessfully = false;
 
-            // Leeg de camerabuffer door meerdere dummy grabs uit te voeren
+            // Clear camera buffer
             lock (_lock)
             {
-                int dummyGrabs = 8; // Genoeg grabs om oude frames te verwijderen
+                int dummyGrabs = 8; // Enough grabs to remove old frames
                 for (int i = 0; i < dummyGrabs; i++)
                 {
-                    capture.Grab(); // Vraag een frame op, maar gebruik het niet
-                    Thread.Sleep(30); // Kleine delay voor betrouwbaarheid
+                    capture.Grab(); // Dummy grab
+                    Thread.Sleep(30); // Small delay
                 }
             }
 
+            // Try to capture frame
             for (int attempt = 1; attempt <= maxRetries; attempt++)
             {
                 lock (_lock)
@@ -90,7 +94,7 @@ namespace CameraFeed
                                         {
                                             continue;
                                         }
-                                        // Zet het frame om naar PNG bytes
+                                        // Convert frame to PNG bytes
                                         var imageSharpImg = new Image<Rgb24>(img.Width, img.Height);
                                         for (int y = 0; y < img.Height; y++)
                                         {
@@ -146,7 +150,7 @@ namespace CameraFeed
             return imageBytes;
         }
 
-        // Substitute for StopCamera
+        // Release camera resource
         public static void ReleaseCamera()
         {
             lock (_lock)
@@ -167,6 +171,8 @@ namespace CameraFeed
                 capture.Dispose();
             }
         }
+
+        // Save image to file
         public static void SaveImage(byte[] imageBytes, string name)
         {
             // Check for null or empty image bytes

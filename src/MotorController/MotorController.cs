@@ -2,6 +2,7 @@
 using static NonSpecific.Logger;
 using System.Device.Gpio;
 
+// Motor and hatch control
 namespace MotorController
 {
     public class HatchProperties
@@ -17,7 +18,7 @@ namespace MotorController
 
         public HatchProperties()
         {
-            // set the isOpen value using a light sensor or something
+            // Set the isOpen value using a sensor if needed
         }
     }
 
@@ -25,11 +26,9 @@ namespace MotorController
     {
         public HatchController()
         {
-
-            // Couldn't write to pin 8 because it was not open.
+            // Setup GPIO pins
             controller.OpenPin(HatchProperties.openPin, PinMode.Output);
             controller.OpenPin(HatchProperties.closePin, PinMode.Output);
-
             // Initialize pins to Low state
             controller.Write(HatchProperties.openPin, PinValue.Low);
             controller.Write(HatchProperties.closePin, PinValue.Low);
@@ -46,16 +45,16 @@ namespace MotorController
         {
             if (openAction)
             {
-
+                // Try to open hatch
                 bool didOpen = HandleError(() => OpenHatch());  // Wrap in lambda
                 if (didOpen)
                 {
                     hatchProperties.isOpen = true;
                 }
-
             }
             else if (!openAction)
             {
+                // Try to close hatch
                 bool didClose = HandleError(() => CloseHatch());  // Wrap in lambda
                 if (didClose)
                 {
@@ -64,6 +63,7 @@ namespace MotorController
             }
             return true;
         }
+        // Open hatch
         private bool OpenHatch()
         {
             controller.Write(HatchProperties.closePin, PinValue.Low);
@@ -72,6 +72,7 @@ namespace MotorController
             Log("MotorController", "Hatch Opened");
             return true;
         }
+        // Close hatch
         private bool CloseHatch()
         {
             controller.Write(HatchProperties.openPin, PinValue.Low);
@@ -80,6 +81,7 @@ namespace MotorController
             Log("MotorController", "Hatch Closed");
             return true;
         }
+        // Stop hatch
         public bool StopHatch()
         {
             controller.Write(HatchProperties.openPin, PinValue.Low);

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using static NonSpecific.ErrorHandler;
 using static NonSpecific.Logger;
 
+// Main application functions
 public class MainFunctions
 {
     // Singleton instance
@@ -13,7 +14,7 @@ public class MainFunctions
     public string apiUrl = "https://localhost:8080";
     public bool enableDetection = false;
 
-
+    // Send notification to user
     public void trySentNotification(string pImageUrl = "")
     {
         string msg = $"There was an package detected at your doorway, please check the app";
@@ -52,6 +53,7 @@ public class MainFunctions
         }
     }*/
 
+    // Update image URL in API
     public async Task<bool> TriggerApiUpdateUrlAsync()
     {
         // Create HttpClient instance for sending HTTP requests
@@ -80,6 +82,8 @@ public class MainFunctions
             return false;
         }
     }
+
+    // Take picture and save to file
     public bool handlePicture(string filePath = "./wwwroot/latest.png")
     {
         byte[]? tImage = null;

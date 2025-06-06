@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using static NonSpecific.ErrorHandler;
 using static NonSpecific.Logger;
 
+// Notification sending via ntfy
 public static class Notifications
 {
     // Reads ntfy config from a JSON file and returns token, domain, and topic
@@ -16,6 +17,7 @@ public static class Notifications
     {
         try
         {
+            // Read config file
             string json = File.ReadAllText(fileUrl);
             using var doc = JsonDocument.Parse(json);
             string token = doc.RootElement.GetProperty("token").GetString();

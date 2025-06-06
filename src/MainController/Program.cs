@@ -6,33 +6,40 @@ using static NonSpecific.Logger;
 using Api;
 using Emgu.CV;
 
+// Main entry point
 public class Program
 {
+    // Image server and API URLs
     public static string imageServerUrl = "https://localhost:8081";
     public static string apiUrl = "https://localhost:8080";
     public static void Main(string[] args)
     {
+        // Create shared hatch controller
         HatchController sharedHatch = new();
+        // Set API base URL
         Helper.BaseUrl = apiUrl;
 
+        // Get singleton instance for main functions
         MainFunctions mainFunction = MainFunctions.Instance;
 
-        // Start API in a background thread so it doesn't block the main loop
+        // Start API and image server in background threads
         Task.Run(() => ApiHost.Start(sharedHatch, "8080"));
         Task.Run(() => ImageServer.Start("8081"));
 
         string imagePath = "./wwwroot/latest.png";
-        // Infinite loop to continuously check for package detection
+        // Main loop: check for package detection
         while (true)
         {
             if (mainFunction.enableDetection)
             {
+                // Take picture
                 mainFunction.handlePicture(imagePath);
 
-                if (HandleAIDetection(imagePath).GetAwaiter().GetResult()) // Wait for the AI detection to complete
+                // Run AI detection
+                if (HandleAIDetection(imagePath).GetAwaiter().GetResult())
                 {
                     Log("Program", "Package is detected");
-
+                    // Handle detected package
                     packageIsDetected(mainFunction, sharedHatch);
                 }
                 else
@@ -44,9 +51,10 @@ public class Program
             {
                 Log("Program", "Package detection is disabled");
             }
-            Thread.Sleep(5000); // Wait for 10 seconds before the next check
+            Thread.Sleep(5000); // Wait before next check
         }
     }
+    // Run AI detection on image
     public static async Task<bool> HandleAIDetection(string imagePath, bool isLocal = true)
     {
         string url = string.Empty;
@@ -57,61 +65,47 @@ public class Program
         if (isLocal)
         {
             url = AiHelper.RoboflowLocalBaseUrl;
-            //Log("HandleAIDetection", "Using Local Inference Server");
         }
         else
         {
             url = AiHelper.RoboflowCloudBaseUrl;
-            //Log("HandleAIDetection", "Using Cloud Inference Server");
         }
+        // Get predictions from AI
         string predictions = await AiHelper.InferenceAsync(
             url,
             ImagePath,
             ModelId,
             ModelVersion);
 
+        // Check if package is detected
         bool result = HandleResponse.IsPackage(predictions);
         Log("HandleAIDetection", $"The result: {result}");
         return result;
     }
+    // Handle actions when package is detected
     public static void packageIsDetected(MainFunctions mainFunction, HatchController hatch)
     {
         Log("HelperFunctions", "Package is detected");
 
-        //Take the picture + logging
-        /*
-        bool success;
-        if (mainFunction.handlePicture())
-        {
-            Log("HelperFunctions", "Picture taken and saved.");
-            success = true;
-        }
-
-        else
-        {
-            Log("HelperFunctions", "[ERROR] Failed to take picture.");
-            success = false;
-        }
-        */
-        //Update the url
+        // Update image URL in API
         mainFunction.TriggerApiUpdateUrlAsync();
 
-
-
-        if (!hatch.hatchProperties.isOpen) //If closed
+        // Open hatch if closed
+        if (!hatch.hatchProperties.isOpen)
         {
-            hatch.MoveHatch(true); //Open the hatch
+            hatch.MoveHatch(true);
         }
         else
         {
             Log("HelperFunctions", "Hatch is already open");
         }
 
+        // Send notification
         mainFunction.trySentNotification($"http://raspberrypi.local:8081/latest.png");
-        Thread.Sleep(5000);
+        Thread.Sleep(5000); // Wait before closing hatch
         hatch.MoveHatch(false);
         Log("HelperFunctions", "Hatch closed after 5 seconds");
 
-        Thread.Sleep(5000); // Wait for 5 seconds before the next check
+        Thread.Sleep(5000); // Wait before next check
     }
 }

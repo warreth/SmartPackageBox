@@ -7,11 +7,13 @@ using MotorController;
 using Functions;
 using Microsoft.Extensions.Logging;
 
+// Start API server and define endpoints
 public static class ApiHost
 {
     // Start the API server with a shared HatchController instance
     public static void Start(HatchController hatch, string port)
     {
+        // Setup web server
         var builder = WebApplication.CreateBuilder();
         builder.Logging.ClearProviders(); // Removes Console logger and others
 
@@ -19,17 +21,19 @@ public static class ApiHost
         var app = builder.Build();
         app.UseHttpsRedirection();
 
+        // Root endpoint
         app.MapGet("/", () => "The API is online");
 
+        // Get shared helpers
         Helper apiHelper = Helper.Instance;
         MainFunctions mainFunction = MainFunctions.Instance;
 
+        // Endpoint: get newest image URL
         app.MapGet("/newest-url", () =>
         {
             try
             {
-                //apiHelper.UpdateUrl();
-                //Log("Api", "Updated newest URL");
+                // Return newest URL
                 return Results.Ok(new { newestUrl = apiHelper.mNewestUrl });
             }
             catch (Exception ex)
@@ -39,6 +43,7 @@ public static class ApiHost
             }
         });
 
+        // Endpoint: update image URL
         app.MapGet("/update-url", () =>
         {
             bool success = HandleError(() =>
@@ -54,6 +59,7 @@ public static class ApiHost
             return Results.Ok(new { newestUrl = apiHelper.mNewestUrl });
         });
 
+        // Endpoint: open/close hatch
         app.MapGet("/move-hatch", () =>
         {
             HandleError(() =>
@@ -72,6 +78,7 @@ public static class ApiHost
             return Results.Ok(new { isOpen = hatch.hatchProperties.isOpen });
         });
 
+        // Endpoint: take picture
         app.MapGet("/take-picture", () =>
         {
             // Error checking: ensure handlePicture returns a bool and log result
@@ -105,6 +112,7 @@ public static class ApiHost
             return Results.Ok(new { success = pictureSuccess });
         });
 
+        // Endpoint: stop hatch
         app.MapGet("/stop-hatch", () =>
         {
             HandleError(() =>
@@ -115,6 +123,7 @@ public static class ApiHost
             return Results.Ok(new { message = "Hatch stopped" });
         });
 
+        // Endpoint: toggle detection
         app.MapGet("/toggle-detection", () =>
         {
             if (mainFunction.enableDetection)

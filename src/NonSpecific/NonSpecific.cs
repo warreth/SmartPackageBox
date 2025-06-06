@@ -1,10 +1,12 @@
 ﻿using static FileModifyDLL.FileHelper;
 
+// Error handling and logging
 namespace NonSpecific
 {
 
     public static class ErrorHandler
     {
+        // Catch error from function
         private static Exception? CatchError(Action function)
         {
             try
@@ -17,6 +19,7 @@ namespace NonSpecific
                 return e; // Return the caught exception
             }
         }
+        // Handle error and log
         public static bool HandleError(Action function)
         {
             Exception? e = CatchError(function);
@@ -35,6 +38,7 @@ namespace NonSpecific
     public static class Logger
     {
         private static bool bWriteToConsole = true;
+        // Get log file path
         private static string GetPath()
         {
             // Get the current directory where the application is executed
@@ -54,6 +58,7 @@ namespace NonSpecific
             DateTime now = DateTime.Now; //get the current date
             string output = $"{now} - {subject}:\n\t{text}\n"; //construct the output
 
+            // Append to log file
             AppendToFile(GetPath(), output); //AppendToFile(fileName, output);
 
             if (bWriteToConsole)
@@ -62,6 +67,7 @@ namespace NonSpecific
             }
         }
 
+        // Read log file
         public static string ReadLog() => ReadFile(GetPath())!; //ReadFile(fileName);
     }
 

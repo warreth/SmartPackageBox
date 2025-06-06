@@ -4,6 +4,7 @@ namespace Api;
 using static NonSpecific.ErrorHandler;
 using static NonSpecific.Logger;
 
+// Holds API info and URL logic
 public class ApiInfo
 {
     public string mNewestUrl = "";
@@ -20,7 +21,7 @@ public class Helper : ApiInfo
 
     public static string BaseUrl;
 
-
+    // Update the URL when a new photo is uploaded
     public void UpdateUrl() // Update the URL when a new photo is uploaded
     {
         try
@@ -37,6 +38,7 @@ public class Helper : ApiInfo
         }
     }
 
+    // Set the query parameter
     private void UpdateQueryParameter(string pNewQueryParameter)
     {
         // Error checking: ensure parameter is not null
@@ -47,6 +49,7 @@ public class Helper : ApiInfo
         mQueryParameter = pNewQueryParameter;
     }
 
+    // Generate a timestamp-based query parameter
     private string CalculateQueryParameter()
     {
         // Generate a timestamp-based query parameter

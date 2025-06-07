@@ -1,0 +1,11 @@
+graph TD
+    A[GET /toggle-detection Request] --> B[Check current detection state]
+    B --> C{Is AI detection currently enabled?}
+    C -- Yes, detection is enabled --> D[Log: Disabling AI package detection]
+    C -- No, detection is disabled --> E[Log: Enabling AI package detection]
+    D --> F[Set detection flag to disabled]
+    E --> G[Set detection flag to enabled]
+    F --> H[Return success response with disabled status]
+    G --> I[Return success response with enabled status]
+    H --> J[Request Complete]
+    I --> J

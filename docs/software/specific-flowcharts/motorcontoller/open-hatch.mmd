@@ -1,0 +1,6 @@
+graph TD
+    A[Start: Open Hatch] --> B[Stop closing of Motor]
+    B --> C[Wait 1 Second]
+    C --> D[Start opening Motor]
+    D --> E[Log: Hatch Opening]
+    E --> F[End: Command Sent]

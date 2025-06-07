@@ -1,0 +1,13 @@
+graph TD
+    A[Start: Update Server URL] --> B[Create Web Connection]
+    B --> C[Send Update Request to Server]
+    C --> D{Request Successful?}
+    D -- Yes --> E[Read Server Response]
+    E --> F[Log Success Message]
+    F --> G[Return Success]
+    D -- No --> H[Log Failure Message]
+    H --> I[Return Failure]
+    C -- Connection Error --> J[Log Error Message]
+    J --> I
+    G --> K[End: Success]
+    I --> L[End: Failed]

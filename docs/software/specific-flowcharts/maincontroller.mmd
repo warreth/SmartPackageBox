@@ -1,0 +1,20 @@
+graph TD
+    A[Start: Smart Package Box] --> B[Initialize System]
+    B --> C[Start API and Image Server]
+    C --> D[Begin Package Detection Loop]
+    D --> E{Detection Enabled?}
+    E -- No --> F[Wait 5 Seconds]
+    E -- Yes --> G[Take Picture]
+    G --> H[Analyze Image with AI]
+    H --> I{Package Detected?}
+    I -- No --> J[Log: No Package Found]
+    I -- Yes --> K[Log: Package Found]
+    K --> L{Is Box Open?}
+    L -- Yes --> M[Send Notification]
+    L -- No --> N[Open Box]
+    N --> M
+    M --> O[Wait 5 Seconds]
+    O --> P[Close Box]
+    P --> F
+    J --> F
+    F --> D

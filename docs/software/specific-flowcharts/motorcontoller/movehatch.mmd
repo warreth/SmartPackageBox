@@ -1,0 +1,18 @@
+graph TD
+    A[Start: Move Hatch] --> B{Open or Close?}
+    B -- Open --> C[Attempt to Open Hatch]
+    B -- Close --> D[Attempt to Close Hatch]
+    C --> E{Open Successful?}
+    E -- Yes --> F[Update Status: Open]
+    E -- No --> G[Log Error: Cannot Open]
+    D --> H{Close Successful?}
+    H -- Yes --> I[Update Status: Closed]
+    H -- No --> J[Log Error: Cannot Close]
+    F --> K[Log Success: Hatch Opened]
+    I --> L[Log Success: Hatch Closed]
+    G --> M[Return: Failed]
+    J --> M
+    K --> N[Return: Success]
+    L --> N
+    N --> O[End: Complete]
+    M --> P[End: Failed]

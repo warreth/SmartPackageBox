@@ -1,0 +1,74 @@
+graph TD
+    A[Start ApiHost] --> B{Setup WebApplicationBuilder}
+    B --> B1[Clear Logging Providers]
+    B1 --> B2[Set WebHost URLs: localhost:port]
+    B2 --> C{Build WebApplication app}
+    C --> D[Use HTTPS Redirection]
+    D --> E[Map GET /: Return: The API is online]
+    E --> F{Get Singleton Instances}
+    F -- Helper.Instance --> G[apiHelper]
+    F -- MainFunctions.Instance --> H[mainFunction]
+    H --> I{Define Endpoints}
+
+    I --> J[Map GET /newest-url]
+    J --> J1{Try}
+    J1 -- Success --> J2[Return the newest imageUrl]
+    J1 -- Exception ex --> J3[Log Error]
+    J3 --> J4[Return Results.Problem]
+    J2 --> K[Next Endpoint]
+    J4 --> K
+
+    K --> L[Map GET /update-url]
+    L --> L1{HandleError: apiHelper.UpdateUrl}
+    L1 -- Success --> L2[Log Updated newest URL]
+    L2 --> L3[Return Results.Ok newestUrl = apiHelper.mNewestUrl]
+    L1 -- Failure --> L4[Log Failed to update URL]
+    L4 --> L5[Return Results.Problem Failed to update URL]
+    L3 --> M[Next Endpoint]
+    L5 --> M
+
+    M --> N[Map GET /move-hatch]
+    N --> N1{HandleError}
+    N1 -- Logic --> N2{if not hatch.isOpen}
+    N2 -- True --> N3[Log Opening hatch]
+    N3 --> N4[hatch.MoveHatch true]
+    N2 -- False --> N5[Log Closing hatch]
+    N5 --> N6[hatch.MoveHatch false]
+    N4 --> N7[Return Results.Ok isOpen = hatch.hatchProperties.isOpen]
+    N6 --> N7
+    N7 --> O[Next Endpoint]
+
+    O --> P[Map GET /take-picture]
+    P --> P1{pictureSuccess = false}
+    P1 --> P2{HandleError}
+    P2 -- Logic --> P3[Log Taking picture]
+    P3 --> P4[pictureSuccess = mainFunction.handlePicture]
+    P4 --> P5{if pictureSuccess}
+    P5 -- True --> P6[Log Picture taken]
+    P6 --> P7{HandleError: apiHelper.UpdateUrl}
+    P7 -- Success --> P8[Log Updated newest URL]
+    P7 -- Failure --> P9[Log Failed to update URL]
+    P5 -- False --> P10[Log ERROR Picture not taken]
+    P8 --> P11[Return Results.Ok success = pictureSuccess]
+    P9 --> P11
+    P10 --> P11
+    P11 --> Q[Next Endpoint]
+
+    Q --> R[Map GET /stop-hatch]
+    R --> R1{HandleError: hatch.StopHatch}
+    R1 -- Logic --> R2[Log Stopping hatch]
+    R2 --> R3[Return Results.Ok message = Hatch stopped]
+    R3 --> S[Next Endpoint]
+
+    S --> T[Map GET /toggle-detection]
+    T --> T1{if mainFunction.enableDetection}
+    T1 -- True --> T2[Log Disabling AI detection]
+    T2 --> T3[mainFunction.enableDetection = false]
+    T3 --> T4[Return Results.Ok message = disabled]
+    T1 -- False --> T5[Log Enabling AI detection]
+    T5 --> T6[mainFunction.enableDetection = true]
+    T6 --> T7[Return Results.Ok message = enabled]
+    T4 --> U[Log Trying to start API server]
+    T7 --> U
+    U --> V[app.Run]
+    V --> W[End]

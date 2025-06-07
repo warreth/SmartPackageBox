@@ -1,0 +1,5 @@
+graph TD
+    A[GET /stop-hatch Request] --> B[Execute hatch stop with Error Handling, using the MotorController hatch parameter in the start api function]
+    B --> C[Log: Stopping hatch movement]
+    C --> E[Return success response with stop confirmation]
+    E --> F[Request Complete]

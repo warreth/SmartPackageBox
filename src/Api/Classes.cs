@@ -22,7 +22,7 @@ public class Helper : ApiInfo
     public static string BaseUrl;
 
     // Update the URL when a new photo is uploaded
-    public void UpdateUrl() // Update the URL when a new photo is uploaded
+    public void UpdateUrl()
     {
         try
         {

@@ -1,0 +1,17 @@
+graph TD
+    A[Start: Take Picture] --> B{Camera Available?}
+    B -- Yes --> C[Clear Camera Buffer]
+    B -- No --> D[Try to Start Camera]
+    D --> E{Camera Started?}
+    E -- Yes --> C
+    E -- No --> F[Error: Camera Failed]
+    C --> G[Capture Photo]
+    G --> H{Photo Captured?}
+    H -- Yes --> I[Convert to Image Format]
+    H -- No --> J[Retry Capture]
+    J --> K{Max Retries Reached?}
+    K -- No --> G
+    K -- Yes --> F
+    I --> L[Return Photo]
+    F --> M[End: Failed]
+    L --> N[End: Success]

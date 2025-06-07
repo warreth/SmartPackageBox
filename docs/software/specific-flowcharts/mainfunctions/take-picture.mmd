@@ -1,0 +1,21 @@
+graph TD
+    A[Start: Handle Picture Process] --> B[Initialize Camera System]
+    B --> C[Capture Photo from Camera]
+    C --> D{Photo Captured Successfully?}
+    D -- No --> E[Log Error: Failed to Take Picture]
+    E --> F[Return: Failed]
+    D -- Yes --> G[Log: Picture Taken Successfully]
+    G --> H{Photo Data Available?}
+    H -- Yes --> I[Save Photo to File]
+    I --> J{File Saved Successfully?}
+    J -- No --> K[Log Warning: File Not Created]
+    K --> L[Create Empty File as Backup]
+    L --> M[Continue Process]
+    J -- Yes --> M
+    I -- Save Error --> N[Log Error: Cannot Save File]
+    N --> F
+    H -- No --> O[Log Error: No Photo Data Available]
+    O --> F
+    M --> P[Return: Success]
+    P --> Q[End: Complete]
+    F --> R[End: Failed]

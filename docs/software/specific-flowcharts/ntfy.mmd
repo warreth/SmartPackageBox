@@ -1,0 +1,17 @@
+graph TD
+    A[Start: Send Push Notification] --> B[Load Notification Settings]
+    B --> C{Settings Valid?}
+    C -- No --> D[Log Error: Invalid Settings]
+    C -- Yes --> E[Create Notification Message]
+    E --> F[Add Timestamp and Title]
+    F --> G{Image Attachment?}
+    G -- Yes --> H[Attach Image URL]
+    G -- No --> I[Prepare Final Message]
+    H --> I
+    I --> J[Send to Notification Service]
+    J --> K{Send Successful?}
+    K -- Yes --> L[Log Success: Notification Sent]
+    K -- No --> M[Log Error: Failed to Send]
+    D --> N[End: Failed]
+    L --> O[End: Success]
+    M --> N

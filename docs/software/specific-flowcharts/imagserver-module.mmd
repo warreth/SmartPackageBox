@@ -1,0 +1,17 @@
+graph TD
+    A[Start: Image Server] --> B{Port Specified?}
+    B -- No --> C[Use Default Port 8081]
+    B -- Yes --> D[Use Specified Port]
+    C --> E[Configure Web Server]
+    D --> E
+    E --> F[Setup File Directory]
+    F --> G{Directory Exists?}
+    G -- No --> H[Create Directory]
+    G -- Yes --> I[Directory Ready]
+    H --> J{Creation Successful?}
+    J -- Yes --> I
+    J -- No --> K[Log Error]
+    K --> I
+    I --> L[Start Web Server]
+    L --> M[Server Running]
+    M --> N[End]

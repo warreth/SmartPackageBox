@@ -1,0 +1,9 @@
+graph TD
+    A[GET /update-url Request] --> B[Execute URL Update with Error Handling]
+    B --> C{Update Operation Result}
+    C -- Success --> D[Log: URL successfully updated]
+    C -- Failure --> E[Log: Failed to update URL]
+    D --> F[Return success response with updated URL]
+    E --> G[Return error response with failure message]
+    F --> H[Request Complete]
+    G --> H

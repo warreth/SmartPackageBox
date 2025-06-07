@@ -1,0 +1,9 @@
+graph TD
+    A[Start: Send Notification] --> B[Create Package Alert Message]
+    B --> C[Add Action Buttons]
+    C --> D[Send Push Notification]
+    D --> E{Notification Sent?}
+    E -- Yes --> F[Success: Notification Delivered]
+    E -- No --> G[Log Error Message]
+    G --> H[End: Failed]
+    F --> I[End: Success]

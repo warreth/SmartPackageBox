@@ -1,0 +1,8 @@
+graph TD
+    A[Start: Execute Operation] --> B[Try to Run Function]
+    B --> C{Error Occurred?}
+    C -- Yes --> D[Log Error Message]
+    C -- No --> E[Return Success]
+    D --> F[Return Failed]
+    E --> G[End: Success]
+    F --> H[End: Failed]

@@ -1,0 +1,16 @@
+graph TD
+    A[GET /take-picture Request] --> B[Initialize picture success flag as false]
+    B --> C[Execute with Error Handling]
+    C --> D[Log: Initiating picture capture]
+    D --> E[Execute picture capture through main function]
+    E --> F{Picture capture successful?}
+    F -- Yes --> G[Log: Picture successfully captured]
+    F -- No --> H[Log: ERROR - Picture capture failed]
+    G --> I[Attempt to update URL with new image]
+    H --> J[Return response with capture status]
+    I --> K{URL update successful?}
+    K -- Success --> L[Log: URL successfully updated with new image]
+    K -- Failure --> M[Log: Failed to update URL after picture]
+    L --> J
+    M --> J
+    J --> N[Request Complete]

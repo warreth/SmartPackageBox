@@ -1,0 +1,11 @@
+graph TD
+    A[GET /move-hatch Request] --> B[Execute with Error Handling]
+    B --> C[Check current hatch state]
+    C --> D{Is hatch currently open?}
+    D -- No, hatch is closed --> E[Log: Opening hatch]
+    D -- Yes, hatch is open --> F[Log: Closing hatch]
+    E --> G[Command hatch to open]
+    F --> H[Command hatch to close]
+    G --> I[Return success response with new hatch state]
+    H --> I
+    I --> J[Request Complete]

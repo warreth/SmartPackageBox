@@ -1,0 +1,9 @@
+graph TD
+    A[GET /newest-url Request] --> B[Try to Execute Request]
+    B --> C{Request Execution}
+    C -- Success --> D[Retrieve newest image URL from helper]
+    C -- Exception Caught --> E[Log error details to console]
+    D --> F[Return success response with newest URL]
+    E --> G[Return error response with problem details]
+    F --> H[Request Complete]
+    G --> H

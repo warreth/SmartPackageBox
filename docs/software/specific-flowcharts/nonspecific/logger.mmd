@@ -1,0 +1,8 @@
+graph TD
+    A[Start: Log Message] --> B[Add Timestamp]
+    B --> C[Format Message]
+    C --> D[Save to Log File]
+    D --> E{Boolean: Display on Screen?}
+    E -- Yes --> F[Show on Console]
+    E -- No --> G[End: Message Logged]
+    F --> G

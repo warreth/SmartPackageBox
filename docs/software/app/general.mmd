@@ -1,0 +1,12 @@
+graph TD
+    A[Application Starts] --> B[Prepare Main Screen];
+    B --> C[Display Main Screen];
+    C --> D{What does the user do?};
+    D -- Clicks a button --> E[Process Button Action];
+    E --> F[Get Necessary Data];
+    F --> G[Receive Data];
+    G --> H[Refresh Screen Content];
+    H --> C;
+    D -- Modifies settings --> I[User Adjusts Settings];
+    I -- Clicks 'Save Settings' --> J[Check and Store New Settings];
+    J --> H;

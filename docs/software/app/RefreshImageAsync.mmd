@@ -1,0 +1,10 @@
+graph TD
+    A[Start Refreshing Image URL] --> B[Get Latest Image URL from Server];
+    B --> C{Was URL Retrieval Successful?};
+    C -- No (Error or Empty Response) --> D[Log Image Refresh Failure];
+    D --> E[Use Default Image URL as Fallback];
+    E --> F[Notify System of Update];
+    F --> G[End Process];
+    C -- Yes --> H[Construct Full Image URL with Received Path];
+    H --> I[Log Image Refresh Success];
+    I --> F;

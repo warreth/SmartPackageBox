@@ -1,0 +1,15 @@
+graph TD
+    A[Start Contacting URL] --> B{Is Input Valid?};
+    B -- No --> C[Report Invalid Input Error];
+    B -- Yes --> D[Construct Full URL];
+    D --> E[Send Request to URL];
+    E --> F{Was Request Successful?};
+    F -- No --> G[Report Request Error];
+    F -- Yes --> H[Read Response Data];
+    H --> I{Is Response Data Empty?};
+    I -- Yes --> J[Report Empty Response Error];
+    I -- No --> K[Process Response Data];
+    K --> L{Was Data Processing Successful?};
+    L -- No --> M[Report Data Processing Error];
+    L -- Yes --> N[Return Processed Data];
+    E -- Error During Request --> O[Report Request Error];

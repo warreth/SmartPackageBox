@@ -1,0 +1,13 @@
+graph TD
+    A[Start Moving Hatch] --> B[Send Request to Move Hatch];
+    B --> C{Was Request Acknowledged?};
+    C -- No --> D[Log Error: Unexpected Response];
+    D --> E[Notify System];
+    E --> F[End];
+    C -- Yes --> G[Check Hatch Status from Response];
+    G --> H{Is Hatch Open?};
+    H -- Yes --> I[Status: Hatch Open];
+    H -- No --> J[Status: Hatch Closed];
+    I --> K[Log Result];
+    J --> K;
+    K --> E;

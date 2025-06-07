@@ -1,0 +1,10 @@
+graph TD
+    A[Start Saving Settings] --> B{Are API or Image URLs Empty?};
+    B -- Yes --> C[Log Error: URLs cannot be empty];
+    C --> D[End Process];
+    B -- No --> E[Store New API URL];
+    E --> F[Store New Image Server URL];
+    F --> G[Store Image Visibility Setting];
+    G --> H[Store Log Visibility Setting];
+    H --> I[Log: Settings Saved Successfully];
+    I --> D;

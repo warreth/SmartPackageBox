@@ -1,0 +1,22 @@
+flowchart TD
+    A[Start Deploy Script] --> B{Nodige tools aanwezig?};
+    B -- Ja --> C{Raspberry Pi bereikbaar?};
+    B -- Nee --> Z1[Stop: Tools missen];
+    C -- Ja --> D[Build .NET Project];
+    C -- Nee --> Z2[Stop: Pi onbereikbaar];
+    D --> E{Project 'MainController'?};
+    E -- Ja --> F[Kopieer 'wwwroot' map mee];
+    E -- Nee --> G;
+    F --> G[Vraag SSH wachtwoord];
+    G --> H[Backup belangrijke bestanden op Pi];
+    H --> I[Verwijder oude projectmap op Pi];
+    I --> J[Maak nieuwe projectmap aan op Pi];
+    J --> K[Zet backup bestanden terug];
+    K --> L[Kopieer projectbestanden naar Pi met voortgangsindicator];
+    L --> M{Direct SSH sessie starten?};
+    M -- Ja --> N[Start SSH sessie naar Pi];
+    M -- Nee --> O[Klaar! Project is geïmplementeerd];
+    N --> O;
+    Z1 --> Stop[Einde Script];
+    Z2 --> Stop;
+    O --> Stop;
